@@ -20,11 +20,11 @@
 ---
 
 
-**Project** : Frogger
-**Team** : 2
-**Created by** : Enoal ADAM
-**Creation Date** : 09/26/2024
-**Updated** : 09/26/2024
+**Project** : Frogger <br>
+**Team** : 2 <br>
+**Created by** : Enoal ADAM <br>
+**Creation Date** : 09/26/2024 <br>
+**Updated** : 09/26/2024 <br>
 
 ---
 
