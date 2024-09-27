@@ -25,15 +25,6 @@ This project must be developed using the Verilog language and deployed on an FPG
 | Russel Merrick  | Mentor at ALGOSUP                                              | Guides the team in learning Verilog language.    | During classes at ALGOSUP |
 | Users           | Potential users of the final product                           | Represents the final target audience for the project. | N/A (Final delivery and demo)             |
 
-## Implementation Milestones
-| **Milestone**                | **Due Date**       |
-|:-|:-|
-| Start of the project        | 09/23/2024 10:00   |
-| Functional Specification     | 10/07/2024 17:00   |
-| Technical Specification      | 10/14/2024 17:00   |
-| Code                         | 10/21/2024 17:00   |
-| Test Plan                    | 10/21/2024 17:00   |
-| User Manual                  | 10/21/2024 17:00   |
 
 ## Deliverables & Milestones
 | **Milestone** | **Document Name**           | **Deadline**       |
