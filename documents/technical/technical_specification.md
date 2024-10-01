@@ -57,15 +57,14 @@
 
 [**3. Into technicalities**](#3-into-technicalities)
  - [**3.1 Used technologie's**]()
- - [**3.2 Debbuging system**]()
- - [**3.3 **]()
- - [**3.4 The menu and game background**]()
- - [**3.5 Controls and characters movement**]()
- - [**3.6 Drawing in VGA**]()
+ - [**3.2 Go board set up**]()
+ - [**3.3 Controls and characters movement**]()
+ - [**3.4 Menu and game background**]()
+ - [**3.5 Drawing in VGA**]()
    - [**A. Graphics**]()
    - [**B. The sprites**]()
- - [**3.7 Game mechanics**]()
- - [**3.8 Score system**]()
+ - [**3.6 Game mechanics**]()
+ - [**3.7 Score system**]()
 
 
 
@@ -173,7 +172,29 @@ On this board we need to use :
 
 - The four Switches for the frog movement.
 - The VGA to show it on a ??? screen
-- 
+- The LED segments for levels
+
+
+
+You can access the Go Board plans by [Clicking here]().
+
+### 3.2 Go Board set up.
+
+The Go Board needs some set up to be used properly by using the [Setup documentation]() provided directly on Nandland website.
+
+
+### 3.3 Controls and characters movements.
+
+
+
+### 3.4 Menu and game background.
+
+### 3.5 Drawing in VGA.
+
+### 3.6 Game mechanics.
+
+### 3.7 Score system.
+
 
 
 </details>
