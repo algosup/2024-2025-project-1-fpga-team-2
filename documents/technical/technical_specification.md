@@ -17,6 +17,7 @@
 |Version|Date|Author|Description|
 |-------|----|---|--|
 |1.0|09/27/2024|Mattéo LEFIN| - Create documents and finished Overview.|
+1.1| 10/01/2024|Mattéo LEFIN|- add Overview and conventions |
 
 </details>
 
@@ -32,6 +33,8 @@
 |-------|----|---|
 |||| 
 
+</details>
+
 ---
 
 <details open>
@@ -44,24 +47,25 @@
 [**Glossary**](#glossary)
 
 [**1. Overview**](#1-overview)
- - [**1.1 Document purpose**]()
- - [**1.2 Project audiance**]()
+ - [**1.1 Document purpose**](#1-document-purpose)
+ - [**1.2 Project audiance**](#12-project-audiance)
  
 [**2. Convention**](#2-conventions)
- - [**2.1 Naming convention**]()
- - [**2.2 GitHub organization**]()
- - [**2.3 Folder structure**]()
+ - [**2.1 Naming convention**](#21-naming-conventions)
+ - [**2.2 GitHub organization**](#22-github-organization)
+ - [**2.3 Folder structure**](#23-folder-structure)
 
 [**3. Into technicalities**](#3-into-technicalities)
  - [**3.1 Used technologie's**]()
  - [**3.2 Debbuging system**]()
- - [**3.3 Device setup**]()
- - [**3.4 Drawing in VGA**]()
+ - [**3.3 **]()
+ - [**3.4 The menu and game background**]()
+ - [**3.5 Controls and characters movement**]()
+ - [**3.6 Drawing in VGA**]()
    - [**A. Graphics**]()
    - [**B. The sprites**]()
- - [**3.5 Controls and characters movement**]()
- - [**3.6 The menu and game background**]()
- - [**3.7 Score system**]()
+ - [**3.7 Game mechanics**]()
+ - [**3.8 Score system**]()
 
 
 
@@ -116,7 +120,28 @@ All details about our naming conventions and coding rules can be found on the [n
 
 A folder structure is mandatory for a good understanding of all file locations.
 
+Here, you will find our file structure plan :
+
 ```
+2024-2025-project-1-fpga-team-2
+  ├── document/
+  │     ├── functional_specification/
+  │     │   ├── functional_specification.md
+  │     ├── management/
+  │     ├── technical_specification/
+  │     │   ├── technical_specification.md  
+  │     │   ├── naming_conventions_and_rules.md
+  │     ├── images/
+  │     │   ├── functional_specification/
+  │     │   │   ├── (any images related to functional  documents)
+  │     │   ├── management/
+  │     │   │   ├── (any images related to management documents)
+  │     │   ├── technical_specification/
+  │     │   │   ├── (any images related to technical documents)
+  ├── src/
+  │   ├── (all the files related to code are here)
+  ├── frogger (Game launcher)
+  ├── READEME.md
 
 ```
 
@@ -129,5 +154,26 @@ A folder structure is mandatory for a good understanding of all file locations.
 <summary>3. Into technicalities</summary>
 
 ## 3. Into technicalities.
+
+### 3.1 Used Technologies
+
+#### A. Used computers
+
+For this project, we used for developpment :
+- four MacOS 
+- three Windows
+
+#### B. The board
+
+For this project, we need to use a Go Board given by [Russel Merrick]().
+
+![Go_board_image]()
+
+On this board we need to use :
+
+- The four Switches for the frog movement.
+- The VGA to show it on a ??? screen
+- 
+
 
 </details>
