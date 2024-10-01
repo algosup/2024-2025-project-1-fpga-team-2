@@ -46,10 +46,10 @@ This project must be developed using the Verilog language and deployed on an FPG
 
 ## Costs
 - Workforce available: 7
-- Total half-days of work: 17d
+- Total half-days of work: 13
 - Number of hours for each half-day: 3h30
-- Total estimated human hours: 416h30 
+- Total estimated human hours: 318h30 
 
 ((Workforce availabe * Total half-days of work) * Number of hours for each half-day)
 - Budget per workforce: 0€
-- Total budget: 0€
+- Total budget coast: 0€
