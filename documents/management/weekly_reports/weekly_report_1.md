@@ -1,8 +1,8 @@
 # Weekly Report of Team 2
-### Weekly Report - Week of November 23, 2024
+### Weekly Report - Week of September 23, 2024
 
 1. **Introduction:**  
-- This week marked the official kick-off for our new project, which was introduced to us on Monday, November 23, by Franck. The objective of this project is to create a classic game—Frogger—using FPGA hardware. We began with a scrum meeting to break down the scope of the project and assign roles to each team member.
+- This week marked the official kick-off for our new project, which was introduced to us on Monday, September 23, by Franck. The objective of this project is to create a classic game—Frogger—using FPGA hardware. We began with a scrum meeting to break down the scope of the project and assign roles to each team member.
 
 2. **Accomplishments:**  
 - Our program manager started to fill the functional specification document.  
