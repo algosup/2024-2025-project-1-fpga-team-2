@@ -130,7 +130,7 @@ The player will now play a little raccoon, and all the basic concepts of the fro
 
 - The player loses a life if they:
     - Get hit by a vehicle.
-    - <span style="color: grey">Fall into the river.</span>
+    - <span style="color: grey"><s>Fall into the river.</s></span>
     - Run out of time.
     - Land in a non-home space at the top of the screen (the worksite barriers).
 - The game is over when the 5 lives are lost.
@@ -301,14 +301,6 @@ The player will now play a little raccoon, and all the basic concepts of the fro
 ## **11. Updates and Expansions**
 
 **What additional features can be implemented?**
-
-**Gamemodes**
-- **Multiplayer (local)**: Adding a multiplayer mode may be a good thing to add competition. But that entails to had external hardware, like a keyboard or controlle
-
-**Muics and Sound Effects**
-- **Backgorund music**: An upbeat, arcade-style track that plays during gameplay.
-- **Home reached**: A litte sound to indecate that a safe zone has been reached.
-- **Level completion sound**: An jingle that start when the player succeed to finish a level.
 
 **Graphical animations**
 - **Jumping animation**: An animation (from 6 to 8 frames) of the raccoon while jumping in different directions.
