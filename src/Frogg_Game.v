@@ -21,10 +21,11 @@ module Frogg_Game
    output [3:0]     o_Blu_Video);
 
   // Local Constants to Determine Game Play
-  parameter c_GAME_WIDTH  = 40;
-  parameter c_GAME_HEIGHT = 30;
+  parameter c_GAME_WIDTH  = 640; // Updated to match the actual resolution
+  parameter c_GAME_HEIGHT = 480; // Updated to match the actual resolution
   parameter c_SCORE_LIMIT = 9;
-  parameter c_PADDLE_HEIGHT = 1;
+  parameter c_PADDLE_HEIGHT = 32; // Updated to match the actual size
+  parameter c_PADDLE_WIDTH  = 32; // Updated to match the actual size
   parameter c_PADDLE_COL_P1 = 0;  // Col Index of Paddle for P1
 
   // State machine enumerations
@@ -41,15 +42,15 @@ module Frogg_Game
   
   wire       w_Game_Active;
   wire       w_Draw_Paddle_P1;
-  wire [5:0] w_Paddle_Y_P1;
+  wire [9:0] w_Paddle_Y_P1; // Updated to match the actual resolution
   wire       w_Draw_car, w_Draw_Any;
-  wire [5:0] w_car_X, w_car_Y;
+  wire [9:0] w_car_X, w_car_Y; // Updated to match the actual resolution
 
   reg [3:0] r_P1_Score = 0;
 
-  // Divided version of the Row/Col Counters
-  // Allows us to make the board 40x30
-  wire [5:0] w_Col_Count_Div, w_Row_Count_Div;
+  // Direct version of the Row/Col Counters
+  // Allows us to make the board 640x480
+  wire [9:0] w_Col_Count_Div, w_Row_Count_Div;
 
   Sync_To_Count #(.TOTAL_COLS(c_TOTAL_COLS),
                   .TOTAL_ROWS(c_TOTAL_ROWS)) Sync_To_Count_Inst
@@ -68,9 +69,9 @@ module Frogg_Game
     o_VSync <= w_VSync;
   end
 
-  // Drop 4 LSBs, which effectively divides by 16
-  assign w_Col_Count_Div = w_Col_Count[9:4];
-  assign w_Row_Count_Div = w_Row_Count[9:4];
+  // Use the full count values without division
+  assign w_Col_Count_Div = w_Col_Count;
+  assign w_Row_Count_Div = w_Row_Count;
 
   // Instantiation of Paddle Control + Draw for Player 1
   Frogg_Paddle_Ctrl #(.c_PLAYER_PADDLE_X(c_PADDLE_COL_P1),
@@ -96,11 +97,11 @@ module Frogg_Game
      .o_car_Y(w_car_Y));
 
   // Parameters for car width
-  parameter c_CAR_WIDTH = 2; // Width of the car
+  parameter c_CAR_WIDTH = 32; // Updated to match the actual size
 
   // Register for storing the real X position of Paddle P1
-  reg [5:0] r_Paddle_X_P1;
-  reg [5:0] r_Paddle_Y_P1;
+  reg [9:0] r_Paddle_X_P1; // Updated to match the actual resolution
+  reg [9:0] r_Paddle_Y_P1; // Updated to match the actual resolution
 
   // Store the actual paddle position on each cycle
   always @(posedge i_Clk) begin
@@ -108,13 +109,13 @@ module Frogg_Game
     r_Paddle_Y_P1 <= w_Paddle_Y_P1;
   end
 
-  // Détection de collision améliorée avec la voiture (à la fois sur les axes X et Y)
-  // Comparer la position réelle du paddle avec la voiture
+  // Improved collision detection with the car (both X and Y axes)
+  // Compare the actual paddle position with the car
   wire collision_with_car;
   assign collision_with_car = (r_Paddle_Y_P1 == w_car_Y) && 
                               (r_Paddle_X_P1 >= w_car_X && r_Paddle_X_P1 < (w_car_X + c_CAR_WIDTH));
 
-  // Correction de la condition de perte de jeu
+  // Fix the game loss condition
   // Check if the player reached the top (win condition)
   wire reached_top;
   assign reached_top = (w_Paddle_Y_P1 == 0);
@@ -135,7 +136,7 @@ module Frogg_Game
       RUNNING :
       begin
           if (collision_with_car)    // Collision with the car
-              r_SM_Main <= LOSE;     // Perte si la collision est détectée
+              r_SM_Main <= LOSE;     // Lose if collision is detected
           else if (reached_top)      // Player reaches the top
               r_SM_Main <= WIN;
       end
@@ -143,14 +144,14 @@ module Frogg_Game
       // Player loses
       LOSE :
       begin
-          //go to CLEANUP state
+          // Go to CLEANUP state
           r_SM_Main <= CLEANUP;
       end
 
       // Player wins
       WIN :
       begin
-          //go to CLEANUP state
+          // Go to CLEANUP state
           r_SM_Main <= CLEANUP;
       end
 
@@ -171,17 +172,23 @@ module Frogg_Game
   always @(posedge i_Clk)
   begin
     case (r_SM_Main)
-
+      
       // Normal game play
       default:
       begin
-        if (w_Draw_Any)  // If something is being drawn
+        if (w_Draw_Paddle_P1)  // If the frog (paddle) is being drawn
         begin
-          o_Red_Video <= 4'b1111;  // White
+          o_Red_Video <= 4'b1100;  // Set the frog's color (gray in this case)
+          o_Grn_Video <= 4'b1100;
+          o_Blu_Video <= 4'b1100;
+        end
+        else if (w_Draw_car)  // If a car is being drawn
+        begin
+          o_Red_Video <= 4'b1111;  // Set the car's color (e.g., red)
           o_Grn_Video <= 4'b1111;
           o_Blu_Video <= 4'b1111;
         end
-        else  // Otherwise, black screen
+        else  // If nothing is being drawn, set the screen to black
         begin
           o_Red_Video <= 4'b0000;
           o_Grn_Video <= 4'b0000;

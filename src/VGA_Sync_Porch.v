@@ -31,7 +31,7 @@ module VGA_Sync_Porch #(parameter VIDEO_WIDTH = 3,  // remember to
   parameter c_FRONT_PORCH_HORZ = 16; // orig 18;
   parameter c_BACK_PORCH_HORZ  = 48; // orig 50;
   parameter c_FRONT_PORCH_VERT = 10; // orig 10;
-  parameter c_BACK_PORCH_VERT  = 33; // orig 33;
+  parameter c_BACK_PORCH_VERT  = 33; // orig 33; 
 
   wire w_HSync;
   wire w_VSync;

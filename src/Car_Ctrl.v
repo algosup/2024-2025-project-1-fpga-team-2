@@ -1,21 +1,21 @@
 module car_Ctrl 
-  #(parameter c_GAME_WIDTH=40, // Size of the game
-    parameter c_GAME_HEIGHT=30) 
+  #(parameter c_GAME_WIDTH=640, // Updated to full resolution
+    parameter c_GAME_HEIGHT=480) // Updated to full resolution
   (input            i_Clk,
    input            i_Game_Active,
-   input [5:0]      i_Col_Count_Div,
-   input [5:0]      i_Row_Count_Div,
+   input [9:0]      i_Col_Count_Div, // Updated to 10 bits
+   input [9:0]      i_Row_Count_Div, // Updated to 10 bits
    output reg       o_Draw_car,
-   output reg [5:0] o_car_X = 0,
-   output reg [5:0] o_car_Y = 0);
+   output reg [9:0] o_car_X = 0, // Updated to 10 bits
+   output reg [9:0] o_car_Y = 0); // Updated to 10 bits
 
   // Set the Speed of the car movement.
-  parameter c_car_SPEED = 1650000;
+  parameter c_car_SPEED = 165000;
 
   reg [31:0] r_car_Count = 0;
 
   // New parameter for Y position cycling
-  reg [5:0] r_car_Y_counter = 0;
+  reg [9:0] r_car_Y_counter = 0; // Updated to 10 bits
 
   always @(posedge i_Clk)
   begin
@@ -59,10 +59,10 @@ module car_Ctrl
   // Draws a car at the location determined by X and Y indexes.
   always @(posedge i_Clk)
   begin
-    if (i_Col_Count_Div == o_car_X && i_Row_Count_Div == o_car_Y)
+    if (i_Col_Count_Div >= o_car_X && i_Col_Count_Div < o_car_X + 32 && // Assuming car width is 32
+        i_Row_Count_Div >= o_car_Y && i_Row_Count_Div < o_car_Y + 32) // Assuming car height is 32
       o_Draw_car <= 1'b1;
     else
       o_Draw_car <= 1'b0;
   end
-
 endmodule // car_Ctrl
