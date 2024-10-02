@@ -1,8 +1,26 @@
 ### **Functional Specifications for "Frogger" Game Recreation**
 
-<br>
 
 ### Content Table
+
+1. [Introduction](#1-introduction)
+2. [Game Overview](#2-game-overview)
+3. [Game Mechanics](#3-game-mechanics)
+    - [Movement and Controls](#31-movement-and-controls)
+    - [Obstacles and Hazards](#32-obstacles-and-hazards)
+    - [Timer and Score](#33-timer-and-score)
+    - [Winning and Losing Conditions](#34-winning-and-losing-conditions)
+4. [Levels and Progression](#4-levels-and-progression)
+5. [User Interface (UI)](#5-user-interface-ui)
+    - [Main Menu](#51-main-menu)
+    - [In-Game HUD](#52-in-game-hud)
+    - [Game Over HUD](#53-game-over-hud)
+6. [Game Modes](#6-game-modes)
+7. [Sound and Music](#7-sound-and-music)
+8. [Graphics and Animation](#8-graphics-and-animation)
+9. [Platform Compatibility](#9-platform-compatibility)
+10. [Updates and Expansions](#11-updates-and-expansions)
+11. [Data Handling](#12-data-handling)
 
 <br>
 <br>
@@ -23,6 +41,29 @@ Frogger is an arcade-style game where the player controls a frog that must make 
 **What is the main goal of the game?**
 
 The goal of the game is to guide the frog from the bottom of the screen to a safe destination at the top, avoiding obstacles such as cars, trucks, and hazards in the river, and reaching the final "home" spaces.
+
+**What are the visuals of the original version?**
+
+For comparison purposes, let's introduce the original game desgins :
+
+<img title="a title" alt="Alt text" src="./4docs/frogger_map.jpg">
+
+**Description of the map and mecanics (from bottom to top):**
+
+- The first purple zone is the starting zone, nothing can harm the frog here.
+
+- The road is crossed horizontaly by multiple obstacles (from left to right or inversly). If the frog hit an obstacle, a life is lost.
+
+- The second purple zone is a safe zone, nothing can harm the frog here one again. It serves as transition from road to river.
+
+- In the river, it is the opposite mechanic. The frog need to use the turtules shells and logs to cross the river. Some of the shells temporarily disappear. If the frog fall in the water, a life is lost. 
+
+- The last has the water lilys that serves as checkpoints. The frog must land on each of them to complet the whole level. If landed on the cactus, a life is lost.
+
+
+**What we decided to change compared to the original game?**
+
+The player will now play a little raccoon, and all the basic concepts of the frogger, will be translated to fit with the raccoon. 
 
 <br>
 <br>
@@ -242,4 +283,98 @@ The goal of the game is to guide the frog from the bottom of the screen to a saf
 
 - **Highest score**: the highest score has to be stored to add a virtual checkpoint for the player. Then he knows how far he's from his best score.
 
-#### Glossary
+#### Glossary## **11. Updates and Expansions**
+
+**What additional features can be implemented?**
+
+**Gamemodes**
+- **Multiplayer (local)**: Adding a multiplayer mode may be a good thing to add competition. But that entails to had external hardware, like a keyboard or controlle
+
+**Muics and Sound Effects**
+- **Backgorund music**: An upbeat, arcade-style track that plays during gameplay.
+- **Home reached**: A litte sound to indecate that a safe zone has been reached.
+- **Level completion sound**: An jingle that start when the player succeed to finish a level.
+
+**Graphical animations**
+- **Jumping animation**: An animation (from 6 to 8 frames) of the raccoon while jumping in different directions.
+- **Death animation**: A better designed death animation (from 2 to 4 frames)
+
+**Customization and options**
+- **Skins**: adding other raccoon skins (christmas raccoon, halloween raccoon, radioactive raccoon, rocket raccoon...)
+- **Maps**: adding other maps (Zone 52, Space base...)
+
+1. **Power-ups:**
+    - Items such as "invincibility" for a short duration or "speed boost" can appear randomly in levels.
+2. **Character Customization:**
+    - Players can unlock different frog skins or costumes by achieving certain scores or completing levels.
+3. **Achievements/Trophies:**
+    - The game can include a set of achievements for players to unlock, like "First Time Survivor" or "Speed Demon."
+
+**What content updates are planned post-launch?**
+
+- New levels with unique themes (e.g., different terrains like deserts, jungles).
+- Seasonal or holiday-themed events with limited-time challenges or aesthetics.
+
+<br>
+<br>
+
+## **11. Updates and Expansions**
+
+**What additional features can be implemented?**
+
+**Gamemodes**
+- **Multiplayer (local)**: Adding a multiplayer mode may be a good thing to add competition. But that entails to had external hardware, like a keyboard or controlle
+
+**Muics and Sound Effects**
+- **Backgorund music**: An upbeat, arcade-style track that plays during gameplay.
+- **Home reached**: A litte sound to indecate that a safe zone has been reached.
+- **Level completion sound**: An jingle that start when the player succeed to finish a level.
+
+**Graphical animations**
+- **Jumping animation**: An animation (from 6 to 8 frames) of the raccoon while jumping in different directions.
+- **Death animation**: A better designed death animation (from 2 to 4 frames)
+
+**Customization and options**
+- **Skins**: adding other raccoon skins (christmas raccoon, halloween raccoon, radioactive raccoon, rocket raccoon...)
+- **Maps**: adding other maps (Zone 52, Space base...)
+
+1. **Power-ups:**
+    - Items such as "invincibility" for a short duration or "speed boost" can appear randomly in levels.
+2. **Character Customization:**
+    - Players can unlock different frog skins or costumes by achieving certain scores or completing levels.
+3. **Achievements/Trophies:**
+    - The game can include a set of achievements for players to unlock, like "First Time Survivor" or "Speed Demon."
+
+**What content updates are planned post-launch?**
+
+- New levels with unique themes (e.g., different terrains like deserts, jungles).
+- Seasonal or holiday-themed events with limited-time challenges or aesthetics.
+
+<br>
+<br>
+
+### Glossary
+
+<b>Arcade-style game:</b> 
+- A type of video game designed to be simple and straightforward, often featuring fast-paced action and short levels, inspired by games commonly found in amusement arcades.
+
+<b>FPGA (Field-Programmable Gate Array):</b> 
+- A type of integrated circuit that can be configured by the user or designer after manufacturing, often used in specialized gaming platforms.
+
+<b>HUD (Heads-Up Display):</b> 
+- On-screen display elements that provide the player with information during gameplay, such as score, time, and remaining lives.
+
+<b>Pixel Art:</b> 
+- A type of digital art where images are created and edited at the pixel level, often associated with retro-style video games for a nostalgic or minimalist look.
+
+<b>Predefined lanes:</b> 
+- Specific paths on which objects (such as cars or trucks) move within a fixed or set pattern.
+
+<b>Power-ups:</b> 
+- Items that temporarily grant players special abilities, such as invincibility or speed boosts, enhancing the gameplay experience.
+
+<b>Upbeat, arcade-style track:</b> 
+- Fast-paced, energetic background music that complements the retro arcade gaming experience.
+
+<b>VGA (Video Graphics Array) port:</b> 
+- A connector commonly used to transmit video signals from a device (such as an FPGA) to a monitor or display.
