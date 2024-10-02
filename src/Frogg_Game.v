@@ -43,8 +43,10 @@ module Frogg_Game
   wire       w_Game_Active;
   wire       w_Draw_Paddle_P1;
   wire [9:0] w_Paddle_Y_P1; // Updated to match the actual resolution
-  wire       w_Draw_car, w_Draw_Any;
+  wire       w_Draw_car, w_Draw_car2, w_Draw_car3, w_Draw_Any;
   wire [9:0] w_car_X, w_car_Y; // Updated to match the actual resolution
+  wire [9:0] w_car2_X, w_car2_Y;
+  wire [9:0] w_car3_X, w_car3_Y;
 
   reg [3:0] r_P1_Score = 0;
 
@@ -86,18 +88,38 @@ module Frogg_Game
      .o_Draw_Paddle(w_Draw_Paddle_P1),
      .o_Paddle_Y(w_Paddle_Y_P1));
 
-  // Instantiation of car Control + Draw
-  car_Ctrl car_Ctrl_Inst
-    (.i_Clk(i_Clk),
-     .i_Game_Active(w_Game_Active),
-     .i_Col_Count_Div(w_Col_Count_Div),
-     .i_Row_Count_Div(w_Row_Count_Div),
-     .o_Draw_car(w_Draw_car),
-     .o_car_X(w_car_X),
-     .o_car_Y(w_car_Y));
+  car_Ctrl #(.c_initial_position(0), .c_direction(0)) car1 (
+  .i_Clk(i_Clk),
+  .i_Game_Active(w_Game_Active),
+  .i_Col_Count_Div(w_Col_Count_Div),
+  .i_Row_Count_Div(w_Row_Count_Div),
+  .i_car_Y(50),
+  .o_Draw_car(w_Draw_car),
+  .o_car_X(w_car_X),
+  .o_car_Y(w_car_Y)
+);
 
-  // Parameters for car width
-  parameter c_CAR_WIDTH = 32; // Updated to match the actual size
+car_Ctrl #(.c_initial_position(639), .c_direction(1), .c_car_SPEED(1090000)) car2 (
+  .i_Clk(i_Clk),
+  .i_Game_Active(w_Game_Active),
+  .i_Col_Count_Div(w_Col_Count_Div),
+  .i_Row_Count_Div(w_Row_Count_Div),
+  .i_car_Y(90),
+  .o_Draw_car(w_Draw_car2),
+  .o_car_X(w_car2_X),
+  .o_car_Y(w_car2_Y)
+);
+
+car_Ctrl #(.c_initial_position(639), .c_direction(1), .c_car_SPEED(1020000)) car3 (
+  .i_Clk(i_Clk),
+  .i_Game_Active(w_Game_Active),
+  .i_Col_Count_Div(w_Col_Count_Div),
+  .i_Row_Count_Div(w_Row_Count_Div),
+  .i_car_Y(130),
+  .o_Draw_car(w_Draw_car3),
+  .o_car_X(w_car3_X),
+  .o_car_Y(w_car3_Y)
+);
 
   // Register for storing the real X position of Paddle P1
   reg [9:0] r_Paddle_X_P1; // Updated to match the actual resolution
@@ -108,12 +130,6 @@ module Frogg_Game
     r_Paddle_X_P1 <= w_Col_Count_Div;
     r_Paddle_Y_P1 <= w_Paddle_Y_P1;
   end
-
-  // Improved collision detection with the car (both X and Y axes)
-  // Compare the actual paddle position with the car
-  wire collision_with_car;
-  assign collision_with_car = (r_Paddle_Y_P1 == w_car_Y) && 
-                              (r_Paddle_X_P1 >= w_car_X && r_Paddle_X_P1 < (w_car_X + c_CAR_WIDTH));
 
   // Fix the game loss condition
   // Check if the player reached the top (win condition)
@@ -135,17 +151,8 @@ module Frogg_Game
       // Stay in this state until either player touches the car (lose) or reaches the top (win)
       RUNNING :
       begin
-          if (collision_with_car)    // Collision with the car
-              r_SM_Main <= LOSE;     // Lose if collision is detected
-          else if (reached_top)      // Player reaches the top
-              r_SM_Main <= WIN;
-      end
-
-      // Player loses
-      LOSE :
-      begin
-          // Go to CLEANUP state
-          r_SM_Main <= CLEANUP;
+         if (reached_top)      // Player reaches the top
+            r_SM_Main <= WIN;
       end
 
       // Player wins
@@ -156,9 +163,7 @@ module Frogg_Game
       end
 
       CLEANUP :
-      begin
-          r_SM_Main <= IDLE;  // Return to the initial state
-      end
+        r_SM_Main <= IDLE;  // Return to the initial state
 
       endcase
   end
@@ -166,7 +171,7 @@ module Frogg_Game
   // Conditional Assignment based on State Machine state
   assign w_Game_Active = (r_SM_Main == RUNNING) ? 1'b1 : 1'b0;
 
-  assign w_Draw_Any = w_Draw_Paddle_P1 || w_Draw_car;
+  assign w_Draw_Any = w_Draw_Paddle_P1 || w_Draw_car || w_Draw_car2 || w_Draw_car3;;
 
   // Assign colors based on game state
   always @(posedge i_Clk)
@@ -182,7 +187,7 @@ module Frogg_Game
           o_Grn_Video <= 4'b1100;
           o_Blu_Video <= 4'b1100;
         end
-        else if (w_Draw_car)  // If a car is being drawn
+        else if (w_Draw_car || w_Draw_car2 || w_Draw_car3)  // If a car is being drawn
         begin
           o_Red_Video <= 4'b1111;  // Set the car's color (e.g., red)
           o_Grn_Video <= 4'b1111;
