@@ -74,16 +74,17 @@ The player will now play a little raccoon, and all the basic concepts of the fro
 
 **What controls are available to the player?**
 
-- Players can move the frog up, down, left, or right using the switches of the board.
+- Players can move the raccoon up, down, left, or right using the switches of the board.
 
 **What happens when the player moves the frog?**
 
-- The frog moves one step in the chosen direction, and if the switch is maintained, the frog will pursue his way in the choosen direction until the switch is released.
+- The raccoon moves one step in the chosen direction, and if the switch is maintained, the raccoon will pursue his way in the choosen direction until the switch is released.
 
 **What restrictions are there on movement?**
 
-- The frog cannot move off the screen.
+- The raccoon cannot move off the screen.
 - Movement are restricted based on obstacles such as traffic, water, and boundaries.
+- The raccoon cannot move in other ways than that : top, bottom, right and left.
 
 <br>
 
@@ -92,14 +93,14 @@ The player will now play a little raccoon, and all the basic concepts of the fro
 **What types of obstacles are there?**
 
 1. **Traffic:**
-    - Cars, garbage truck, and school buses move horizontally across the screen in predefined lanes.
-2. <span style="color: grey">**River Hazards:**
-    - Water is an instant hazard where the frog will drown unless standing on a floating object, as logs and trurtules.
-    - Logs and turtles float on the river, allowing safe passage if timed correctly.</span>
+    - Cars, garbage trucks, and school buses move horizontally across the screen in predefined lanes.
+2. <span style="color: grey"><s>**River Hazards:**
+    - <s>Water is an instant hazard where the frog will drown unless standing on a floating object, as logs and trurtules.</s>
+    - <s>Logs and turtles float on the river, allowing safe passage if timed correctly.</s></span>
 
 **What happens when the frog encounters an obstacle?**
 
-- If the frog touches a vehicle the player loses a life, and the frog returns to the start of the level.
+- If the frog touches a vehicle the player loses a life, and the frog returns to the start of the level (5 rounds).
 
 <br>
 
@@ -141,7 +142,7 @@ The player will now play a little raccoon, and all the basic concepts of the fro
 
 **What defines a level in the game?**
 
-- A level consists of a road section with moving vehicles. <span style="color: grey">and a river section with floating logs, turtles, and hazards.</span> At the top of the screen are empty trashes slots where the raccoon must reach.
+- A level consists of a road section with moving vehicles. <span style="color: grey"><s>and a river section with floating logs, turtles, and hazards.</span></s> At the top of the screen are water  slots where the frog must reach.
 
 **What changes between levels?**
 
@@ -208,22 +209,6 @@ The player will now play a little raccoon, and all the basic concepts of the fro
 <br>
 <br>
 
-## **7. Sound and Music**
-
-**What type of audio is in the game?**
-
-- **Background Music:** An upbeat, arcade-style track that plays during gameplay.
-- **Sound Effects:**
-    - Jump sound for frog movement.
-    - Collision sounds when the frog is hit.
-
-**What customization is available for sound?**
-
-- There will be no other way to control the volume than using the screen volume.
-
-<br>
-<br>
-
 ## **8. Graphics and Animation**
 
 **What is the graphical style of the game?**
@@ -248,11 +233,6 @@ The player will now play a little raccoon, and all the basic concepts of the fro
 
 **Gamemodes**
 - **Multiplayer (local)**: Adding a multiplayer mode may be a good thing to add competition. But that entails to had external hardware, like a keyboard or controlle
-
-**Muics and Sound Effects**
-- **Backgorund music**: An upbeat, arcade-style track that plays during gameplay.
-- **Home reached**: A litte sound to indecate that a safe zone has been reached.
-- **Level completion sound**: An jingle that start when the player succeed to finish a level.
 
 **Graphical animations**
 - **Jumping animation**: An animation (from 6 to 8 frames) of the raccoon while jumping in different directions.
