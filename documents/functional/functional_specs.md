@@ -94,9 +94,9 @@ The player will now play a little raccoon, and all the basic concepts of the fro
 
 1. **Traffic:**
     - Cars, garbage trucks, and school buses move horizontally across the screen in predefined lanes.
-2. <span style="color: grey"><s>**River Hazards:**
+2. <span style="color: grey">**River Hazards:**
     - <s>Water is an instant hazard where the frog will drown unless standing on a floating object, as logs and trurtules.</s>
-    - <s>Logs and turtles float on the river, allowing safe passage if timed correctly.</s></span>
+    - <s>Logs and turtles float on the river, allowing safe passage if timed correctly</s></span>
 
 **What happens when the frog encounters an obstacle?**
 
@@ -227,7 +227,7 @@ The player will now play a little raccoon, and all the basic concepts of the fro
 <br>
 <br>
 
-## **11. Updates and Expansions**
+## **10. Updates and Expansions**
 
 **What additional features can be implemented?**
 
@@ -257,7 +257,7 @@ The player will now play a little raccoon, and all the basic concepts of the fro
 <br>
 <br>
 
-## **12. Data Handling**
+## **11. Data Handling**
 
 **What data is stored in the game?**
 
