@@ -51,8 +51,4 @@ All variables used in the code are written in ``camel_Snake_Case``, meaning ever
 
     endmodule
 
-
-
-
-
 ```
