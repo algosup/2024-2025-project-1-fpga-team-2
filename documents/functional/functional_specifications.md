@@ -1,26 +1,27 @@
 ### **Functional Specifications for "Frogger" Game Recreation**
 
 
-### Content Table
+<summary>Content Table</summary>
 
-1. [Introduction](#1-introduction)
-2. [Game Overview](#2-game-overview)
-3. [Game Mechanics](#3-game-mechanics)
-    - [Movement and Controls](#31-movement-and-controls)
-    - [Obstacles and Hazards](#32-obstacles-and-hazards)
-    - [Timer and Score](#33-timer-and-score)
-    - [Winning and Losing Conditions](#34-winning-and-losing-conditions)
-4. [Levels and Progression](#4-levels-and-progression)
-5. [User Interface (UI)](#5-user-interface-ui)
-    - [Main Menu](#51-main-menu)
-    - [In-Game HUD](#52-in-game-hud)
-    - [Game Over HUD](#53-game-over-hud)
-6. [Game Modes](#6-game-modes)
-7. [Sound and Music](#7-sound-and-music)
-8. [Graphics and Animation](#8-graphics-and-animation)
-9. [Platform Compatibility](#9-platform-compatibility)
-10. [Updates and Expansions](#11-updates-and-expansions)
-11. [Data Handling](#12-data-handling)
+- [1. Introduction](#1-introduction)
+- [2. Game Overview](#2-game-overview)
+- [3. Equipement](#3-equipement)
+- [4. Game Mechanics](#4-game-mechanics)
+    - [Movement and Controls](#41-movement-and-controls)
+    - [Obstacles and Hazards](#42-obstacles-and-hazards)
+    - [Timer and Score](#43-timer-and-score)
+    - [Winning and Losing Conditions](#44-winning-and-losing-conditions)
+- [5. Levels and Progression](#5-levels-and-progression)
+- [6. User Interface (UI)](#6-user-interface-ui)
+    - [Main Menu](#61-main-menu)
+    - [In-Game HUD](#62-in-game-hud)
+    - [Game Over HUD](#63-game-over-hud)
+- [7. Game Modes](#7-game-modes)
+- [8. Graphics and Animation](#8-graphics-and-animation)
+- [9. Platform Compatibility](#9-platform-compatibility)
+- [10. Updates and Expansions](#10-updates-and-expansions)
+- [11. Data Handling](#11-data-handling)
+- [Glossary](#glossary)
 
 <br>
 <br>
@@ -46,7 +47,7 @@ The goal of the game is to guide the frog from the bottom of the screen to a saf
 
 For comparaison purposes, let's introduce the original game desgins :
 
-<img title="a title" alt="Alt text" src="./4docs/frogger_map.jpg" style="width: 600px; justify-item: center;">
+<img title="a title" alt="Original frogger map" src="./images/frogger_map.jpg" style="width: 600px; justify-item: center;">
 
 **Description of the map and mecanics (from bottom to top):**
 
@@ -56,7 +57,7 @@ For comparaison purposes, let's introduce the original game desgins :
 
 - The second purple zone is a safe zone, nothing can harm the frog here once again. It serves as transition from road to river.
 
-- In the river, it is the opposite mechanic. The frog need to use the turtules shells and logs to cross the river. Some of the shells temporarily disappear. If the frog fall in the water, a life is lost. 
+- In the river, it is the opposite mechanic. The frog need to use the turtles shells and logs to cross the river. Some of the shells temporarily disappear. If the frog fall in the water, a life is lost.
 
 - The last has the water lilys that serves as checkpoints. The frog must land on each of them to complet a level. If the frog landed on the cactus, a life is lost.
 
@@ -70,9 +71,9 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 ## **3. Equipement**
 
-**Hardware** 
+**Hardware**
 
-- **FPGA** The game is programedin verilog, and <b>FPGA</b> boards can handle this language (e.g. Lattice ICE40 HX1K).
+- **FPGA** The game is programed in verilog, and <b>FPGA</b> boards can handle this language (e.g. Lattice ICE40 HX1K).
 
 - **Monitor**: Since the FPGA model used only support VGA image transfer, a monitor that handle the VGA technology is required to play.
 
@@ -96,7 +97,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 **What restrictions are there on movement?**
 
 - The raccoon cannot move off the screen.
-- Movements are restricted based on obstacles such as the garbage trucks. 
+- Movements are restricted based on obstacles such as the garbage trucks.
 - The raccoon cannot move in other ways than that : top, bottom, right and left. Moving in diagonal isn't allowed (and possible).
 
 <br>
@@ -175,7 +176,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 **What does each option in the menu do?**
 
 - **Start Game:** Launches the game from the first level (action required).
-- **High Scores:** Displays a leaderboard of top scores (automaticly displayed).
+- **High Scores:** Displays a leaderboard of top scores (automatically displayed).
 
 ---
 
@@ -210,7 +211,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 **What game modes are available?**
 
 **Classic Mode:**
-    - A recreation of the original arcade-style Frogger, featuring progressively harder levels and fixed obstacles.
+- A recreation of the original arcade-style Frogger, featuring progressively harder levels and fixed obstacles.
 
 <br>
 <br>
@@ -238,7 +239,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 **What additional features can be implemented?**
 
 **Gamemodes**
-- **Multiplayer (local)**: Adding a multiplayer mode may be a good thing to add competition. But that entails to had external hardware, like a keyboard or controller. 
+- **Multiplayer (local)**: Adding a multiplayer mode may be a good thing to add competition. But that entails to had external hardware, like a keyboard or controller.
 
 **Graphical animations**
 - **Jumping animation**: An animation (from 6 to 8 frames) of the raccoon while jumping in different directions.
@@ -246,7 +247,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 **Customization and options**
 - **Skins**: adding other raccoon skins (christmas raccoon, halloween raccoon, radioactive raccoon, rocket raccoon...)
-- **Maps**: adding other maps (Zone 52, Space...)
+- **Maps**: adding other maps (Zone 51, Space...)
 - **Unlocking system**: Those cosmetics and maps will be earned by realizing different scores, as rewards.
 - **Power-ups:**
     - Items such as "invincibility" for a short duration or "speed boost" can appear randomly in levels.
@@ -258,33 +259,30 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 **What data is stored in the game?**
 
-- **Highest score**: the highest score has to be stored to add a virtual checkpoint for the player. Then he knows how far he's from his best score. Reminder : the score is calculated like that : <i>[(Number of trashes reached * 10'000) / time from start to end (all levels and rounds combined) in seconds]</i>
+- **Highest score**: The highest score has to be stored to add a virtual checkpoint for the player. Then he knows how far he's from his best score. Reminder : the score is calculated like that : <i>[(Number of trashes reached * 10'000) / time from start to end (all levels and rounds combined) in seconds]</i>
 
 <br>
 <br>
 
 ### Glossary
 
-<b>Arcade-style game:</b> 
+<b>Arcade-style game:</b>
 - A type of video game designed to be simple and straightforward, often featuring fast-paced action and short levels, inspired by games commonly found in amusement arcades.
 
-<b>FPGA (Field-Programmable Gate Array):</b> 
+<b>FPGA (Field-Programmable Gate Array):</b>
 - A type of integrated circuit that can be configured by the user or designer after manufacturing, often used in specialized gaming platforms.
 
-<b>HUD (Heads-Up Display):</b> 
+<b>HUD (Heads-Up Display):</b>
 - On-screen display elements that provide the player with information during gameplay, such as score, time, and remaining lives.
 
-<b>Pixel Art:</b> 
+<b>Pixel Art:</b>
 - A type of digital art where images are created and edited at the pixel level, often associated with retro-style video games for a nostalgic or minimalist look.
 
-<b>Predefined lanes:</b> 
+<b>Predefined lanes:</b>
 - Specific paths on which objects (such as cars or trucks) move within a fixed or set pattern.
 
-<b>Power-ups:</b> 
+<b>Power-ups:</b>
 - Items that temporarily grant players special abilities, such as invincibility or speed boosts, enhancing the gameplay experience.
 
-<b>Upbeat, arcade-style track:</b> 
-- Fast-paced, energetic background music that complements the retro arcade gaming experience.
-
-<b>VGA (Video Graphics Array) port:</b> 
+<b>VGA (Video Graphics Array) port:</b>
 - A connector commonly used to transmit video signals from a device (such as an FPGA) to a monitor or display.
