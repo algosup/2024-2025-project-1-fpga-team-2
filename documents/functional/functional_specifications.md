@@ -13,9 +13,8 @@
     - [Winning and Losing Conditions](#44-winning-and-losing-conditions)
 - [5. Levels and Progression](#5-levels-and-progression)
 - [6. User Interface (UI)](#6-user-interface-ui)
-    - [Main Menu](#61-main-menu)
-    - [In-Game HUD](#62-in-game-hud)
-    - [Game Over HUD](#63-game-over-hud)
+    - [In-Game HUD](#61-in-game-hud)
+    - [Game Over HUD](#62-game-over-hud)
 - [7. Game Modes](#7-game-modes)
 - [8. Graphics and Animation](#8-graphics-and-animation)
 - [9. Platform Compatibility](#9-platform-compatibility)
@@ -166,21 +165,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 ## **6. User Interface (UI)**
 
-### **6.1 Main Menu**
-
-**What options are available in the main menu?**
-
-- Start Game
-- Highest Scores
-
-**What does each option in the menu do?**
-
-- **Start Game:** Launches the game from the first level (action required).
-- **High Scores:** Displays a leaderboard of top scores (automatically displayed).
-
----
-
-### **6.2 In-Game HUD**
+### **6.1 In-Game HUD**
 
 **What informations are displayed during gameplay?**
 
@@ -195,7 +180,8 @@ The player will now play a little raccoon, and all the basic concepts from the f
 - **Lives Decrease:** A bar in the lives indicator will be removed.
 - **Score Increase:** The score number updates with a calculation between the number of trash reached divided by the time required to do so. Reaching a trash gives +10000 points.
 - **Timer Countdown:** The timer decreases in real time to alerts the player when time is nearly out.
-### **6.3 Game Over HUD**
+
+### **6.2 Game Over HUD**
 
 **What will be on the game over screen ?**
 
@@ -237,6 +223,10 @@ The player will now play a little raccoon, and all the basic concepts from the f
 ## **10. Updates and Expansions**
 
 **What additional features can be implemented?**
+
+**UI**
+
+- **Welcome screen**: Create a welcome screen with little desgins, a start button (to start a new game) and the highest score ever made.
 
 **Gamemodes**
 - **Multiplayer (local)**: Adding a multiplayer mode may be a good thing to add competition. But that entails to had external hardware, like a keyboard or controller.
