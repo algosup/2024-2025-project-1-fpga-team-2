@@ -215,7 +215,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 **What platforms will the game support?**
 
-- <b>FPGA</b>s with at least a micro-usb power supply and a VGA cable
+- <b>FPGA</b>s with at least a micro-usb power supply and a VGA cable.
 
 <br>
 <br>
