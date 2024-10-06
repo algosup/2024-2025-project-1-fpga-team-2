@@ -21,3 +21,6 @@ vendor/
 
 # Environment files
 .env
+<<<<< functional
+=====
+>>>>> main
