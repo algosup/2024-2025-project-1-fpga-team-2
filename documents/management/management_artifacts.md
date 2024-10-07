@@ -3,7 +3,7 @@ In this section, we present the completion of the KPIs and how the calculations 
 
 
 ### Completion Calculation of Files & Review
-For each document structured with three main sections (referred to as "Main Points"), each containing a different number of sub-sections ("Subpoints"). These sub-sections are represented in markdown by the headings "# Main Point" for the main sections and "## Sub-Title" for the sub-sections.
+For each document structured with three main sections "# Main Point" for the main sections (referred to as "Main Points"), each containing a different number of sub-sections ("Subpoints"). These sub-sections are represented in markdown by the headings "## Sub-Title" for the sub-sections.
 
 #### Structure Overview
 - **Main Point 1**: 10 Subpoints
