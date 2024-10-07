@@ -5,7 +5,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Game Overview](#2-game-overview)
-- [3. Equipement](#3-equipement)
+- [3. Equipment](#3-equipment)
 - [4. Game Mechanics](#4-game-mechanics)
     - [Movement and Controls](#41-movement-and-controls)
     - [Obstacles and Hazards](#42-obstacles-and-hazards)
@@ -44,37 +44,37 @@ The goal of the game is to guide the frog from the bottom of the screen to a saf
 
 **What are the visuals of the original version?**
 
-For comparaison purposes, let's introduce the original game desgins :
+For comparison purposes, let's introduce the original game designs :
 
-<img title="a title" alt="Original frogger map" src="../images/functional/frogger_map.jpg" style="width: 600px; justify-item: center;">
+<img title="a title" alt="Original frogger map" src="./images/frogger_map.jpg" style="width: 600px; justify-item: center;">
 
-**Description of the map and mecanics (from bottom to top):**
+**Description of the map and mechanics (from bottom to top):**
 
 - The first purple zone is the starting zone, nothing can harm the frog here.
 
-- The road is crossed horizontaly by multiple obstacles (from left to right or inversly). If the frog hit an obstacle, a life is lost.
+- The road is crossed horizontally by multiple obstacles (from left to right or inversely). If the frog hits an obstacle, a life is lost.
 
 - The second purple zone is a safe zone, nothing can harm the frog here once again. It serves as transition from road to river.
 
-- In the river, it is the opposite mechanic. The frog need to use the turtles shells and logs to cross the river. Some of the shells temporarily disappear. If the frog fall in the water, a life is lost.
+- In the river, it is the opposite mechanic. The frog need to use the turtles shells and logs to cross the river. Some of the shells temporarily disappear. If the frog fall into the water, a life is lost.
 
-- The last has the water lilys that serves as checkpoints. The frog must land on each of them to complet a level. If the frog landed on the cactus, a life is lost.
+- The last has the water lilys that serves as checkpoints. The frog must land on each of them to complete a level. If the frog landed on the cactus, a life is lost.
 
 
 **What we decided to change compared to the original game?**
 
-The player will now play a little raccoon, and all the basic concepts from the frogger, will be translated to fit with the raccoon. There is no longer river (in extension, turtules and logs also), the obstacles are garbage trucks, checkpoints are trashes, and cactuses are worksite barriers.
+The player will now play a little raccoon, and all the basic concepts from the frogger, will be translated to fit with the raccoon. There is no longer river (in extension, turtles and logs also), the obstacles are garbage trucks, checkpoints are trashes, and cactuses are worksite barriers.
 
 <br>
 <br>
 
-## **3. Equipement**
+## **3. Equipment**
 
 **Hardware**
 
-- **FPGA** The game is programed in verilog, and <b>FPGA</b> boards can handle this language (e.g. Lattice ICE40 HX1K).
+- **FPGA** The game is programmed in verilog, and <b>FPGA</b> boards can handle this language (e.g. Lattice ICE40 HX1K).
 
-- **Monitor**: Since the FPGA model used only support VGA image transfer, a monitor that handle the VGA technology is required to play.
+- **Monitor**: Since the <a href="#fpga">FPGA</a> model used only support <a href="#vga">VGA</a> image transfer, a monitor that handle the VGA technology is required to play.
 
 - **Power Supply (optional)**: If needed, you can use an external battery, with a micro-usb cable, so you don't need to have a computer along.
 
@@ -91,7 +91,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 **What happens when the player moves the raccoon?**
 
-- The raccoon moves one step in the chosen direction, and if the switch is maintained, the raccoon will pursue his way in the choosen direction until the switch is released.
+- The raccoon moves one step in the chosen direction, and if the switch is maintained, the raccoon will pursue its way in the chosen direction until the switch is released.
 
 **What restrictions are there on movement?**
 
@@ -105,7 +105,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 **What types of obstacles are there?**
 
-**Traffic:** The vehicules are garbage tucks that move horizontally, across the screen in predefined lanes.
+**Traffic:** The vehicles are garbage trucks that move horizontally, across the screen in predefined lanes.
 
 **What happens when the raccoon encounters an obstacle?**
 
@@ -165,7 +165,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 ## **6. User Interface (UI)**
 
-### **6.1 In-Game HUD**
+### **6.1 In-Game HUD (Heads-Up Display)**
 
 **What informations are displayed during gameplay?**
 
@@ -178,7 +178,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 **What happens when the HUD elements change?**
 
 - **Lives Decrease:** A bar in the lives indicator will be removed.
-- **Score Increase:** The score number updates with a calculation between the number of trash reached divided by the time required to do so. Reaching a trash gives +10000 points.
+- **Score Increase:** The score number updates with a calculation between the number of trash reached divided by the time required to do so. Reaching a trash gives +10'000 points.
 - **Timer Countdown:** The timer decreases in real time to alerts the player when time is nearly out.
 
 ### **6.2 Game Over HUD**
@@ -186,7 +186,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 **What will be on the game over screen ?**
 
 - **Score of the current game**: Shows how many point the player scored this game
-- **Highest score**: The highest score ever realised on the game, serves as comparative data between the score of the current game.
+- **Highest score**: The highest score ever achieved on the game, serves as comparative data between the score of the current game.
 - **Restart button**: Allows the player to restart a new game.
 
 <br>
@@ -197,7 +197,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 **What game modes are available?**
 
 **Classic Mode:**
-- A recreation of the original arcade-style Frogger, featuring progressively harder levels and fixed obstacles.
+- A recreation of the original <a href="#arcade-game">arcade-style</a> Frogger, featuring progressively harder levels and fixed obstacles.
 
 <br>
 <br>
@@ -206,7 +206,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 **What is the graphical style of the game?**
 
-- A pixel art art style to mimic the retro look of the original Frogger.
+- A <a href="#pixel-art">pixel art</a> art style to mimic the retro look of the original Frogger.
 
 <br>
 <br>
@@ -215,7 +215,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 **What platforms will the game support?**
 
-- <b>FPGA</b>s with at least a micro-usb power supply and a VGA cable.
+- <b><a href="#fpga">FPGA</a></b>s with at least a micro-usb power supply and a VGA cable.
 
 <br>
 <br>
@@ -226,13 +226,13 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 **UI**
 
-- **Welcome screen**: Create a welcome screen with little desgins, a start button (to start a new game) and the highest score ever made.
+- **Welcome screen**: Create a welcome screen with little designs, a start button (to start a new game) and the highest score ever made.
 
 **Gamemodes**
-- **Multiplayer (local)**: Adding a multiplayer mode may be a good thing to add competition. But that entails to had external hardware, like a keyboard or controller.
+- **Multiplayer (local)**: Adding a multiplayer mode may be a good thing to add competition. But that entails to add external hardware, like a keyboard or controller.
 
 **Graphical animations**
-- **Jumping animation**: An animation (from 6 to 8 frames) of the raccoon while jumping in different directions.
+- **Jumping animation**: An jumping animation (from 6 to 8 frames) of the raccoon while jumping in different directions.
 - **Death animation**: A better designed death animation (from 2 to 4 frames)
 
 **Customization and options**
@@ -256,23 +256,14 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 ### Glossary
 
-<b>Arcade-style game:</b>
+<b id="arcade-game">Arcade-style game:</b>
 - A type of video game designed to be simple and straightforward, often featuring fast-paced action and short levels, inspired by games commonly found in amusement arcades.
 
-<b>FPGA (Field-Programmable Gate Array):</b>
+<b id="fpga">FPGA (Field-Programmable Gate Array):</b>
 - A type of integrated circuit that can be configured by the user or designer after manufacturing, often used in specialized gaming platforms.
 
-<b>HUD (Heads-Up Display):</b>
-- On-screen display elements that provide the player with information during gameplay, such as score, time, and remaining lives.
-
-<b>Pixel Art:</b>
+<b id="pixel-art">Pixel Art:</b>
 - A type of digital art where images are created and edited at the pixel level, often associated with retro-style video games for a nostalgic or minimalist look.
 
-<b>Predefined lanes:</b>
-- Specific paths on which objects (such as cars or trucks) move within a fixed or set pattern.
-
-<b>Power-ups:</b>
-- Items that temporarily grant players special abilities, such as invincibility or speed boosts, enhancing the gameplay experience.
-
-<b>VGA (Video Graphics Array) port:</b>
+<b id="vga">VGA (Video Graphics Array) port:</b>
 - A connector commonly used to transmit video signals from a device (such as an FPGA) to a monitor or display.
