@@ -1,5 +1,5 @@
 # Ignore macOS system files
-.DS_Store
+*.DS_Store
 .AppleDouble
 
 # Ignore Windows-specific system files
@@ -21,3 +21,6 @@ vendor/
 
 # Environment files
 .env
+<<<<< functional
+=====
+>>>>> main
