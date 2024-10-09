@@ -110,4 +110,77 @@ module Frogg_Paddle_Ctrl
 
 endmodule // Frogg_Paddle_Ctrl
 
+// module Frogg_Paddle_Ctrl
+//   #(parameter c_PLAYER_PADDLE_X=0,
+//     parameter c_PADDLE_HEIGHT=32,
+//     parameter c_PADDLE_WIDTH=32,
+//     parameter c_GAME_HEIGHT=480,
+//     parameter c_GAME_WIDTH=640)
+//   (
+//     input            i_Clk,
+//     input [9:0]      i_Col_Count_Div,
+//     input [9:0]      i_Row_Count_Div,
+//     input            i_Paddle_Up,
+//     input            i_Paddle_Dn,
+//     input            i_Paddle_lt,
+//     input            i_Paddle_rt,
+//     output reg       o_Draw_Paddle,
+//     output reg [9:0] o_Paddle_Y,
+//     output reg [9:0] o_Paddle_X
+//   );
+
+//   // Speed parameter for the paddle movement.
+//   parameter c_PADDLE_SPEED = 255000;
+
+//   reg [31:0] r_Paddle_Count = 0;
+
+//   // Only move the paddle if a movement button is pressed
+//   wire w_Paddle_Moving = i_Paddle_Up | i_Paddle_Dn | i_Paddle_lt | i_Paddle_rt;
+
+//   // Initialize the paddle position
+//   initial begin
+//     o_Paddle_Y = c_GAME_HEIGHT - c_PADDLE_HEIGHT;  // Position the paddle at the bottom
+//     o_Paddle_X = (c_GAME_WIDTH - c_PADDLE_WIDTH) / 2;  // Center the paddle horizontally
+//   end
+
+//   // Optimized paddle movement
+//   always @(posedge i_Clk) begin
+//     if (w_Paddle_Moving) begin
+//       if (r_Paddle_Count == c_PADDLE_SPEED) begin
+//         r_Paddle_Count <= 0;
+
+//         // Paddle movement logic
+//         if (i_Paddle_Up && o_Paddle_Y > 0)
+//           o_Paddle_Y <= o_Paddle_Y - 1;
+//         else if (i_Paddle_Dn && o_Paddle_Y < c_GAME_HEIGHT - c_PADDLE_HEIGHT)
+//           o_Paddle_Y <= o_Paddle_Y + 1;
+
+//         if (i_Paddle_lt && o_Paddle_X > 0)
+//           o_Paddle_X <= o_Paddle_X - 1;
+//         else if (i_Paddle_rt && o_Paddle_X < c_GAME_WIDTH - c_PADDLE_WIDTH)
+//           o_Paddle_X <= o_Paddle_X + 1;
+//       end
+//       else
+//         r_Paddle_Count <= r_Paddle_Count + 1;
+//     end
+//   end
+
+//   // Simplified paddle drawing using symmetry
+//   always @(posedge i_Clk) begin
+//     // Check if the current pixel is within the paddle's area
+//     if (i_Col_Count_Div >= o_Paddle_X && i_Col_Count_Div < o_Paddle_X + c_PADDLE_WIDTH &&
+//         i_Row_Count_Div >= o_Paddle_Y && i_Row_Count_Div < o_Paddle_Y + c_PADDLE_HEIGHT) begin
+//       // Simplified drawing logic using a symmetrical paddle pattern
+//       // This reduces the memory needed for the bitmap
+//       if (i_Row_Count_Div - o_Paddle_Y < c_PADDLE_HEIGHT / 2) begin
+//         o_Draw_Paddle <= 1'b1;  // Top half of the paddle (use symmetrical pattern)
+//       end else begin
+//         o_Draw_Paddle <= 1'b1;  // Bottom half of the paddle (mirror of top)
+//       end
+//     end else begin
+//       o_Draw_Paddle <= 1'b0;  // Pixel outside the paddle's area
+//     end
+//   end
+
+// endmodule // Frogg_Paddle_Ctrl
 

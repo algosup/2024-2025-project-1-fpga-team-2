@@ -1,6 +1,6 @@
 module Score_Boarding (
 
-)
+);
 
 
 
