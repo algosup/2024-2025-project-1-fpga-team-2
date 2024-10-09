@@ -26,6 +26,7 @@
   - [3. Hardware used for tests](#3-hardware-used-for-tests)
     - [3.1 Computer](#31-computer)
     - [3.2 Go-Board](#32-go-board)
+- [Glossary](#glossary)
 
 </details>
 </div>
@@ -56,7 +57,7 @@ More precisely, this document and the test cases will gether some informations l
 
   - A unit test is a testing method where the units or componant are checked individually so as to verify that all the features of a product work separately.
 
-How does it work? :
+How does it work?
 1. Write the tests for individual components
 2. Do the tests
 3. Point any issues or problems
@@ -70,7 +71,7 @@ How does it work? :
 
   - A system test is another testing method quite different from the unit test. Indeed, this kind of try is "global", in order, this time, to check if all the functionalities operate together.
 
-How does it work? *a little bit different* :
+How does it work? *(a little bit different)*
 1. Write tests for the game
 2. Observe the tests 
 3. Point any issues or problems
@@ -83,7 +84,7 @@ How does it work? *a little bit different* :
 All of the tests are written below but, the complete ckeck list is findable [here](test_cases.md) (redirection to the Test Cases)
 
 **In-game tests** <!--Might be important to review the name-->
-|Name|Description|
+|Name|Expected Results|
 |---|---|
 |Spawn|The frog spawn when the game starts|
 |Up|The frog goes up when the associate button is press|
@@ -102,7 +103,7 @@ All of the tests are written below but, the complete ckeck list is findable [her
 <br>
 
 **Technical tests**
-|Name|Description|
+|Name|Expected Results|
 |---|---|
 |Segment Level|The score increases by 1 when a level is successfully complete|
 |Switch 1|The frog goes ? when the 1st switch is pressed|
@@ -137,3 +138,11 @@ All of the tests are written below but, the complete ckeck list is findable [her
 |Connectivity|Micro USB, VGA, PMOD Connector|
 |Setable|4 LEDs, 4 switches, 2 7-Segments|
 
+# Glossary
+
+<!-- Add Redirection to this board-->
+
+||Definition|
+|---|---|
+
+<!--Add Out-Scope and In-Scope-->
