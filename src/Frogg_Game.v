@@ -21,7 +21,8 @@ module Frogg_Game
    output reg       o_VSync,
    output [3:0]     o_Red_Video,
    output [3:0]     o_Grn_Video,
-   output [3:0]     o_Blu_Video);
+   output [3:0]     o_Blu_Video,
+   output [7:0]     o_Score);  
 
   parameter IDLE = 3'b000, RUNNING = 3'b001, WIN = 3'b110, CLEANUP = 3'b100;
 
@@ -71,19 +72,35 @@ module Frogg_Game
     end
   endgenerate
 
-  // Etat du jeu
+  // Declare score as a reg to keep its value across game states
+  reg [7:0] r_Score = 0;
+
+  // Modify the output score
+  assign o_Score = r_Score;
+
+  // Game state machine
   always @(posedge i_Clk) begin
     case (r_SM_Main)
-      IDLE:
-        if (i_Game_Start == 1'b1)
-          r_SM_Main <= RUNNING;
-      RUNNING:
-        if (w_Paddle_Y_P1 == 0) // Condition de victoire
-          r_SM_Main <= WIN;
-      WIN:
-        r_SM_Main <= CLEANUP;
-      CLEANUP:
-        r_SM_Main <= IDLE;
+      IDLE: begin
+        if (i_Game_Start == 1'b1) begin
+          // No reset of score, the score persists across game restarts
+          r_SM_Main <= RUNNING; // Start the game
+        end
+      end
+      RUNNING: begin
+        if (w_Paddle_Y_P1 <= 0) begin // Victory condition
+          r_Score <= r_Score + 1;     // Increment the score
+          r_SM_Main <= WIN;           // Transition to WIN state
+        end
+      end
+      WIN: begin
+        // Add any additional win logic here (optional)
+        r_SM_Main <= CLEANUP; // Transition to CLEANUP state
+      end
+      CLEANUP: begin
+        // Any cleanup logic can go here if needed
+        r_SM_Main <= IDLE; // Reset back to IDLE
+      end
     endcase
   end
 

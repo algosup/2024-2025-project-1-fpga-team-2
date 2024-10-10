@@ -20,6 +20,10 @@ module Frogg_Top
    output o_VGA_Blu_1,
    output o_VGA_Blu_2,
 
+   // 7-segment display outputs
+   output [6:0] o_Segment_Units,
+   output [6:0] o_Segment_Tens,
+
    output o_LED_1,
    output o_LED_2,
    output o_LED_3,
@@ -41,6 +45,8 @@ module Frogg_Top
   wire w_HSync_VGA, w_VSync_VGA;
   wire w_HSync_Frogg, w_VSync_Frogg;
   wire w_Switch_1, w_Switch_2, w_Switch_3, w_Switch_4;
+
+  wire [7:0] w_Score; // Score wire
    
   // Generates Sync Pulses to run VGA
   VGA_Sync_Pulses #(.TOTAL_COLS(c_TOTAL_COLS),
@@ -93,7 +99,8 @@ module Frogg_Top
    .o_VSync(w_VSync_Frogg),
    .o_Red_Video(w_Red_Video_Frogg),
    .o_Grn_Video(w_Grn_Video_Frogg),
-   .o_Blu_Video(w_Blu_Video_Frogg));
+   .o_Blu_Video(w_Blu_Video_Frogg),
+   .o_Score(w_Score));
 	
   VGA_Sync_Porch  #(.VIDEO_WIDTH(c_VIDEO_WIDTH),
                     .TOTAL_COLS(c_TOTAL_COLS),
@@ -113,6 +120,13 @@ module Frogg_Top
     .o_Grn_Video(w_Grn_Video_Porch),
     .o_Blu_Video(w_Blu_Video_Porch));
 	  
+  // 7-segment display logic
+  SevenSegmentDisplay SevenSegmentDisplay_Inst
+    (.i_Clk(i_Clk),
+     .i_Score(w_Score),        // Pass the score
+     .o_Segment_Units(o_Segment_Units),
+     .o_Segment_Tens(o_Segment_Tens));
+
   assign o_VGA_Red_0 = w_Red_Video_Porch[0];
   assign o_VGA_Red_1 = w_Red_Video_Porch[1];
   assign o_VGA_Red_2 = w_Red_Video_Porch[2];

@@ -43,6 +43,22 @@ set_io o_Segment2_E 94
 set_io o_Segment2_F 8
 set_io o_Segment2_G 96
 
+set_io o_Segment_Units[0] 100
+set_io o_Segment_Units[1] 99
+set_io o_Segment_Units[2] 97
+set_io o_Segment_Units[3] 95
+set_io o_Segment_Units[4] 94
+set_io o_Segment_Units[5] 8
+set_io o_Segment_Units[6] 96
+
+set_io o_Segment_Tens[0] 3
+set_io o_Segment_Tens[1] 4
+set_io o_Segment_Tens[2] 93
+set_io o_Segment_Tens[3] 91
+set_io o_Segment_Tens[4] 90
+set_io o_Segment_Tens[5] 1
+set_io o_Segment_Tens[6] 2
+
 ## UART Outputs
 set_io i_UART_RX 73
 set_io o_UART_TX 74
