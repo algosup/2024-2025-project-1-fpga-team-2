@@ -36,16 +36,16 @@ All variables used in the code are written in ``camel_Snake_Case``, meaning ever
         input i_Switch_1, // Initialize the first button on the go_board
         output o_LED_1 // Initialize the first LED on the go_board
      );
-    reg prev_switch; // This register has for purpose to keep the prvious state of the button
+    reg prev_switch; // This register has for purpose to keep the previous state of the button
 
     // This part of the code will turn on/off a LED and keep it on/off using a switch
     always @(posedge i_Clk)
     begin
-        if(i_Switch_1 && prev_switch) //If switch is pressed
+        if(i_Switch_1 && prev_switch)
         begin
-            o_LED_1 = ~r_LED_1; //Turn on/off light
+            o_LED_1 = ~r_LED_1; 
         end
-        prev_switch <= o_LED_1; //Gives the state on/off of the LED to the register
+        prev_switch <= o_LED_1;
     end
 
 
