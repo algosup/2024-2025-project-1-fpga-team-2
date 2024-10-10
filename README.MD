@@ -1,12 +1,11 @@
-# Team 2 - Frogger
+<h1 style="text-align: center">Team 2 - Frogger</h1>
+<br>
 
 ## 📖 About
+This Frogger game was developed as a team project for Algosup. It recreates the classic arcade game where players navigate a frog across obstacles to reach the safety zones.
 
-The project's purpose and challenge is to recreate a frogger-like game on an FPGA. Everything is managed on the hardware.
-Through this project, we programed the FPGA with verilog, and taked advantage of his parallel processing asset. 
-
-## 👨‍💻 Team 
-
+<details>
+    <summary><b>Team</b></summary>
 
 |                                                                                              | Name                | Role                | Links |           
 |----------------------------------------------------------------------------------------------|---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------|
@@ -18,4 +17,29 @@ Through this project, we programed the FPGA with verilog, and taked advantage of
 | <img src="https://ca.slack-edge.com/T07N4K3NA3Z-U07NK6MCR0A-g4cac1c20a04-192" width="120px"> | ADAM Enoal          | **Quality Insurance**   | [LinkedIn](https://www.linkedin.com/in/enoal-adam-02552932a/)         \| [GitHub](https://github.com/EnoGame29)           |
 | <img src="https://ca.slack-edge.com/T07N4K3NA3Z-U07P80DRE1W-4c0061bbe725-192" width="120px"> | MEGNAN Lucas        | **Technical Writer**    | [LinkedIn](https://www.linkedin.com/in/lucas-megnan/)                 \| [GitHub](https://github.com/LucasMegnan)         |
 
-### 
+</details>
+<br>
+
+## ⌨️ Development environment
+- **Hardware** : [FPGA](./documents/functional/readmeExtentions/fpga.md)
+- **Programming language** : [Verilog](./documents/functional/readmeExtentions/verilog.md)
+<br>
+<br>
+<br>
+
+## ✏️ Details
+We had approximately 5 weeks to complete the project, during which we:
+
+- Game Mechanics Design: We recreated the classic Frogger gameplay with custom elements, such as:
+
+  - Variable obstacle speeds across levels.
+  - Increasing difficulty with more obstacles as the game progresses.
+
+- Hardware Challenges: Implementing the game on an FPGA required careful planning to manage real-time processing, parallelism and also and especially the storage capacity.
+<br>
+<br>
+
+The project was an excellent opportunity to combine hardware programming (using Verilog) with game development, and it helped us gain practical experience in digital circuit design, real-time processing logic, and project management.
+<br>
+<br>
+<br>

@@ -1,5 +1,4 @@
 # Verilog
-[Back to README](../../../README.MD)
 
 **Verilog** is a hardware description language (HDL) used to model and design digital systems, like circuits in FPGAs or ASICs. Unlike traditional programming languages that describe software, Verilog describes hardware behavior at various levels of abstraction, from logic gates to complex systems.
 
@@ -11,3 +10,5 @@
 - Simulation: Verilog can be used to simulate hardware behavior before implementation, ensuring correctness early in the design process.
 
 - It's widely used in FPGA programming and digital circuit design, making it a key language for hardware engineers.
+
+[=> Back to README](../../../README.MD)
