@@ -8,7 +8,7 @@ module Frogg_Game
     parameter c_PADDLE_HEIGHT = 32,
     parameter c_PADDLE_WIDTH = 32,
     parameter c_PADDLE_COL_P1 = 0,
-    parameter c_CAR_COUNT = 3)
+    parameter c_CAR_COUNT = 1)
   (input            i_Clk,
    input            i_HSync,
    input            i_VSync,
@@ -121,6 +121,7 @@ module Frogg_Game
         end
         else if (collision)
           r_SM_Main <= CLEANUP;
+
         end
       
       WIN: begin
@@ -129,6 +130,7 @@ module Frogg_Game
       end
       CLEANUP: begin
         // Any cleanup logic can go here if needed
+        
         r_SM_Main <= IDLE; // Reset back to IDLE
       end
     endcase

@@ -98,7 +98,7 @@ module Frogg_Paddle_Ctrl
 
 
   // Draw the Paddle based on the current paddle position
-  always @(posedge i_Clk) begin
+  always @(*) begin
     // Calculate the relative position within the paddle bitmap
     if (i_Col_Count_Div >= o_Paddle_X && i_Col_Count_Div < o_Paddle_X + c_PADDLE_WIDTH &&
         i_Row_Count_Div >= o_Paddle_Y && i_Row_Count_Div < o_Paddle_Y + c_PADDLE_HEIGHT) begin
