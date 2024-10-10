@@ -1,6 +1,18 @@
+## Risks & Assumptions
+
+| ID | Description              | Impact | Likelihood | Mitigation Strategy                           |
+|----|--------------------------|--------|------------|-----------------------------------------------|
+| 1  | Scope Adjustment          | High   | Medium     | Establish clear requirements and approval process. |
+| 2  | Client Miscommunication   | High   | Medium     | Maintain regular, clear communication and documentation with the client. |
+| 3  | Efficient Coordination    | Low    | Low        | Use project management tools and regular meetings to ensure alignment. |
+| 4  | Full Attendance           | Medium | Medium     | Implement flexible working options and track attendance closely. |
+| 5  | Positive Work Environment | Medium | Low        | Encourage team collaboration, provide feedback, and foster a supportive culture. |
+| 6  | Defect Remediation        | High   | Medium     | Prioritize testing and ensure a comprehensive test plan is in place. |
+| 7  | Project Milestones        | Medium | Medium     | Regularly review progress, and adjust timelines as needed. |
+| 8  | Defect Remediation        | High   | Medium     | Implement regular code reviews and testing to catch issues early. |
+
 ## KPI's
 In this section, we present the completion of the KPIs and how the calculations have been performed:
-
 
 ### Completion Calculation of Files & Review
 For each document structured with three main sections "# Main Point" for the main sections (referred to as "Main Points"), each containing a different number of sub-sections ("Subpoints"). These sub-sections are represented in markdown by the headings "## Sub-Title" for the sub-sections.
@@ -22,14 +34,10 @@ The table below outlines the number of subpoints completed for each main point.
 
 #### Total Completion Calculation
 1. **Total Completed**: 
-   $$
-   6 + 7 + 4 = 17
-   $$
+  6 + 7 + 4 = 17
 
 2. **Total Possible**: 
-   $$
-   10 + 7 + 12 = 29
-   $$
+  10 + 7 + 12 = 29
 
 
 ### Files
@@ -109,3 +117,13 @@ The RACI of this project is as follows considering the Project Charter:
 | A      | Accountable | Ultimately answerable for the task's completion  |
 | C      | Consulted   | Provides input and/or advice on the task         |
 | I      | Informed    | Kept updated on progress and decisions           |
+
+## Weekly Reports
+
+This session has been made to reportory all the weekly reports trough the project :
+
+- [Weekly Report 1](./weekly_reports/weekly_report_1.md)
+- [Weekly Report 2](./weekly_reports/weekly_report_2.md)
+- [Weekly Report 3](./weekly_reports/weekly_report_3.md)
+- [Weekly Report 4](./weekly_reports/weekly_report_4.md)
+- [Weekly Report 5](./weekly_reports/weekly_report_5.md)
