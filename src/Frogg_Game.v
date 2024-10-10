@@ -27,9 +27,12 @@ module Frogg_Game
   parameter IDLE = 3'b000, RUNNING = 3'b001, WIN = 3'b110, CLEANUP = 3'b100;
 
   reg [2:0] r_SM_Main = IDLE;
+  reg [9:0] r_Paddle_X_P1;
+  reg [9:0] r_Paddle_Y_P1;
   wire [9:0] w_Col_Count, w_Row_Count;
   wire w_Game_Active;
   wire w_Draw_Paddle_P1;
+  wire [9:0] w_Paddle_X_P1;
   wire [9:0] w_Paddle_Y_P1;
   wire w_Draw_Any;
 
@@ -53,7 +56,7 @@ module Frogg_Game
     (.i_Clk(i_Clk), .i_Col_Count_Div(w_Col_Count), .i_Row_Count_Div(w_Row_Count),
      .i_Paddle_Up(i_Paddle_Up_P1), .i_Paddle_Dn(i_Paddle_Dn_P1),
      .i_Paddle_lt(i_Paddle_lt_P1), .i_Paddle_rt(i_Paddle_rt_P1),
-     .o_Draw_Paddle(w_Draw_Paddle_P1), .o_Paddle_Y(w_Paddle_Y_P1));
+     .o_Draw_Paddle(w_Draw_Paddle_P1), .o_Paddle_Y(w_Paddle_Y_P1), .o_Paddle_X(w_Paddle_X_P1));
 
   // Génération des instances de voitures avec generate
   genvar i;
@@ -62,7 +65,7 @@ module Frogg_Game
       car_Ctrl #(
         .c_initial_position((i == 0) ? 0 : 639),
         .c_direction((i == 0) ? 0 : 1),
-        .c_car_SPEED(1000000 + (i * 70000)) // Vitesse décalée pour chaque voiture
+        .c_car_SPEED(100000 + (i * 70000)) // Vitesse décalée pour chaque voiture
       ) car_inst (
         .i_Clk(i_Clk), .i_Game_Active(w_Game_Active),
         .i_Col_Count_Div(w_Col_Count), .i_Row_Count_Div(w_Row_Count),
@@ -71,6 +74,27 @@ module Frogg_Game
       );
     end
   endgenerate
+
+  always @(posedge i_Clk) begin
+    r_Paddle_X_P1 <= w_Paddle_X_P1;
+    r_Paddle_Y_P1 <= w_Paddle_Y_P1;
+  end
+
+  reg collision;
+  integer j;
+
+  always @(*) begin
+    collision = 0;
+    for (j = 0; j < c_CAR_COUNT; j = j + 1) 
+    begin 
+        if (r_Paddle_X_P1 < w_car_X[j] + 64 && r_Paddle_X_P1 + 32 > w_car_X[j] && // Chevauchement en X
+        r_Paddle_Y_P1 < w_car_Y[j] + 32 && r_Paddle_Y_P1 + 32 > w_car_Y[j])
+      begin  
+        collision = 1; 
+      end
+    end
+  end
+
 
   // Declare score as a reg to keep its value across game states
   reg [7:0] r_Score = 0;
@@ -88,11 +112,17 @@ module Frogg_Game
         end
       end
       RUNNING: begin
-        if (w_Paddle_Y_P1 <= 0) begin // Victory condition
+
+        if (w_Paddle_Y_P1 <= 0) 
+        
+        begin // Victory condition
           r_Score <= r_Score + 1;     // Increment the score
           r_SM_Main <= WIN;           // Transition to WIN state
         end
-      end
+        else if (collision)
+          r_SM_Main <= CLEANUP;
+        end
+      
       WIN: begin
         // Add any additional win logic here (optional)
         r_SM_Main <= CLEANUP; // Transition to CLEANUP state

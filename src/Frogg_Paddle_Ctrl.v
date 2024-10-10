@@ -16,7 +16,7 @@ module Frogg_Paddle_Ctrl
    output reg [9:0] o_Paddle_X);
 
   // Set the Speed of the paddle movement.  
-  parameter c_PADDLE_SPEED = 255000;
+  parameter c_PADDLE_SPEED = 2550000;
 
   reg [31:0] r_Paddle_Count = 0;
 
@@ -86,13 +86,13 @@ module Frogg_Paddle_Ctrl
     if (r_Paddle_Count == c_PADDLE_SPEED) begin
       // Paddle movement logic
       if (i_Paddle_Up == 1'b1 && o_Paddle_Y > 0)
-        o_Paddle_Y <= o_Paddle_Y - 1;
+        o_Paddle_Y <= o_Paddle_Y - 32;
       else if (i_Paddle_Dn == 1'b1 && o_Paddle_Y < c_GAME_HEIGHT - c_PADDLE_HEIGHT)
-        o_Paddle_Y <= o_Paddle_Y + 1;
+        o_Paddle_Y <= o_Paddle_Y + 32;
       else if (i_Paddle_lt == 1'b1 && o_Paddle_X > 0)
-        o_Paddle_X <= o_Paddle_X - 1;
+        o_Paddle_X <= o_Paddle_X - 32;
       else if (i_Paddle_rt == 1'b1 && o_Paddle_X < c_GAME_WIDTH - c_PADDLE_WIDTH)
-        o_Paddle_X <= o_Paddle_X + 1;      
+        o_Paddle_X <= o_Paddle_X + 32;      
     end
   end
 

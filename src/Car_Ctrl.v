@@ -3,7 +3,7 @@ module car_Ctrl
     parameter c_initial_position = 0,   // Position initiale de la voiture
     parameter c_direction = 0,          // Direction de la voiture (0 = droite, 1 = gauche)
     parameter c_car_SPEED = 1650000,    // Vitesse de la voiture
-    parameter c_CAR_WIDTH = 32,         // Largeur de la voiture
+    parameter c_CAR_WIDTH = 64,         // Largeur de la voiture
     parameter c_CAR_HEIGHT = 32)        // Hauteur de la voiture
   (
     input            i_Clk,
