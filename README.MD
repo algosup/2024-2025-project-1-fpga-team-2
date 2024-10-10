@@ -25,7 +25,7 @@ This Frogger game was developed as a team project for Algosup. It recreates the 
 - **Programming language** : [Verilog](./documents/functional/readmeExtentions/verilog.md)
 <br>
 <br>
-<br>
+
 
 ## ✏️ Details
 We had approximately 5 weeks to complete the project, during which we :
