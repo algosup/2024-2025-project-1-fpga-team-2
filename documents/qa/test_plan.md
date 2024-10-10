@@ -9,7 +9,7 @@
 **Team** : 2 <br>
 **Created by** : Enoal ADAM <br>
 **Creation Date** : 09/26/2024 <br>
-**Updated** : 10/02/2024 <br>
+**Updated** : 10/10/2024 <br>
 
 ---
 
@@ -33,7 +33,7 @@
 
 ## 1. Introduction
 
-The aim of this project is to, using the Verilog language, re-create a classic game nammed Frogger. It's an arcade game where reach the top of the screen is the goal. For doing that, the frog need to avoid some cars while she crossed all the roads. 
+The aim of this project is to, using the Verilog language, re-create a classic game nammed Frogger. It's an arcade game where reach the top of the screen is the goal. For doing that, the frog need to avoid some cars while she crossed all the roads. Since is a re-creation, some sprites have changed like the frog, now a raccoon and the cars which are now garbage trucks.
 <!--Need to review with Vianney or anyone else to check this part-->
 
 ## 2. Goals <!--(Purposes maybe)-->
@@ -86,17 +86,17 @@ All of the tests are written below but, the complete ckeck list is findable [her
 **In-game tests** <!--Might be important to review the name-->
 |Name|Expected Results|
 |---|---|
-|Spawn|The frog spawn when the game starts|
-|Up|The frog goes up when the associate button is press|
-|Down|The frog goes down when the associate button is press|
-|Left|The frog goes left when the associate button is press|
-|Right|The frog goes right when the associate button is press|
-|Dead|When the frog touch a car, she dies|
-|Respawn|When the frog is died, she respawn|
-|Blocked Left|When the frog touch the left of the screen she's blocked|
-|Blocked Right|When the frog touch the right of the screen she's blocked|
-|Blocked Down|If the player tries to go down when he's already at the bottom of the screen, the frog is blocked|
-|Finish|If the frog reach the finish line, she desappear|
+|Spawn|The raccoon spawn when the game starts|
+|Up|The raccoon goes up when the associate button is press|
+|Down|The raccoon goes down when the associate button is press|
+|Left|The raccoon goes left when the associate button is press|
+|Right|The raccoon goes right when the associate button is press|
+|Dead|When the raccoon touch a car, she dies|
+|Respawn|When the raccoon is died, she respawn|
+|Blocked Left|When the raccoon touch the left of the screen she's blocked|
+|Blocked Right|When the raccoon touch the right of the screen she's blocked|
+|Blocked Down|If the player tries to go down when he's already at the bottom of the screen, the raccoon is blocked|
+|Finish|If the raccoon reach the finish line, she desappear|
 |Cars Appear|The cars normally appear|
 |Cars Disapear|If the cars reach the opposite side where it spawn, it disappear|
 
@@ -106,10 +106,10 @@ All of the tests are written below but, the complete ckeck list is findable [her
 |Name|Expected Results|
 |---|---|
 |Segment Level|The score increases by 1 when a level is successfully complete|
-|Switch 1|The frog goes ? when the 1st switch is pressed|
-|Switch 2|The frog goes ? when the 2nd switch is pressed|
-|Switch 3|The frog goes ? when the 3rd switch is pressed|
-|Switch 4|The frog goes ? when the 4th switch is pressed|
+|Switch 1|The raccoon goes ? when the 1st switch is pressed|
+|Switch 2|The raccoon goes ? when the 2nd switch is pressed|
+|Switch 3|The raccoon goes ? when the 3rd switch is pressed|
+|Switch 4|The raccoon goes ? when the 4th switch is pressed|
 |Led 1|If the switch 1 is pushed, the Led 1 turn on|
 |Led 2|If the switch 2 is pushed, the Led 2 turn on|
 |Led 3|If the switch 3 is pushed, the Led 3 turn on|
@@ -142,7 +142,12 @@ All of the tests are written below but, the complete ckeck list is findable [her
 
 <!-- Add Redirection to this board-->
 
-||Definition|
+|Term|Definition|
 |---|---|
+|<span id="verilog">Verilog</span>|A language principally used for the programation of FPGA|
+|<span id="hardware">Hardware</span>|The computer science materials used to do something (e.g. computer, smartphone, etc.)|
+|<span id="software">Software</span>|A set of programs, procedures, and rules that enable a computer to work. It can be an OS like Windows, an application, etc.|
+|<span id="vga">VGA</span>|A connector commonly used to transmit video signals from a device (such as an FPGA) to a monitor or display.|
+|<span id="fpga">FPGA</span>|*(aka Field-Programmable Gate Array)* <br> A type of integrated circuit that can be configured by the user or designer after manufacturing, often used in specialized gaming platforms.
 
 <!--Add Out-Scope and In-Scope-->
