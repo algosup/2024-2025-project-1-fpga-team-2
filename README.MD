@@ -28,7 +28,7 @@ This Frogger game was developed as a team project for Algosup. It recreates the 
 <br>
 
 ## ✏️ Details
-We had approximately 5 weeks to complete the project, during which we:
+We had approximately 5 weeks to complete the project, during which we :
 
 - Game Mechanics Design: We recreated the classic Frogger gameplay with custom elements, such as:
 
