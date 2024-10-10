@@ -9,7 +9,7 @@
 **Team** : 2 <br>
 **Created by** : Enoal ADAM <br>
 **Creation Date** : 10/09/2024 <br>
-**Updated** : 10/09/2024 <br>
+**Updated** : 10/10/2024 <br>
 
 ---
 
@@ -27,6 +27,19 @@
 </details>
 </div>
 
+#### How the tests will be listed?
+
+|ID|Date|Priority|Name|Expected Result|What happened|Step to Reproduce|
+|---|---|---|---|---|---|---|
+|1/01|10/10/24|High|Blocked Left|When the raccoon touch the left of the screen she's blocked|The raccoon goes out the left side of the screen|1- Start the game <br> 2- Go on the left side with the raccoon <br> 3- Note the bug
+|2/01|10/10/24|Low|Raccoon Color|The Raccoon is in the same color|/|/|
+
+
+<center>
+
+*All the real tests are indicated on **this [spreadsheet](https://docs.google.com/spreadsheets/d/1xDvMMivWDznyqAlkjNg5Zc1iZPZZttfN4TMLGhUK0E0/edit?gid=0#gid=0)***
+</center>
+
 ##### ID
 
 Each tests has a ID which is attribuate to it. This ID follow a specific model like :
@@ -39,7 +52,7 @@ Each tests has a ID which is attribuate to it. This ID follow a specific model l
 
 ##### Date
 
-Indicate the date when the test has been passed
+Indicate the date when the test has been passed.
 
 ##### Priority
 
@@ -48,10 +61,20 @@ The priority of tests, distributed as follow :
 - **Medium**: Important, but not as *High*
 - **High**: Very important, if tests fails, need to fix the bug quickly
 
+##### Name
+
+The name of the test (most of the time, summarises in 2 or 3 words what will be expected)
+
 ##### Expected Result
 
-
+What we originally expected from the tests. Can be different to the "What happened" box if the test is inconclusive.
 
 ##### What happened
 
+What is really happened during the tests. List if there is a bug or something else.
+Can be blank if there are any issues.
+
 ##### Step to Reproduce
+
+Indicates the steps to reproduce in order to the devs to reproduce the problem if they want to understand how it happens. As "What happened".
+
