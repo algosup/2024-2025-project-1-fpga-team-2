@@ -36,6 +36,8 @@ We had approximately 5 weeks to complete the project, during which we :
   - Increasing difficulty with more obstacles as the game progresses.
 
 - Hardware Challenges: Implementing the game on an FPGA required careful planning to manage real-time processing, parallelism and also and especially the storage capacity.
+
+- Theme : We also decided to change the universe of the original frogger, by replacing it with a raccoon, and everything is minded to fit the raccoon theme. 
 <br>
 
 The project was an excellent opportunity to combine hardware programming (using Verilog) with game development, and it helped us gain practical experience in digital circuit design, real-time processing logic, and project management.
