@@ -21,8 +21,8 @@ This Frogger game was developed as a team project for Algosup. It recreates the 
 <br>
 
 ## ⌨️ Development environment
-- **Hardware** : [FPGA](./documents/functional/readmeExtentions/fpga.md)
-- **Programming language** : [Verilog](./documents/functional/readmeExtentions/verilog.md)
+- **Hardware** : [FPGA](./readmeExtentions/fpga.md)
+- **Programming language** : [Verilog](./readmeExtentions/verilog.md)
 <br>
 <br>
 
