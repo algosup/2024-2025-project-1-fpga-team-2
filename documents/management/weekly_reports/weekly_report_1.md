@@ -20,3 +20,5 @@
 
 5. **Conclusion:**  
 - This first week was crucial in setting the groundwork for the Frogger game project. We have successfully started drafting key documents such as the functional specification, initiated the design process, and provided the team with the necessary training. While there were challenges in onboarding new team members and clarifying their roles, we are making progress towards aligning everyone with the project goals. Next week, we aim to finalize our functional specifications and begin working on the technical aspects. Overall, the week was productive, with positive steps toward establishing a strong foundation for the project's success.
+
+[Back to the Management Artifact](../management_artifacts.md#weekly-reports)
