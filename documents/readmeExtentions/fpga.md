@@ -13,4 +13,4 @@ An **FPGA** *(Field-Programmable Gate Array)* is a type of integrated circuit th
 - Low power usage: FPGAs can be designed to be power-efficient, which is critical in embedded systems or battery-powered devices.
 
 
-[=> Back to README](../../README.md)
+[=> Back to README](../../README.MD)
