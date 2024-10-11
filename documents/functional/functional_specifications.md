@@ -117,7 +117,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 **What is the purpose of the timer?**
 
-- Each level has a time limit (60 seconds), requiring the player to move quickly to complete the level.
+- Each round has a time limit (60 seconds), requiring the player to move quickly to complete the round.
 
 **What happens when the timer reaches zero?**
 
