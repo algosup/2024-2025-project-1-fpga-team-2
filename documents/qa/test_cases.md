@@ -9,30 +9,33 @@
 **Team** : 2 <br>
 **Created by** : Enoal ADAM <br>
 **Creation Date** : 10/09/2024 <br>
-**Updated** : 10/10/2024 <br>
+**Updated** : 10/11/2024 <br>
 
 ---
 
+</div>
 <details>
 <summary>Table of content</summary>
 
 - [Test Cases](#test-cases)
+      - [How the tests will be listed?](#how-the-tests-will-be-listed)
         - [ID](#id)
         - [Date](#date)
         - [Priority](#priority)
+        - [Name](#name)
         - [Expected Result](#expected-result)
         - [What happened](#what-happened)
         - [Step to Reproduce](#step-to-reproduce)
+        - [Success](#success)
 
 </details>
-</div>
 
 #### How the tests will be listed?
 
-|ID|Date|Priority|Name|Expected Result|What happened|Step to Reproduce|
-|---|---|---|---|---|---|---|
-|1/01|10/10/24|High|Blocked Left|When the raccoon touch the left of the screen she's blocked|The raccoon goes out the left side of the screen|1- Start the game <br> 2- Go on the left side with the raccoon <br> 3- Note the bug
-|2/01|10/10/24|Low|Raccoon Color|The Raccoon is in the same color|/|/|
+|ID|Date|Priority|Name|Expected Result|What happened|Step to Reproduce|Success|
+|---|---|---|---|---|---|---|---|
+|1/01|10/10/24|High|Blocked Left|When the raccoon touch the left of the screen he's blocked|The raccoon comes out from the left side of the screen|1- Start the game <br> 2- Go on the left side with the raccoon <br> 3- Note the bug|No
+|2/01|10/10/24|Low|Raccoon Color|The Raccoon is in the same color|/|/|Yes|
 
 
 <center>
@@ -42,7 +45,7 @@
 
 ##### ID
 
-Each tests has a ID which is attribuate to it. This ID follow a specific model like :
+Each tests have a ID which is attribuated to it. This ID follow a specific model like :
 
 - The First Number <mark>1</mark>/01:
   - 1 is a link with the software
@@ -72,9 +75,14 @@ What we originally expected from the tests. Can be different to the "What happen
 ##### What happened
 
 What is really happened during the tests. List if there is a bug or something else.
-Can be blank if there are any issues.
+Can be blank if there is any issue.
 
 ##### Step to Reproduce
 
-Indicates the steps to reproduce in order to the devs to reproduce the problem if they want to understand how it happens. As "What happened".
+Indicates the steps to reproduce in order to the devs to reproduce the problem if they want to understand how it happens.
+As in "What happened".
 
+##### Success
+
+Shows if the test passed or failed (respectively yes or no). 
+*If "What happened" and "Step to reproduce" are filled, "no" will be used here, otherwise it will be "yes".*
