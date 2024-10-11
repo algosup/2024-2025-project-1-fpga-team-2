@@ -46,7 +46,7 @@ The goal of the game is to guide the frog from the bottom of the screen to a saf
 
 For comparison purposes, let's introduce the original game designs :
 
-<img title="a title" alt="Original frogger map" src="./images/frogger_map.jpg" style="width: 600px; justify-item: center;">
+<img title="a title" alt="Original frogger map" src="./images/functional/frogger_map.jpg" style="width: 600px; justify-item: center;">
 
 **Description of the map and mechanics (from bottom to top):**
 
