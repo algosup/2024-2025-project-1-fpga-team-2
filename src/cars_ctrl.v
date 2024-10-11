@@ -1,4 +1,4 @@
-module car_Ctrl 
+module cars_ctrl 
   #(parameter c_GAME_WIDTH=640,         // Largeur du jeu
     parameter c_GAME_HEIGHT=480,
     parameter c_initial_position = 0,   // Position initiale de la voiture

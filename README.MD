@@ -1,4 +1,4 @@
-# [2025] - FROGGER
+# [2025] - Raccoon
 
 ## Who are we ?
 | **Picture**                                                                                      | **Name**               | **Role**          | **GitHub**                                                                                                                                                                                                                                                                                                                               | **LinkedIn**                                                                                                                                             |

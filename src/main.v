@@ -1,4 +1,4 @@
-module Frogg_Top
+module main
   (input  i_Clk,       // Main Clock
 
    // Push BUttons
@@ -38,12 +38,12 @@ module Frogg_Top
   parameter c_ACTIVE_ROWS = 480;
     
   // Common VGA Signals
-  wire [c_VIDEO_WIDTH-1:0] w_Red_Video_Frogg, w_Red_Video_Porch;
-  wire [c_VIDEO_WIDTH-1:0] w_Grn_Video_Frogg, w_Grn_Video_Porch;
-  wire [c_VIDEO_WIDTH-1:0] w_Blu_Video_Frogg, w_Blu_Video_Porch;
+  wire [c_VIDEO_WIDTH-1:0] w_Red_Video_Raccoon, w_Red_Video_Porch;
+  wire [c_VIDEO_WIDTH-1:0] w_Grn_Video_Raccoon, w_Grn_Video_Porch;
+  wire [c_VIDEO_WIDTH-1:0] w_Blu_Video_Raccoon, w_Blu_Video_Porch;
 
   wire w_HSync_VGA, w_VSync_VGA;
-  wire w_HSync_Frogg, w_VSync_Frogg;
+  wire w_HSync_Raccoon, w_VSync_Raccoon;
   wire w_Switch_1, w_Switch_2, w_Switch_3, w_Switch_4;
 
   wire [7:0] w_Score; // Score wire
@@ -81,10 +81,10 @@ module Frogg_Top
      .i_Switch(i_Switch_4),
      .o_Switch(w_Switch_4));
   
-  Frogg_Game #(.c_TOTAL_COLS(c_TOTAL_COLS),
+  raccoon_Game #(.c_TOTAL_COLS(c_TOTAL_COLS),
              .c_TOTAL_ROWS(c_TOTAL_ROWS),
              .c_ACTIVE_COLS(c_ACTIVE_COLS),
-             .c_ACTIVE_ROWS(c_ACTIVE_ROWS)) Frogg_Inst
+             .c_ACTIVE_ROWS(c_ACTIVE_ROWS)) Raccoon_Inst
   (.i_Clk(i_Clk),
    .i_HSync(w_HSync_VGA),
    .i_VSync(w_VSync_VGA),
@@ -93,13 +93,11 @@ module Frogg_Top
    .i_Paddle_Dn_P1(w_Switch_2),
    .i_Paddle_lt_P1(w_Switch_3),
    .i_Paddle_rt_P1(w_Switch_4),
-  //  .i_Paddle_Up_P2(w_Switch_3),
-  //  .i_Paddle_Dn_P2(w_Switch_4),
-   .o_HSync(w_HSync_Frogg),
-   .o_VSync(w_VSync_Frogg),
-   .o_Red_Video(w_Red_Video_Frogg),
-   .o_Grn_Video(w_Grn_Video_Frogg),
-   .o_Blu_Video(w_Blu_Video_Frogg),
+   .o_HSync(w_HSync_Raccoon),
+   .o_VSync(w_VSync_Raccoon),
+   .o_Red_Video(w_Red_Video_Raccoon),
+   .o_Grn_Video(w_Grn_Video_Raccoon),
+   .o_Blu_Video(w_Blu_Video_Raccoon),
    .o_Score(w_Score));
 	
   VGA_Sync_Porch  #(.VIDEO_WIDTH(c_VIDEO_WIDTH),
@@ -109,11 +107,11 @@ module Frogg_Top
                     .ACTIVE_ROWS(c_ACTIVE_ROWS))
   VGA_Sync_Porch_Inst
    (.i_Clk(i_Clk),
-    .i_HSync(w_HSync_Frogg),
-    .i_VSync(w_VSync_Frogg),
-    .i_Red_Video(w_Red_Video_Frogg),
-    .i_Grn_Video(w_Grn_Video_Frogg),
-    .i_Blu_Video(w_Blu_Video_Frogg),
+    .i_HSync(w_HSync_Raccoon),
+    .i_VSync(w_VSync_Raccoon),
+    .i_Red_Video(w_Red_Video_Raccoon),
+    .i_Grn_Video(w_Grn_Video_Raccoon),
+    .i_Blu_Video(w_Blu_Video_Raccoon),
     .o_HSync(o_VGA_HSync),
     .o_VSync(o_VGA_VSync),
     .o_Red_Video(w_Red_Video_Porch),

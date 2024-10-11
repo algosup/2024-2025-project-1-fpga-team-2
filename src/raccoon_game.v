@@ -1,4 +1,4 @@
-module Frogg_Game
+module raccoon_Game
   #(parameter c_TOTAL_COLS = 800,
     parameter c_TOTAL_ROWS = 525,
     parameter c_ACTIVE_COLS = 640,
@@ -52,7 +52,7 @@ module Frogg_Game
     o_VSync <= w_VSync;
   end
 
-  Frogg_Paddle_Ctrl #(.c_PLAYER_PADDLE_X(c_PADDLE_COL_P1), .c_GAME_HEIGHT(c_GAME_HEIGHT)) P1_Inst
+  raccoon_ctrl #(.c_PLAYER_PADDLE_X(c_PADDLE_COL_P1), .c_GAME_HEIGHT(c_GAME_HEIGHT)) P1_Inst
     (.i_Clk(i_Clk), .i_Col_Count_Div(w_Col_Count), .i_Row_Count_Div(w_Row_Count),
      .i_Paddle_Up(i_Paddle_Up_P1), .i_Paddle_Dn(i_Paddle_Dn_P1),
      .i_Paddle_lt(i_Paddle_lt_P1), .i_Paddle_rt(i_Paddle_rt_P1),
@@ -62,11 +62,11 @@ module Frogg_Game
   genvar i;
   generate
     for (i = 0; i < c_CAR_COUNT; i = i + 1) begin: cars
-      car_Ctrl #(
+      cars_ctrl #(
         .c_initial_position((i == 0) ? 0 : 639),
         .c_direction((i == 0) ? 0 : 1),
         .c_car_SPEED(100000 + (i * 70000)) // Vitesse décalée pour chaque voiture
-      ) car_inst (
+      ) cars_inst (
         .i_Clk(i_Clk), .i_Game_Active(w_Game_Active),
         .i_Col_Count_Div(w_Col_Count), .i_Row_Count_Div(w_Row_Count),
         .i_car_Y(50 + (i * 40)),  // Les voitures sont espacées verticalement
