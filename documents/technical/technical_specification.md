@@ -21,22 +21,11 @@
 1.2| 10/02/2024|Mattéo LEFIN| - Remade the table of content <br> - finished 3.1/2/3.B |
 1.3| 10/08/2024|Mattéo LEFIN| - added code in 3.5 |
 1.4| 10/10/2024|Mattéo LEFIN| - finished writing <br> - added winning/loosing schema <br> - added all code|
+1.5 | 10/11/2024|Mattéo LEFIN| - Text polishing <br> - add images <br> - delete glossary |
 
 </details>
 
----
 
-<details open>
-
-<summary>Glossary</summary>
-
-## Glossarry
-
-|Word|Definition|Source|
-|-------|----|---|
-|VGA||| 
-
-</details>
 
 ---
 
@@ -45,9 +34,6 @@
 <summary>Table of content</summary>
 
 ## Table of content
-
-
-[**Glossary**](#glossary)
 
 [**1. Overview**](#1-overview)
  - [**1.1 Document purpose**](#1-document-purpose)
@@ -86,12 +72,12 @@
 
 ### 1. Document purpose
 
-This document has for purpose to provide clear and detailed informations on functionalities and the structuration of the project for the software engineers to understand what's are the requirement of the projecte and the path to proceed.
+The purpose of this document is to provide clear and detailed information on the functionalities and structure of the project, enabling software engineers to understand the project requirements and the steps necessary to proceed.
 
 
 ### 1.2 Project audiance
 
-Our project target's are mostly nostalgic people and retro gaming fans giving this good old sensation of the past. Refreshed with new designs, it will bring back this old game with a new look.
+Our project primarily targets nostalgic individuals and retro gaming enthusiasts, aiming to evoke the classic sensations of the past. With updated designs, it will revive the old game, offering a fresh, modern look.
 
 
 </details>
@@ -103,25 +89,25 @@ Our project target's are mostly nostalgic people and retro gaming fans giving th
 
 <summary>2. Conventions</summary>
 
-## 2. Conventions
+## 2. Conventions.
 
 ### 2.1 Naming conventions.
 
-All details about our naming conventions and coding rules can be found on the [naming convention and rules document.]()
+All details about our naming conventions and coding rules can be found in the [naming convention and rules document.](/documents/technical/naming_conventions_and_rules.md)
 
 ### 2.2 GitHub organization.
 
-- Each pull-request has to contain labels, the project, the dedicated milestone, and at least 2 reviewers.
-- Each issue has to contain labels, the project, the dedicated milestone, and the assigned member.
-- The workin version shall go to ``main``.
-- There can't be any direct push to the main. The member has to do a pull-request to merge their changes in the main.
-- Only push working code that has been tested by the Quality Assurance.
+- Each pull request must include labels, the associated project, the designated milestone, and at least two reviewers.
+- Each issue must include labels, the associated project, the designated milestone, and an assigned team member.
+- The working version should be merged into the `main` branch.
+- Direct pushes to the main branch are not permitted. - Team members must submit a pull request to merge their changes into the `main` branch.
+- Only tested, functional code that has passed Quality Assurance (QA) should be pushed.
 
 ### 2.3 Folder Structure.
 
-A folder structure is mandatory for a good understanding of all file locations.
+A well-organized folder structure is essential for ensuring clear understanding of all file locations. 
 
-Here, you will find our file structure plan :
+Below is our file structure plan :
 
 ```
 2024-2025-project-1-fpga-team-2
@@ -156,9 +142,9 @@ Here, you will find our file structure plan :
 
 ## 3. Into technicalities.
 
-### 3.1 Used Technologies
+### 3.1 Used Technologies.
 
-#### A. Used computers
+#### A. Used computers.
 
 For this project, we used for developpment :
 - LENOVO ThinkPad 21JKCTO1WW - Core i7 - 16 Go RAM - 512 SSD
@@ -168,11 +154,11 @@ For this project, we used for developpment :
 
 - A Screen compatible with [*VGA](#glossarry) system.
 
-#### B. The board
+#### B. The board.
 
-For this project, we need to use a Go Board given by [Russel Merrick]().
+For this project, we will be using a Go Board provided by [Russel Merrick](https://www.linkedin.com/in/russell-merrick-6058b34/).
 
-![Go_board_image]()
+![Go_board_image](/documents/images/technical/goboard.jpg)
 
 On this board we need to use :
 
@@ -180,48 +166,48 @@ On this board we need to use :
 - The VGA to show it on a compatible screen.
 - The LED segments for levels.
 
-You can access the Go Board plans by [Clicking here]().
+You can access the Go Board plans by [Clicking here](https://nandland.com/wp-content/uploads/2022/06/Go_Board_V1.pdf).
 
-#### C. Debuging system
+#### C. Debuging system.
 
 For debugging, we are using [EDAplayground](https://edaplayground.com)
 
 ### 3.2 Go Board set up.
 
-The Go Board needs some set up to be used properly by using the [Setup documentation]() provided directly on Nandland website.
+The Go Board needs some set up to be used properly by using the [the Go_Board documentation](https://nandland.com/go-board-tutorials/) provided directly on Nandland website.
 
 ### 3.3 Drawing in VGA.
 
 #### A. Graphics.
 
-Firstly, you need A VGA cable and attached it to the board and to a compatible screen.
+First, you will need a VGA cable, which should be connected to the board and to a compatible screen.
 
-Then, if we want to see anything on a VGA screen, we draw in segment meaning that it will change quickly the color of every pixel horyzontaly until he arrives at the bottom right of the screen.
+To display anything on the VGA screen, we render in segments, which means the screen is refreshed by quickly changing the color of each pixel horizontally, progressing row by row until it reaches the bottom-right corner.
 
-You can see on this schema below that the screen is actually separated into rows and colums , represesnted by V_sync_Pulse and H_sync_Pulse with 1 or 0 depending on which state they are.
+As shown in the diagram below, the screen is divided into rows and columns, represented by the V_sync_Pulse and H_sync_Pulse, which alternate between 1 and 0 depending on their current state.
 
-when the program finished to draws a row, V_Sync_Pulse will change state and will be at 1, then it will jump to the next row until it starts to draw the last row where H_Sync_Pulse state will be 1.
+Once the program finishes drawing a row, the V_Sync_Pulse will change state to 1, moving the process to the next row. This continues until the final row is drawn, at which point the H_Sync_Pulse will also switch to 1.
 
-![VGA screen schema]()
+![VGA screen schema](/documents/images/technical/vga_screen_schema.png)
 
-The image is complete when both V and H sync pulse have a state of 1 that the image is completely drawed, and will start the next one. It does everything so quickly that the drawing of one row by one row isn't visible to human eye and we see directly the complete image.
+The image is considered complete when both the V_sync_Pulse and H_sync_Pulse reach a state of 1, indicating that the entire image has been drawn. At this point, the process will begin again for the next image. This happens so quickly that the row-by-row rendering is imperceptible to the human eye, and we only see the fully rendered image.
 
 
 #### B. Sprites.
 
-We can use up to 16 different colors by sprites, reducing the quality of it and forcing us to choose wisely which of the 512 colors available we will use in our game.
+We can utilize up to 16 different colors for sprites, which reduces their quality and requires us to make careful selections from the 512 available colors for our game.
 
-When we selected all the colors for our sprites, we simulate how we want a sprite to look like, for this we use [Asesprite]() to draw our sprite and have an idea on howw it will look like.
+Once we have selected the colors for our sprites, we simulate their appearance using [Aseprite](https://www.aseprite.org) to create our sprite designs and gain a clearer understanding of how they will look in the game.
 
-![Asersprite Raccoon]()
+![Aseprite Raccoon](/documents/images/technical/raccoon.png)
 
 *Making off of the raccoon sprite on Asersprite*
 
-When it's done, we do the raccoon sprite in a bit map in `Frogg_Paddle_Ctrl.v`
+Once completed, we will create the raccoon sprite as a bitmap in `raccoon_paddle_ctrl.v`
 
-![Raccoon bit map]()
+![Raccoon bit map](/documents/images/technical/raccoon_bit_map.png)
 
-*Raccoon bit map in Frogg_Paddle_Ctrl.v* 
+*The `raccoon_paddle_ctrl.v` file, the raccoon bitmap is limited to only two colors due to memory constraints: black is represented by 0, and grey is represented by 1."* 
 
 
 ### 3.4 Controls and movements.
@@ -229,11 +215,11 @@ When it's done, we do the raccoon sprite in a bit map in `Frogg_Paddle_Ctrl.v`
 
 #### A Car movements
 
-The different cars should move horizontaly on the road from left to right or from right to left depending on which road he is.
+The different cars should move horizontally across the road, either from left to right or from right to left, depending on their designated lane.
 
-For this, we first select if the car start from the right to the left by giving the car a value of 0 (left) or -1 (right).
+To achieve this, we first determine whether the car starts from the right or the left by assigning a value of 0 (for left) or -1 (for right).
 
-then we select the direction which the car goes using the same system, 0 for right and 1 for left
+Next, we specify the direction in which the car will move, using the same system: 0 indicates movement to the right, while 1 indicates movement to the left.
 
 ```Verilog
 
@@ -250,7 +236,7 @@ module car_Ctrl
 
 *Parameters for the car control in `car_crtl.v`*
 
-Now, we need to know and register the car position.
+Next, we need to determine and record the position of the car.
 
 ```Verilog
 (
@@ -268,7 +254,7 @@ Now, we need to know and register the car position.
 
 *Initialization of the position in `car_crtl.v`*
 
-Finally, to make our car actually move, we need to change the position depending on the direction that our car is heading.
+Finally, to enable the car to move, we must update its position based on the direction in which it is heading.
 
 ```Verilog
         // Car's movement
@@ -290,16 +276,14 @@ Finally, to make our car actually move, we need to change the position depending
 
 #### B Raccoon controls
 
-To control the main character, the raccoon, we'll use the four buttons to move it in this exact order :
+o control the main character, the raccoon, we will utilize the four buttons to move it in the following order:
 
 - Switch 1 : Forward
 - Switch 2 : Left
 - Switch 3 : Backwards
 - Switch 4 : Right
 
-![Switch plan]()
-
-To ensure this, we firstly need to initialize the buttons in `go_Board_Constraints.pcf`.
+To ensure this functionality, we first need to initialize the buttons in `go_Board_Constraints.pcf`.
 
 ```Verilog
 ## Push-Button Switches
@@ -310,7 +294,7 @@ set_io i_Switch_4 52
 ```
 *Code section in go_Boards_Constraints.pcf whre switches are initialized*
 
-The code for the racooon movement is similar to cars movement except we add also inputs to control the raccoon movements.
+The code for the raccoon movement is similar to that of the cars; however, it also includes inputs to control the raccoon's movements.
 
 ```Verilog
 (input            i_Clk,
@@ -324,9 +308,9 @@ The code for the racooon movement is similar to cars movement except we add also
    output reg [9:0] o_Paddle_Y,// Vertical  position(Y) of the raccoon
    output reg [9:0] o_Paddle_X);// Horizontal position(X) of the raccoon
 ```
-*Initialization of the position and movement indicators in `Frogg_Paddle_Ctrl.v`*
+*Initialization of the position and movement indicators in `raccoon_paddle_ctrl.v`*
 
-Now that we initialized our positions we can add the movement of the raccoon.
+Now that we have initialized the positions, we can implement the movement of the raccoon.
 
 ```Verilog
 
@@ -344,29 +328,29 @@ if (r_Paddle_Count == c_PADDLE_SPEED) begin
     end
 
 ```
-*Movements and controls of the raccoon in `Frogg_Paddle_Ctrl.v`*
+*Movements and controls of the raccoon in `raccoon_paddle_ctrl.v`*
 
 
 ### 3.5 Game background.
 
-For the background of our game, we aren't able to have it on time to implement it.
+We are unable to obtain the background for our game in time for implementation.
 
 ### 3.6 Game mechanics.
 
 #### A. Winning and loosing mechanics.
 
-![winning/loosing schema](/documents/images/technical/winning:loosing%20schema.png)
+![winning/loosing schema](/documents/images/technical/winning_loosing_schema.png)
 *A schema of how we can win or loose in the game*
 
 
 
 #### B. Starting and finishing zone.
 
-The starting zone is where the raccoon will apear and so, start crossing the road.
+The starting zone is where the raccoon will appear and begin crossing the road.
 
-The finishing zone is the objective of the raccoon. He has to enter the bins to gain points.
+The finishing zone represents the raccoon's objective, where he must enter the bins to earn points.
 
-To detect if the raccoon is in the finishing zone we firstly identify where is the finishing zone.
+To determine if the raccoon is in the finishing zone, we first need to identify its boundaries.
 
 ```Verilog
   if (w_Paddle_Y_P1 <= 0) 
@@ -379,7 +363,7 @@ To detect if the raccoon is in the finishing zone we firstly identify where is t
 #### C. Lives
 
 
-to make the game understand how to loose lives we need to create collision first.
+To enable the game to recognize how to lose lives, we first need to implement collision detection.
 
 ```Verilog
 
@@ -399,18 +383,16 @@ to make the game understand how to loose lives we need to create collision first
 
 ```
 
-*Collision of the car and how the player loose a life if the raccoon touches it `.v`*
+*Collision of the car and how the player loose a life if the raccoon touches it in `raccoon_game.v`.*
 
-if we loose all of our lives the game completely stops.
+If we lose all of our lives, the game will completely cease to operate.
 
 
 #### D. Points and high scores
 
-Points and high scores would be calculated using basic calculation based on which action that can modify points are done.
+Points and high scores will be calculated based on basic computations, determined by the actions that affect the score.
 
-![Points schema]()
-
-to make the game understand how to count points we need to add collision first.
+To enable the game to accurately count points, we first need to implement collision detection.
 
 ```Verilog
 
@@ -434,9 +416,9 @@ if (w_Paddle_Y_P1 <= 0)
 
 ```
 
-*Parts of the code that add incrementation of the score if we touch the finishing zone in `Frogg_game.v`*
+*Parts of the code that add incrementation of the score if we touch the finishing zone in `raccoon_game.v`*
 
-After, we should display them on the board.
+Afterward, we should display the points and high scores on the board.
 
 ```Verilog
 
