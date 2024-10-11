@@ -6,7 +6,7 @@
 
 ### Folder
 
-Folders and subfolders are written in ``flatcase``, meaning every words are in **minuscule** and **attached together**.
+Folders and subfolders are written in ``flatcase``, meaning every words are in **lower case** and **attached together**.
 
 (e.g : namingconventions)
 
@@ -16,7 +16,7 @@ Any kind of files (like code, documents or images) are written in ``snake_case``
 
 (e.g : naming_conventions)
 
-### Varibles (for code only)
+### Variables (for code only)
 
 All variables used in the code are written in ``camel_Snake_Case``, meaning every words are in **minuscule** and **separated by an underscore ' _ '**.
 
@@ -29,7 +29,7 @@ All variables used in the code are written in ``camel_Snake_Case``, meaning ever
 ### Comments
 
 ```Verilog
-//This Program is an exmple for the rules by Mattéo Lefin 
+//This Program is an exemple for the rules by Mattéo Lefin 
 
     module example_project(
         input i_Clk, // Initialize a go_board's clock

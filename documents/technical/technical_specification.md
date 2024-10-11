@@ -4,7 +4,7 @@
 |Author|Mattéo LEFIN|
 |-|-|
 |Created|09/26/2024|
-|Finished||
+|Finished|10/11/2024|
 
 ---
 
@@ -17,11 +17,11 @@
 |Version|Date|Author|Description|
 |-------|----|---|--|
 |1.0|09/27/2024|Mattéo LEFIN| - Create documents and finished Overview.|
-1.1| 10/01/2024|Mattéo LEFIN| - add Overview and conventions |
-1.2| 10/02/2024|Mattéo LEFIN| - Remade the table of content <br> - finished 3.1/2/3.B |
-1.3| 10/08/2024|Mattéo LEFIN| - added code in 3.5 |
-1.4| 10/10/2024|Mattéo LEFIN| - finished writing <br> - added winning/loosing schema <br> - added all code|
-1.5 | 10/11/2024|Mattéo LEFIN| - Text polishing <br> - add images <br> - delete glossary |
+1.1| 10/01/2024|Mattéo LEFIN| - Add Overview and Conventions |
+1.2| 10/02/2024|Mattéo LEFIN| - Remade the Table of content <br> - finished 3.1/2/3.B |
+1.3| 10/08/2024|Mattéo LEFIN| - Added code in 3.5 |
+1.4| 10/10/2024|Mattéo LEFIN| - Finished writing <br> - added winning/loosing schema <br> - Added all code|
+1.5 | 10/11/2024|Mattéo LEFIN| - Text polishing <br> - Add images <br> - Delete Glossary |
 
 </details>
 
@@ -44,13 +44,13 @@
  - [**2.2 GitHub organization**](#22-github-organization)
  - [**2.3 Folder structure**](#23-folder-structure)
 
-[**3. Into technicalities**](#3-into-technicalities)
- - [**3.1 Used technologie's**](#31-used-technologies)
+[**3. In technical details**](#3-in-technical-details)
+ - [**3.1 Used technologies**](#31-used-technologies)
  - [**3.2 Go board set up**](#32-go-board-set-up)
  - [**3.3 Drawing in VGA**](#33-drawing-in-vga)
    - [**A. Graphics**](#a-graphics)
    - [**B. Sprites**](#b-sprites)
- - [**3.4 Controls and characters movement**](#34-controls-and-movements)
+ - [**3.4 Controls and characters movements**](#34-controls-and-movements)
    - [**A. Car movements**](#a-car-movements)
    - [**B. Raccoon controls**](#b-raccoon-controls)
  - [**3.5 Game background**](#35-game-background)
@@ -58,7 +58,7 @@
    - [**A. Wining and loosing mechanics**](#a-winning-and-loosing-mechanics)
    - [**B. Starting and finishing zone**](#b-starting-and-finishing-zone)
    - [**C. Lives**](#c-lives)
-   - [**D. Points and high scores**](#d-points-and-high-scores)
+   - [**D. Points and high score**](#d-points-and-high-scores)
 
 </details>
 
@@ -77,7 +77,7 @@ The purpose of this document is to provide clear and detailed information on the
 
 ### 1.2 Project audiance
 
-Our project primarily targets nostalgic individuals and retro gaming enthusiasts, aiming to evoke the classic sensations of the past. With updated designs, it will revive the old game, offering a fresh, modern look.
+Our project primarily targets nostalgic individuals and retro gaming enthusiasts, aiming to evoke the classic sensations of the past. With new designs, it will revive the old game, offering a new look.
 
 
 </details>
@@ -89,21 +89,22 @@ Our project primarily targets nostalgic individuals and retro gaming enthusiasts
 
 <summary>2. Conventions</summary>
 
-## 2. Conventions.
+## 2. Conventions
 
-### 2.1 Naming conventions.
+### 2.1 Naming conventions
 
 All details about our naming conventions and coding rules can be found in the [naming convention and rules document.](/documents/technical/naming_conventions_and_rules.md)
 
-### 2.2 GitHub organization.
+### 2.2 GitHub organization
 
 - Each pull request must include labels, the associated project, the designated milestone, and at least two reviewers.
 - Each issue must include labels, the associated project, the designated milestone, and an assigned team member.
 - The working version should be merged into the `main` branch.
-- Direct pushes to the main branch are not permitted. - Team members must submit a pull request to merge their changes into the `main` branch.
+- Direct pushes to the main branch are not permitted.
+- Team members must submit a pull request to merge their changes into the `main` branch.
 - Only tested, functional code that has passed Quality Assurance (QA) should be pushed.
 
-### 2.3 Folder Structure.
+### 2.3 Folder Structure
 
 A well-organized folder structure is essential for ensuring clear understanding of all file locations. 
 
@@ -112,10 +113,10 @@ Below is our file structure plan :
 ```
 2024-2025-project-1-fpga-team-2
   ├── document/
-  │     ├── functional_specification/
+  │     ├── functional/
   │     │   ├── functional_specification.md
   │     ├── management/
-  │     ├── technical_specification/
+  │     ├── technical/
   │     │   ├── technical_specification.md  
   │     │   ├── naming_conventions_and_rules.md
   │     ├── images/
@@ -127,8 +128,7 @@ Below is our file structure plan :
   │     │   │   ├── (any images related to technical documents)
   ├── src/
   │   ├── (all the files related to code are here)
-  ├── frogger (Game launcher)
-  ├── READEME.md
+  ├── README.md
 
 ```
 
@@ -140,13 +140,13 @@ Below is our file structure plan :
 
 <summary>3. Into technicalities</summary>
 
-## 3. Into technicalities.
+## 3. In technical details
 
-### 3.1 Used Technologies.
+### 3.1 Used Technologies
 
-#### A. Used computers.
+#### A. Used computers
 
-For this project, we used for developpment :
+For this project, we used for developpement :
 - LENOVO ThinkPad 21JKCTO1WW - Core i7 - 16 Go RAM - 512 SSD
 - LENOVO ThinkBook 21DH - Code i7 - 16Go RAM - 512 Go SSD
 - LENOVO ThinkBook 20SL - Code i7 - 16Go RAM - 512 Go SSD
@@ -154,7 +154,7 @@ For this project, we used for developpment :
 
 - A Screen compatible with [*VGA](#glossarry) system.
 
-#### B. The board.
+#### B. The board
 
 For this project, we will be using a Go Board provided by [Russel Merrick](https://www.linkedin.com/in/russell-merrick-6058b34/).
 
@@ -162,27 +162,27 @@ For this project, we will be using a Go Board provided by [Russel Merrick](https
 
 On this board we need to use :
 
-- The four Switches for the frog movement.
-- The VGA to show it on a compatible screen.
-- The LED segments for levels.
+- The four switches for the frog movement.
+- The VGA to display it on a compatible screen.
+- The LED segments for current score.
 
 You can access the Go Board plans by [Clicking here](https://nandland.com/wp-content/uploads/2022/06/Go_Board_V1.pdf).
 
-#### C. Debuging system.
+#### C. Debuging system
 
 For debugging, we are using [EDAplayground](https://edaplayground.com)
 
-### 3.2 Go Board set up.
+### 3.2 Go Board set up
 
 The Go Board needs some set up to be used properly by using the [the Go_Board documentation](https://nandland.com/go-board-tutorials/) provided directly on Nandland website.
 
-### 3.3 Drawing in VGA.
+### 3.3 Drawing in VGA
 
-#### A. Graphics.
+#### A. Graphics
 
 First, you will need a VGA cable, which should be connected to the board and to a compatible screen.
 
-To display anything on the VGA screen, we render in segments, which means the screen is refreshed by quickly changing the color of each pixel horizontally, progressing row by row until it reaches the bottom-right corner.
+To display anything on the VGA screen, we display pixels in segments, which means the screen is refreshed by quickly changing the color of each pixel horizontally, progressing row by row until it reaches the bottom-right corner.
 
 As shown in the diagram below, the screen is divided into rows and columns, represented by the V_sync_Pulse and H_sync_Pulse, which alternate between 1 and 0 depending on their current state.
 
@@ -190,10 +190,10 @@ Once the program finishes drawing a row, the V_Sync_Pulse will change state to 1
 
 ![VGA screen schema](/documents/images/technical/vga_screen_schema.png)
 
-The image is considered complete when both the V_sync_Pulse and H_sync_Pulse reach a state of 1, indicating that the entire image has been drawn. At this point, the process will begin again for the next image. This happens so quickly that the row-by-row rendering is imperceptible to the human eye, and we only see the fully rendered image.
+The image in pixels is considered complete when both the V_sync_Pulse and H_sync_Pulse reach a state of 1, indicating that the entire image has been drawn. At this point, the process will begin again for the next image. This happens so quickly that the row-by-row rendering is imperceptible to the human eye, and we only see the fully rendered image.
 
 
-#### B. Sprites.
+#### B. Sprites
 
 We can utilize up to 16 different colors for sprites, which reduces their quality and requires us to make careful selections from the 512 available colors for our game.
 
@@ -210,12 +210,12 @@ Once completed, we will create the raccoon sprite as a bitmap in `raccoon_paddle
 *The `raccoon_paddle_ctrl.v` file, the raccoon bitmap is limited to only two colors due to memory constraints: black is represented by 0, and grey is represented by 1."* 
 
 
-### 3.4 Controls and movements.
+### 3.4 Controls and movements
 
 
 #### A Car movements
 
-The different cars should move horizontally across the road, either from left to right or from right to left, depending on their designated lane.
+Different cars should move horizontally across the road, either from left to right or from right to left, depending on their designated lane.
 
 To achieve this, we first determine whether the car starts from the right or the left by assigning a value of 0 (for left) or -1 (for right).
 
@@ -243,7 +243,7 @@ Next, we need to determine and record the position of the car.
     input            i_Clk,
     input            i_Game_Active,
     input [9:0]      i_Col_Count_Div, // Columns counter (10 bits)
-    input [9:0]      i_Row_Count_Div, // Lignes counter (10 bits)
+    input [9:0]      i_Row_Count_Div, // Lines counter (10 bits)
     input [9:0]      i_car_Y,         //  Vertical  position(Y) of the car
     output reg       o_Draw_car,      // Indicator to draw the car
     output reg [9:0] o_car_X = 0,     // Horizontal position (X) of the car
@@ -276,11 +276,11 @@ Finally, to enable the car to move, we must update its position based on the dir
 
 #### B Raccoon controls
 
-o control the main character, the raccoon, we will utilize the four buttons to move it in the following order:
+To control the main character, the raccoon, we will utilize the four buttons to move it in the following order:
 
-- Switch 1 : Forward
+- Switch 1 : Up
 - Switch 2 : Left
-- Switch 3 : Backwards
+- Switch 3 : Down
 - Switch 4 : Right
 
 To ensure this functionality, we first need to initialize the buttons in `go_Board_Constraints.pcf`.
@@ -292,7 +292,7 @@ set_io i_Switch_2 51 // using  set_io <input/output name> <pin number>
 set_io i_Switch_3 54 // 'set_io' means 'set_InputOutput'
 set_io i_Switch_4 52
 ```
-*Code section in go_Boards_Constraints.pcf whre switches are initialized*
+*Code section in go_Boards_Constraints.pcf where switches are initialized*
 
 The code for the raccoon movement is similar to that of the cars; however, it also includes inputs to control the raccoon's movements.
 
@@ -308,7 +308,7 @@ The code for the raccoon movement is similar to that of the cars; however, it al
    output reg [9:0] o_Paddle_Y,// Vertical  position(Y) of the raccoon
    output reg [9:0] o_Paddle_X);// Horizontal position(X) of the raccoon
 ```
-*Initialization of the position and movement indicators in `raccoon_paddle_ctrl.v`*
+*Initialization of the position and movements indicators in `raccoon_paddle_ctrl.v`*
 
 Now that we have initialized the positions, we can implement the movement of the raccoon.
 
@@ -331,24 +331,24 @@ if (r_Paddle_Count == c_PADDLE_SPEED) begin
 *Movements and controls of the raccoon in `raccoon_paddle_ctrl.v`*
 
 
-### 3.5 Game background.
+### 3.5 Game background
 
 We are unable to obtain the background for our game in time for implementation.
 
-### 3.6 Game mechanics.
+### 3.6 Game mechanics
 
-#### A. Winning and loosing mechanics.
+#### A. Winning and loosing mechanics
 
 ![winning/loosing schema](/documents/images/technical/winning_loosing_schema.png)
 *A schema of how we can win or loose in the game*
 
 
 
-#### B. Starting and finishing zone.
+#### B. Starting and finishing zone
 
-The starting zone is where the raccoon will appear and begin crossing the road.
+The starting zone is where the raccoon will appear and start crossing the road.
 
-The finishing zone represents the raccoon's objective, where he must enter the bins to earn points.
+The finishing zone represents the raccoon's objective, where he must enter the trash cans to earn points.
 
 To determine if the raccoon is in the finishing zone, we first need to identify its boundaries.
 
@@ -363,7 +363,7 @@ To determine if the raccoon is in the finishing zone, we first need to identify 
 #### C. Lives
 
 
-To enable the game to recognize how to lose lives, we first need to implement collision detection.
+To enable the game to recognize how to loose lives, we first need to implement collision detection.
 
 ```Verilog
 
@@ -388,9 +388,9 @@ To enable the game to recognize how to lose lives, we first need to implement co
 If we lose all of our lives, the game will completely cease to operate.
 
 
-#### D. Points and high scores
+#### D. Points and high score
 
-Points and high scores will be calculated based on basic computations, determined by the actions that affect the score.
+Points and high score will be calculated based on basic computations, determined by the actions that affect the score.
 
 To enable the game to accurately count points, we first need to implement collision detection.
 
