@@ -18,9 +18,9 @@
 |-------|----|---|--|
 |1.0|09/27/2024|Mattéo LEFIN| - Create documents and finished Overview.|
 1.1| 10/01/2024|Mattéo LEFIN| - Add Overview and Conventions |
-1.2| 10/02/2024|Mattéo LEFIN| - Remade the Table of content <br> - finished 3.1/2/3.B |
+1.2| 10/02/2024|Mattéo LEFIN| - Remade the Table of content <br> - Finished 3.1/2/3.B |
 1.3| 10/08/2024|Mattéo LEFIN| - Added code in 3.5 |
-1.4| 10/10/2024|Mattéo LEFIN| - Finished writing <br> - added winning/loosing schema <br> - Added all code|
+1.4| 10/10/2024|Mattéo LEFIN| - Finished writing <br> - Added winning/loosing schema <br> - Added all code|
 1.5 | 10/11/2024|Mattéo LEFIN| - Text polishing <br> - Add images <br> - Delete Glossary |
 
 </details>
@@ -55,10 +55,10 @@
    - [**B. Raccoon controls**](#b-raccoon-controls)
  - [**3.5 Game background**](#35-game-background)
  - [**3.6 Game mechanics**](#36-game-mechanics)
-   - [**A. Wining and loosing mechanics**](#a-winning-and-loosing-mechanics)
+   - [**A. Winning and loosing mechanics**](#a-winning-and-loosing-mechanics)
    - [**B. Starting and finishing zone**](#b-starting-and-finishing-zone)
    - [**C. Lives**](#c-lives)
-   - [**D. Points and high score**](#d-points-and-high-scores)
+   - [**D. Points and high score**](#d-points-and-high-score)
 
 </details>
 
@@ -138,7 +138,7 @@ Below is our file structure plan :
 
 <details>
 
-<summary>3. Into technicalities</summary>
+<summary>3. In technical details</summary>
 
 ## 3. In technical details
 
@@ -146,7 +146,7 @@ Below is our file structure plan :
 
 #### A. Used computers
 
-For this project, we used for developpement :
+For this project, we used for developpment :
 - LENOVO ThinkPad 21JKCTO1WW - Core i7 - 16 Go RAM - 512 SSD
 - LENOVO ThinkBook 21DH - Code i7 - 16Go RAM - 512 Go SSD
 - LENOVO ThinkBook 20SL - Code i7 - 16Go RAM - 512 Go SSD
