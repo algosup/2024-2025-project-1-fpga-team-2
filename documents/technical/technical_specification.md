@@ -146,13 +146,13 @@ Below is our file structure plan :
 
 #### A. Used computers
 
-For this project, we used for developpment :
+For this project, we used for development :
 - LENOVO ThinkPad 21JKCTO1WW - Core i7 - 16 Go RAM - 512 SSD
-- LENOVO ThinkBook 21DH - Code i7 - 16Go RAM - 512 Go SSD
-- LENOVO ThinkBook 20SL - Code i7 - 16Go RAM - 512 Go SSD
+- LENOVO ThinkBook 21DH - Core i7 - 16Go RAM - 512 Go SSD
+- LENOVO ThinkBook 20SL - Core i7 - 16Go RAM - 512 Go SSD
 - Four Macbook Air M3 2024 - 16 Go RAM - 512 SSD
 
-- A Screen compatible with [*VGA](#glossarry) system.
+- A screen compatible with VGA system.
 
 #### B. The board
 
@@ -160,11 +160,11 @@ For this project, we will be using a Go Board provided by [Russel Merrick](https
 
 ![Go_board_image](/documents/images/technical/goboard.jpg)
 
-On this board we need to use :
+On this board, we need to use :
 
 - The four switches for the frog movement.
 - The VGA to display it on a compatible screen.
-- The LED segments for current score.
+- The LED segments for the current score.
 
 You can access the Go Board plans by [Clicking here](https://nandland.com/wp-content/uploads/2022/06/Go_Board_V1.pdf).
 
@@ -174,7 +174,7 @@ For debugging, we are using [EDAplayground](https://edaplayground.com)
 
 ### 3.2 Go Board set up
 
-The Go Board needs some set up to be used properly by using the [the Go_Board documentation](https://nandland.com/go-board-tutorials/) provided directly on Nandland website.
+The Go Board needs some setup to be used properly by using the [ Go_Board documentation](https://nandland.com/go-board-tutorials/) provided directly on Nandland's website.
 
 ### 3.3 Drawing in VGA
 
@@ -184,7 +184,7 @@ First, you will need a VGA cable, which should be connected to the board and to 
 
 To display anything on the VGA screen, we display pixels in segments, which means the screen is refreshed by quickly changing the color of each pixel horizontally, progressing row by row until it reaches the bottom-right corner.
 
-As shown in the diagram below, the screen is divided into rows and columns, represented by the V_sync_Pulse and H_sync_Pulse, which alternate between 1 and 0 depending on their current state.
+As shown in the diagram below, the screen is divided into rows and columns, represented by the V_Sync_Pulse and H_Sync_Pulse, which alternate between 1 and 0 depending on their current state.
 
 Once the program finishes drawing a row, the V_Sync_Pulse will change state to 1, moving the process to the next row. This continues until the final row is drawn, at which point the H_Sync_Pulse will also switch to 1.
 
@@ -213,7 +213,7 @@ Once completed, we will create the raccoon sprite as a bitmap in `raccoon_paddle
 ### 3.4 Controls and movements
 
 
-#### A Car movements
+#### A. Car movements
 
 Different cars should move horizontally across the road, either from left to right or from right to left, depending on their designated lane.
 
@@ -274,7 +274,7 @@ Finally, to enable the car to move, we must update its position based on the dir
 ```
 *movement of the car in `car_crtl.v`*
 
-#### B Raccoon controls
+#### B. Raccoon controls
 
 To control the main character, the raccoon, we will utilize the four buttons to move it in the following order:
 
@@ -363,7 +363,7 @@ To determine if the raccoon is in the finishing zone, we first need to identify 
 #### C. Lives
 
 
-To enable the game to recognize how to loose lives, we first need to implement collision detection.
+To enable the game to recognize how to lose lives, we first need to implement collision detection.
 
 ```Verilog
 
