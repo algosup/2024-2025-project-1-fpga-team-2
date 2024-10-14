@@ -1,16 +1,3 @@
-## Risks & Assumptions
-
-| ID | Description              | Impact | Likelihood | Mitigation Strategy                           |
-|----|--------------------------|--------|------------|-----------------------------------------------|
-| 1  | Scope Adjustment          | High   | Medium     | Establish clear requirements and approval process. |
-| 2  | Client Miscommunication   | High   | Medium     | Maintain regular, clear communication and documentation with the client. |
-| 3  | Efficient Coordination    | Low    | Low        | Use project management tools and regular meetings to ensure alignment. |
-| 4  | Full Attendance           | Medium | Medium     | Implement flexible working options and track attendance closely. |
-| 5  | Positive Work Environment | Medium | Low        | Encourage team collaboration, provide feedback, and foster a supportive culture. |
-| 6  | Defect Remediation        | High   | Medium     | Prioritize testing and ensure a comprehensive test plan is in place. |
-| 7  | Project Milestones        | Medium | Medium     | Regularly review progress, and adjust timelines as needed. |
-| 8  | Defect Remediation        | High   | Medium     | Implement regular code reviews and testing to catch issues early. |
-
 ## Work Breakdown Structure
 There is the WBS you can follow the mainlines of the project by clicking [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=2090769529#gid=2090769529).
 
