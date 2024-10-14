@@ -11,20 +11,29 @@
 | 7  | Project Milestones        | Medium | Medium     | Regularly review progress, and adjust timelines as needed. |
 | 8  | Defect Remediation        | High   | Medium     | Implement regular code reviews and testing to catch issues early. |
 
+## Work Breakdown Structure
+There is the WBS you can follow the mainlines of the project by clicking [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=2090769529#gid=2090769529).
+
+## Gantt Chart
+You can view the Gantt Chart Expectation for the project timeline [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=159628323#gid=159628323).
+
+You can view the Actual Gantt Chart for the project timeline [here](#https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=1929132487#gid=1929132487).
+
 ## KPI's
 In this section, we present the completion of the KPIs and how the calculations have been performed:
 
-### Completion Calculation of Files & Review
+### Completion Calculation
+#### Files & Review
 For each document structured with three main sections "# Main Point" for the main sections (referred to as "Main Points"), each containing a different number of sub-sections ("Subpoints"). These sub-sections are represented in markdown by the headings "## Sub-Title" for the sub-sections.
 
-#### Structure Overview
+##### Structure Overview
 - **Main Point 1**: 10 Subpoints
 - **Main Point 2**: 7 Subpoints
 - **Main Point 3**: 12 Subpoints
 
 **Total Subpoints**: 29
 
-#### Completion Status
+##### Completion Status
 The table below outlines the number of subpoints completed for each main point.
 | Main Point    | Completed Subpoints | Total Subpoints |
 |---------------|---------------------|-----------------|
@@ -32,13 +41,32 @@ The table below outlines the number of subpoints completed for each main point.
 | Main Point 2  | 7                   | 7               |
 | Main Point 3  | 4                   | 12              |
 
-#### Total Completion Calculation
-1. **Total Completed**: 
+##### Total Completion Calculation
+**Total Completed**: 
   6 + 7 + 4 = 17
 
-2. **Total Possible**: 
+**Total Possible**: 
   10 + 7 + 12 = 29
 
+#### Desing & Bonus
+Each tasks are seperated on multiples point for example the task "Frog Movement" is seperated in five parts:
+- Up
+- Right
+- Down
+- Left
+- If button still pressed continue to move
+
+##### Total Completion Calculation
+**Total Completed**: 
+  1 + 1 + 1 + 1 + 0 = 4
+
+**Total Possible**: 
+  1 + 1 + 1 + 1 + 1 = 5
+
+#### Calculation
+$$
+\text{Total Percentage} = \left( \frac{\text{Total Completed}}{\text{Total Possible}} \right) \times 100
+$$
 
 ### Files
 There is the list of documents witch are including in Files :
@@ -47,11 +75,6 @@ There is the list of documents witch are including in Files :
 - Technical Specification
 - User Manual
 - Test Plan
-
-##### Total Percentage Calculation
-$$
-\text{Total Percentage} = \left( \frac{\text{Total Completed}}{\text{Total Possible}} \right) \times 100
-$$
 
 ### Review
 There is the list of documents witch are including in Review :
@@ -63,36 +86,42 @@ There is the list of documents witch are including in Review :
 - Code Review
 - Test
 
-##### Total Percentage Calculation
-$$
-\text{Total Percentage} = \left( \frac{\text{Total Completed}}{\text{Total Possible}} \right) \times 100
-$$
-
 ### Design
-  - Sprites
-  - Menu
-  - Animations
+There is the list of documents witch are including in Design :
+- Sprites
+- Menu
+- Animations
 
-##### Total Percentage Calculation
-$$
-\text{Total Percentage} = \left( \frac{\text{Total Completed}}{\text{Total Possible}} \right) \times 100
-$$
 
 ### Game/Bonus
-  - Frog Movement
-  - Car Movement
-  - Car Gestion
-  - Scoring
-  - Hitboxes
-  - Difficulties
-  - Integration of Sprites
+There is the list of documents witch are including in Game/Bonus :
+- Frog Movement
+- Car Movement
+- Car Gestion
+- Scoring
+- Hitboxes
+- Difficulties
+- Integration of Sprites
 
-##### Total Percentage Calculation
-$$
-\text{Total Percentage} = \left( \frac{\text{Total Completed}}{\text{Total Possible}} \right) \times 100
-$$
 
 ### Team Mood
+The mood of the team's members is also verified to ensure that nobody is left behind. Each team member responds to a survey each week, which includes 3 questions. Each question can be rated from 0 to 10. There are 7 people in the team.
+
+#### Calculation
+The total possible score for each week is calculated as follows:
+$$
+\text{Total Possible Score} = \text{Number of Questions} \times \text{Maximum Score per Question} \times \text{Number of Team Members}
+$$
+$$
+\text{Total Possible Score} = 3 \times 10 \times 7 = 210
+$$
+$$
+\text{Team Mood Percentage} = \left( \frac{\text{Total Achieved Score}}{\text{Total Possible Score}} \right) \times 100
+$$
+
+You can access to the KPI's spreadsheet [here](https://docs.google.com/spreadsheets/d/1X-kkG5JFK_j_OlVThfcNF5CRCTrUDaOV3hJcxrTduTk/edit?gid=0#gid=0).
+
+You can access to the KPI's graphics [here](https://docs.google.com/spreadsheets/d/1X-kkG5JFK_j_OlVThfcNF5CRCTrUDaOV3hJcxrTduTk/edit?gid=980623378#gid=980623378).
 
 
 ## RACI
