@@ -138,7 +138,7 @@ The RACI of this project is as follows considering the Project Charter:
 
 ## Weekly Reports
 
-This part have been made to list all the weekly reports trough the project :
+This part has been made to list all the weekly reports throughout the project:
 
 - [Weekly Report 1](./weekly_reports/weekly_report_1.md)
 - [Weekly Report 2](./weekly_reports/weekly_report_2.md)
