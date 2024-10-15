@@ -36,7 +36,7 @@ The table below outlines the number of subpoints completed for each main point.
   10 + 7 + 12 = 29
 
 #### Design & Bonus
-Each tasks are separated on multiples point for example the task "Frog Movement" is separated in five parts:
+Each task are separated on multiples point, for example the task "Frog Movement" is separated in five parts:
 - Up
 - Right
 - Down
