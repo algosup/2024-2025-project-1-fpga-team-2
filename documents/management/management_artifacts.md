@@ -1,10 +1,10 @@
 ## Work Breakdown Structure
-There is the WBS you can follow the mainlines of the project by clicking [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=2090769529#gid=2090769529).
+Here is the WBS. You can follow the mainlines of the project by clicking [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=2090769529#gid=2090769529).
 
 ## Gantt Chart
 You can view the Gantt Chart Expectation for the project timeline [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=159628323#gid=159628323).
 
-You can view the Actual Gantt Chart for the project timeline [here](#https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=1929132487#gid=1929132487).
+You can view the Actual Gantt Chart for the project timeline ~~[here](#https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=1929132487#gid=1929132487).~~
 
 ## KPI's
 In this section, we present the completion of the KPIs and how the calculations have been performed:
@@ -35,8 +35,8 @@ The table below outlines the number of subpoints completed for each main point.
 **Total Possible**: 
   10 + 7 + 12 = 29
 
-#### Desing & Bonus
-Each tasks are seperated on multiples point for example the task "Frog Movement" is seperated in five parts:
+#### Design & Bonus
+Each tasks are separated on multiples point for example the task "Frog Movement" is separated in five parts:
 - Up
 - Right
 - Down
@@ -56,7 +56,7 @@ $$
 $$
 
 ### Files
-There is the list of documents witch are including in Files :
+Here is the list of documents which are included in Files:
 - Project Charter
 - Functional Specification
 - Technical Specification
@@ -64,7 +64,7 @@ There is the list of documents witch are including in Files :
 - Test Plan
 
 ### Review
-There is the list of documents witch are including in Review :
+Here is the list of documents which are included in Review:
 - Functional Specification
 - Technical Specification
 - User Manual
@@ -74,14 +74,14 @@ There is the list of documents witch are including in Review :
 - Test
 
 ### Design
-There is the list of documents witch are including in Design :
+Here is the list of tasks included in the Design phase:
 - Sprites
 - Menu
 - Animations
 
 
 ### Game/Bonus
-There is the list of documents witch are including in Game/Bonus :
+Here is the list of tasks included in the Game/Bonus phase:
 - Frog Movement
 - Car Movement
 - Car Gestion
@@ -99,9 +99,11 @@ The total possible score for each week is calculated as follows:
 $$
 \text{Total Possible Score} = \text{Number of Questions} \times \text{Maximum Score per Question} \times \text{Number of Team Members}
 $$
+
 $$
 \text{Total Possible Score} = 3 \times 10 \times 7 = 210
 $$
+
 $$
 \text{Team Mood Percentage} = \left( \frac{\text{Total Achieved Score}}{\text{Total Possible Score}} \right) \times 100
 $$
@@ -136,7 +138,7 @@ The RACI of this project is as follows considering the Project Charter:
 
 ## Weekly Reports
 
-This session has been made to reportory all the weekly reports trough the project :
+This part have been made to list all the weekly reports trough the project :
 
 - [Weekly Report 1](./weekly_reports/weekly_report_1.md)
 - [Weekly Report 2](./weekly_reports/weekly_report_2.md)
