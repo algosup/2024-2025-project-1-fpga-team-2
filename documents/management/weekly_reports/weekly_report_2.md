@@ -18,3 +18,5 @@
 
 5. **Conclusion:**  
 - Despite the limited time available for the project this week, the development progress on the game is going well, with significant advancements made by the team. While the functional aspects are now complete, there is still work to be done on refining them. Additionally, automating the KPIs is 80% complete, showing steady progress. However, some team members are not meeting the projected goals, and more oversight may be needed to ensure deadlines are met. There are also challenges with GitHub usage, leading to file management issues. Moving forward, the focus will be on finalizing the technical specifications and enhancing project tracking.
+
+[Back to the Management Artifact](../management_artifacts.md#weekly-reports)
