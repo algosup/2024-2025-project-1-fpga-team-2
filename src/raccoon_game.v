@@ -8,8 +8,8 @@ module raccoon_Game
     parameter c_PADDLE_HEIGHT = 32,
     parameter c_PADDLE_WIDTH = 32,
     parameter c_PADDLE_COL_P1 = 0,
-    parameter c_CAR_COUNT = 1,
-    parameter c_LIFE = 4) // Définir le paramètre de vie
+    parameter c_CAR_COUNT = 3,
+    parameter c_LIFE = 3) // Définir le paramètre de vie
   (
    input            i_Clk,
    input            i_HSync,
