@@ -46,7 +46,7 @@ The goal of the game is to guide the frog from the bottom of the screen to a saf
 
 For comparison purposes, let's introduce the original game designs :
 
-<img title="a title" alt="Original frogger map" src="./images/frogger_map.jpg" style="width: 600px; justify-item: center;">
+<img title="a title" alt="Original frogger map" src="../images/functional/frogger_map.jpg" style="width: 600px; justify-item: center;">
 
 **Description of the map and mechanics (from bottom to top):**
 
@@ -117,7 +117,7 @@ The player will now play a little raccoon, and all the basic concepts from the f
 
 **What is the purpose of the timer?**
 
-- Each level has a time limit (60 seconds), requiring the player to move quickly to complete the level.
+- Each round has a time limit (60 seconds), requiring the player to move quickly to complete the round.
 
 **What happens when the timer reaches zero?**
 
