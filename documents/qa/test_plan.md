@@ -26,27 +26,27 @@
   - [3. Hardware used for tests](#3-hardware-used-for-tests)
     - [3.1 Computer](#31-computer)
     - [3.2 Go-Board](#32-go-board)
-- [Glossary](#glossary)
+  - [Glossary](#glossary)
 
 </details>
 </div>
 
 ## 1. Introduction
 
-The aim of this project is to, using the [Verilog](#verilog) language, re-create a classic game nammed Frogger. It's an arcade game where reach the top of the screen is the goal. For doing that, the frog need to avoid some cars while she crossed all the roads. Since is a re-creation, some sprites have changed like the frog, now a raccoon and the cars which are now garbage trucks.
+The aim of this project is to, using the Verilog[^1] language, re-create a classic game nammed Frogger. It's an arcade game where reach the top of the screen is the goal. For doing that, the frog need to avoid some cars while she crossed all the roads. Since is a re-creation, some sprites have changed like the frog, now a raccoon and the cars which are now garbage trucks.
 <!--Need to review with Vianney or anyone else to check this part-->
 
 ## 2. Goals <!--(Purposes maybe)-->
 
 ### 2.1 Document purpose
 
-The aim of this document is to report what will be test on the game, as well the [hardware](#hardware) side, as the [software](#software) side. To do that, all the test will be carried out by manual testing.
+The aim of this document is to report what will be test on the game, as well the hardware[^2] side, as the software[^3] side. To do that, all the test will be carried out by manual testing.
 
 More precisely, this document and the test cases will gether some informations like:
 - Check if the game works correctly or not.
-- Ensures that the product answer at the [software](#software) requirements.
+- Ensures that the product answer at the software[^3] requirements.
 - Identify the presence of bugs or other problems.
-- Check the code's and game's security in order to not produce issues on the custumer's [hardware](#hardware).
+- Check the code's and game's security in order to not produce issues on the custumer's hardware[^2].
 - Verify the responsivity of the product
 
 ### 2.2 Test purposes
@@ -116,7 +116,7 @@ All of the tests are written below but, the complete ckeck list is findable [her
 |Led 2|If the switch 2 is pushed, the Led 2 turn on|
 |Led 3|If the switch 3 is pushed, the Led 3 turn on|
 |Led 4|If the switch 4 is pushed, the Led 4 turn on|
-|[VGA](#vga)|When the [VGA](#vga) socket is plug-in, the game is displayed|
+|VGA[^4]|When the VGA socket is plug-in, the game is displayed|
 
 ## 3. Hardware used for tests
 
@@ -136,22 +136,24 @@ All of the tests are written below but, the complete ckeck list is findable [her
 
 |Specification|Details|
 |---|---|
-|[FPGA](#fpga)|Lattice ICE40 HX1K FPGA|
-|Connectivity|Micro USB, [VGA](#vga), PMOD Connector|
+|FPGA[^5]|Lattice ICE40 HX1K FPGA|
+|Connectivity|Micro USB, VGA[^4], PMOD Connector|
 |Setable|4 LEDs, 4 switches, 2 7-Segments|
 
-# Glossary
+---
 
-<!-- Add Redirection to this board-->
+<!--Don't definitive-->
 
-|Term|Definition|
-|---|---|
-|<span id="verilog">Verilog</span>|A language principally used for the programation of [FPGA](#FPGA)|
-|<span id="hardware">Hardware</span>|The computer science materials used to do something (e.g. computer, smartphone, etc.)|
-|<span id="software">Software</span>|A set of programs, procedures, and rules that enable a computer to work. It can be an OS like Windows, an application, etc.|
-|<span id="vga">VGA</span>|A connector commonly used to transmit video signals from a device (such as an [FPGA](#FPGA)) to a monitor or display.|
-|<span id="fpga">FPGA</span>|*(aka Field-Programmable Gate Array)* <br> A type of integrated circuit that can be configured by the user or designer after manufacturing, often used in specialized gaming platforms.
+## Glossary
 
 [^1]: Verilog
-A language principally used for the programation of [FPGA](#FPGA)
+A language principally used for the programation of FPGA
+[^2]: Hardware
+The computer science materials used to do something (e.g. computer, smartphone, etc.)
+[^3]: Software
+A set of programs, procedures, and rules that enable a computer to work. It can be an OS like Windows, an application, etc.
+[^4]: VGA
+A connector commonly used to transmit video signals from a device (such as an FPGA) to a monitor or display.
+[^5]: FPGA
+*(aka Field-Programmable Gate Array)* <br> A type of integrated circuit that can be configured by the user or designer after manufacturing, often used in specialized gaming platforms.
 <!--Add Out-Scope and In-Scope-->
