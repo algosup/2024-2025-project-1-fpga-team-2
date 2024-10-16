@@ -28,14 +28,14 @@ This Frogger game was developed as a team project for Algosup. It recreates the 
 
 
 ## ✏️ Details
-We had approximately 5 weeks to complete the project, during which we :
+We had approximately 5 weeks to complete the project, during which we:
 
 - Game Mechanics Design: We recreated the classic Frogger gameplay with custom elements, such as:
 
   - Variable obstacle speeds across levels.
   - Increasing difficulty with more obstacles as the game progresses.
 
-- Hardware Challenges: Implementing the game on an FPGA required careful planning to manage real-time processing, parallelism and also and especially the storage capacity.
+- Hardware Challenges: Implementing the game on an FPGA required careful planning to manage real-time processing, parallelism and especially the storage capacity.
 <br>
 
 The project was an excellent opportunity to combine hardware programming (using Verilog) with game development, and it helped us gain practical experience in digital circuit design, real-time processing logic, and project management.
