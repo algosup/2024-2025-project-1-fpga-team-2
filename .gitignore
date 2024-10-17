@@ -1,0 +1,24 @@
+# Ignore macOS system files
+.DS_Store
+*.DS_Store
+.AppleDouble
+
+# Ignore Windows-specific system files
+Thumbs.db
+Desktop.ini
+
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules/
+vendor/
+
+# IDE and editor config files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Environment files
+.env
