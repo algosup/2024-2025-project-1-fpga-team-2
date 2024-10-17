@@ -1,30 +1,15 @@
+`include "constants.v"
+
 module vga (
     input wire clk,                  // Clock signal
-    input wire [9:0] raccoonX,      // Raccoon X position (in pixels, 10-bit)
-    input wire [9:0] raccoonY,      // Raccoon Y position (in pixels, 10-bit)
-    output reg [2:0] vgaR,          // VGA Red signal
-    output reg [2:0] vgaG,          // VGA Green signal
-    output reg [2:0] vgaB,          // VGA Blue signal
-    output reg vgaHs,               // VGA Horizontal sync
-    output reg vgaVs                // VGA Vertical sync
+    input wire [9:0] raccoonX,       // Raccoon X position (in pixels, 10-bit)
+    input wire [9:0] raccoonY,       // Raccoon Y position (in pixels, 10-bit)
+    output reg [2:0] vgaR,           // VGA Red signal
+    output reg [2:0] vgaG,           // VGA Green signal
+    output reg [2:0] vgaB,           // VGA Blue signal
+    output reg vgaHs,                // VGA Horizontal sync
+    output reg vgaVs                 // VGA Vertical sync
 );
-
-    // VGA timing parameters for 640x480 resolution
-    localparam H_SYNC_CYC = 96;          // Horizontal sync cycle
-    localparam H_BACK_PORCH = 48;        // Horizontal back porch
-    localparam H_ACTIVE_VIDEO = 640;      // Horizontal active video
-    localparam H_FRONT_PORCH = 15;       // Horizontal front porch
-    localparam H_LINE = 800;              // Total horizontal line width
-
-    localparam V_SYNC_CYC = 1 ;          // Vertical sync cycle
-    localparam V_BACK_PORCH = 33;        // Vertical back porch
-    localparam V_ACTIVE_VIDEO = 480;      // Vertical active video
-    localparam V_FRONT_PORCH = 10;       // Vertical front porch
-    localparam V_LINE = 525;              // Total vertical line height
-
-    // Define grid dimensions
-    localparam GRID_WIDTH = 32;           // Width of each grid block
-    localparam GRID_HEIGHT = 32;          // Height of each grid block
 
     // Horizontal and vertical counters for VGA timing
     reg [9:0] hCount = 0;                 // Horizontal pixel counter
@@ -68,8 +53,8 @@ module vga (
             pixelY <= (vCount - (V_SYNC_CYC + V_BACK_PORCH));
 
             // Check if pixel is part of the raccoon
-            if (pixelX >= raccoonX && pixelX < raccoonX + 32 &&
-                pixelY >= raccoonY && pixelY < raccoonY + 32) begin
+            if (pixelX >= raccoonX && pixelX < raccoonX + PLAYER_WIDTH &&
+                pixelY >= raccoonY && pixelY < raccoonY + PLAYER_HEIGHT) begin
                 // Raccoon color (White)
                 vgaR <= 3'b111;
                 vgaG <= 3'b111;
