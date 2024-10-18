@@ -28,4 +28,9 @@ localparam PLAYER_WIDTH      = 32;    // Raccoon width
 localparam PLAYER_HEIGHT     = 32;    // Raccoon height
 localparam RACCOON_SPEED     = 21;    // Raccoon movement speed
 
+// Voitures (Cars) dimensions et propriétés
+localparam CAR_WIDTH         = 64;    // Largeur de la voiture
+localparam CAR_HEIGHT        = 32;    // Hauteur de la voiture
+localparam CAR_SPEED         = 3;     // Vitesse de la voiture (en nombre de cycles de déplacement)
+
 `endif
