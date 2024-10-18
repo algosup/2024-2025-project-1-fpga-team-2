@@ -1,69 +1,122 @@
-module vga_display (
-    input wire clk,              // Clock signal
-    input wire [9:0] raccoon_x, // Raccoon X position (in pixels, 10-bit)
-    input wire [9:0] raccoon_y, // Raccoon Y position (in pixels, 10-bit)
-    output reg [2:0] vga_r,      // VGA Red signal
-    output reg [2:0] vga_g,      // VGA Green signal
-    output reg [2:0] vga_b,      // VGA Blue signal
-    output reg vga_hs,           // VGA Horizontal sync
-    output reg vga_vs            // VGA Vertical sync
+module vga (
+    input wire clk,                   // Signal d'horloge
+    input wire [9:0] raccoonX,        // Position X du raton laveur (10 bits)
+    input wire [9:0] raccoonY,        // Position Y du raton laveur (10 bits)
+    input wire [9:0] carX_1,          // Position X de la première voiture
+    input wire [9:0] carY_1,          // Position Y de la première voiture
+    input wire [9:0] carX_2,          // Position X de la deuxième voiture
+    input wire [9:0] carY_2,          // Position Y de la deuxième voiture
+    input wire [2:0] lives,           // Nombre de vies restantes (3 bits)
+    output reg [2:0] vgaR,            // Signal rouge VGA
+    output reg [2:0] vgaG,            // Signal vert VGA
+    output reg [2:0] vgaB,            // Signal bleu VGA
+    output reg vgaHs,                 // Sync horizontal VGA
+    output reg vgaVs                  // Sync vertical VGA
 );
 
-    // VGA timing parameters for 640x480 resolution
-    localparam H_SYNC_CYC = 96;
-    localparam H_BACK_PORCH = 48;
-    localparam H_ACTIVE_VIDEO = 640;
-    localparam H_FRONT_PORCH = 15;
-    localparam H_LINE = 800;
+    // Compteurs horizontal et vertical pour la synchronisation VGA
+    reg [9:0] hCount = 0;             // Compteur de pixels horizontal
+    reg [9:0] vCount = 0;             // Compteur de pixels vertical
 
-    localparam V_SYNC_CYC = 2;
-    localparam V_BACK_PORCH = 33;
-    localparam V_ACTIVE_VIDEO = 480;
-    localparam V_FRONT_PORCH = 10;
-    localparam V_LINE = 525;
-
-    // Horizontal and vertical counters for VGA timing
-    reg [9:0] h_count = 0;
-    reg [9:0] v_count = 0;  // Change v_count to 9 bits to match 480 resolution
+    // Positions des pixels calculées
+    reg [9:0] pixelX;
+    reg [9:0] pixelY;
 
     always @(posedge clk) begin
-        // Horizontal counter
-        if (h_count == H_LINE - 1) begin
-            h_count <= 0;
-            // Vertical counter
-            if (v_count == V_LINE - 1) begin
-                v_count <= 0;
+        // Gestion du compteur horizontal et vertical
+        if (hCount == H_LINE - 1) begin
+            hCount <= 0;
+            if (vCount == V_LINE - 1) begin
+                vCount <= 0;
             end else begin
-                v_count <= v_count + 1;
+                vCount <= vCount + 1;
             end
         end else begin
-            h_count <= h_count + 1;
+            hCount <= hCount + 1;
         end
 
-        // Generate horizontal sync pulse
-        vga_hs <= (h_count < H_SYNC_CYC) ? 0 : 1;
+        // Génération des impulsions de synchronisation
+        vgaHs <= (hCount < H_SYNC_CYC) ? 0 : 1;
+        vgaVs <= (vCount < V_SYNC_CYC) ? 0 : 1;
 
-        // Generate vertical sync pulse
-        vga_vs <= (v_count < V_SYNC_CYC) ? 0 : 1;
+        // Fond noir par défaut
+        vgaR <= 3'b000;
+        vgaG <= 3'b000;
+        vgaB <= 3'b000;
 
-        // Default to black (background color)
-        vga_r <= 3'b000;
-        vga_g <= 3'b000;
-        vga_b <= 3'b000;
+        // Vérification de la zone active de l'écran
+        if (hCount >= H_SYNC_CYC + H_BACK_PORCH && hCount < H_SYNC_CYC + H_BACK_PORCH + H_ACTIVE_VIDEO &&
+            vCount >= V_SYNC_CYC + V_BACK_PORCH && vCount < V_SYNC_CYC + V_BACK_PORCH + V_ACTIVE_VIDEO) begin
 
-        // Check if in the active video area
-        if (h_count >= H_SYNC_CYC + H_BACK_PORCH && h_count < H_SYNC_CYC + H_BACK_PORCH + H_ACTIVE_VIDEO &&
-            v_count >= V_SYNC_CYC + V_BACK_PORCH && v_count < V_SYNC_CYC + V_BACK_PORCH + V_ACTIVE_VIDEO) begin
-            
-            // Check if the pixel is part of the raccoon
-            if (h_count - (H_SYNC_CYC + H_BACK_PORCH) >= raccoon_x &&
-                h_count - (H_SYNC_CYC + H_BACK_PORCH) < raccoon_x + 32 &&  // Adjust for raccoon size
-                v_count - (V_SYNC_CYC + V_BACK_PORCH) >= raccoon_y &&
-                v_count - (V_SYNC_CYC + V_BACK_PORCH) < raccoon_y + 32) begin
-                // Raccoon color (adjust RGB as needed)
-                vga_r <= 3'b111; // White
-                vga_g <= 3'b111;
-                vga_b <= 3'b111;
+            pixelX <= hCount - (H_SYNC_CYC + H_BACK_PORCH);
+            pixelY <= vCount - (V_SYNC_CYC + V_BACK_PORCH);
+
+            // Affichage du raton laveur (blanc)
+            if (pixelX >= raccoonX && pixelX < raccoonX + PLAYER_WIDTH &&
+                pixelY >= raccoonY && pixelY < raccoonY + PLAYER_HEIGHT) begin
+                vgaR <= 3'b111;  // Blanc
+                vgaG <= 3'b111;
+                vgaB <= 3'b111;
+            end
+            // Affichage de la première voiture (rouge)
+            else if (pixelX >= carX_1 && pixelX < carX_1 + CAR_WIDTH &&
+                     pixelY >= carY_1 && pixelY < carY_1 + CAR_HEIGHT) begin
+                vgaR <= 3'b111;  // Rouge
+                vgaG <= 3'b000;
+                vgaB <= 3'b000;
+            end
+            // Affichage de la deuxième voiture (rouge)
+            else if (pixelX >= carX_2 && pixelX < carX_2 + CAR_WIDTH &&
+                     pixelY >= carY_2 && pixelY < carY_2 + CAR_HEIGHT) begin
+                vgaR <= 3'b111;  // Rouge
+                vgaG <= 3'b000;
+                vgaB <= 3'b000;
+            end
+
+            // Affichage des lignes de la grille (gris)
+            else if ((pixelX % GRID_WIDTH == 0) || (pixelY % GRID_HEIGHT == 0)) begin
+                vgaR <= 3'b100;  // Gris
+                vgaG <= 3'b100;
+                vgaB <= 3'b100;
+            end
+
+            // Affichage des vies restantes en bas à gauche
+            else if (pixelY >= V_ACTIVE_VIDEO - 32 && pixelY < V_ACTIVE_VIDEO - 16) begin
+                case (lives)
+                    3'b011: begin // 3 vies
+                        if (pixelX >= 0 && pixelX < 16) begin 
+                            vgaR <= 3'b000; // Vert
+                            vgaG <= 3'b111;
+                            vgaB <= 3'b000; 
+                        end else if (pixelX >= 20 && pixelX < 36) begin 
+                            vgaR <= 3'b000; // Vert
+                            vgaG <= 3'b111;
+                            vgaB <= 3'b000; 
+                        end else if (pixelX >= 40 && pixelX < 56) begin 
+                            vgaR <= 3'b000; // Vert
+                            vgaG <= 3'b111;
+                            vgaB <= 3'b000; 
+                        end 
+                    end
+                    3'b010: begin // 2 vies
+                        if (pixelX >= 0 && pixelX < 16) begin 
+                            vgaR <= 3'b000; // Vert
+                            vgaG <= 3'b111;
+                            vgaB <= 3'b000; 
+                        end else if (pixelX >= 20 && pixelX < 36) begin 
+                            vgaR <= 3'b000; // Vert
+                            vgaG <= 3'b111;
+                            vgaB <= 3'b000; 
+                        end
+                    end
+                    3'b001: begin // 1 vie
+                        if (pixelX >= 0 && pixelX < 16) begin 
+                            vgaR <= 3'b000; // Vert
+                            vgaG <= 3'b111;
+                            vgaB <= 3'b000; 
+                        end
+                    end
+                endcase
             end
         end
     end

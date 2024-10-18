@@ -1,58 +1,65 @@
-module raccoon_ctrl
-  #(parameter c_PLAYER_WIDTH = 32,     // Largeur du raton laveur
-    parameter c_PLAYER_HEIGHT = 32,    // Hauteur du raton laveur
-    parameter c_GAME_HEIGHT = 480,     // Hauteur de l'écran de jeu
-    parameter c_GAME_WIDTH = 640,      // Largeur de l'écran de jeu
-    parameter c_SPEED = 10)            // Vitesse de déplacement (en pixels)
-  (
-   input            i_Clk,              // Signal d'horloge
-   input            i_Raccoon_Up,       // Bouton pour mouvement vers le haut
-   input            i_Raccoon_Dn,       // Bouton pour mouvement vers le bas
-   input            i_Raccoon_lt,       // Bouton pour mouvement vers la gauche
-   input            i_Raccoon_rt,       // Bouton pour mouvement vers la droite
-   output reg [9:0] o_Raccoon_X,        // Position X du raton laveur
-   output reg [9:0] o_Raccoon_Y);       // Position Y du raton laveur
+`include "constants.v"
 
-  // Initialisation de la position du raton laveur
-  initial begin
-    o_Raccoon_X = (c_GAME_WIDTH - c_PLAYER_WIDTH) / 2;  // Centré horizontalement
-    o_Raccoon_Y = (c_GAME_HEIGHT - c_PLAYER_HEIGHT) / 2; // Centré verticalement
-  end
+module raccoon_ctrl (
+    input            i_Clk,              // Clock signal
+    input            i_Raccoon_Up,       // Move up button
+    input            i_Raccoon_Dn,       // Move down button
+    input            i_Raccoon_lt,       // Move left button
+    input            i_Raccoon_rt,       // Move right button
+    input            i_Collision,         // Collision signal
+    output reg [9:0] o_Raccoon_X,        // Raccoon X position
+    output reg [9:0] o_Raccoon_Y,        // Raccoon Y position
+    output reg [3:0] o_Level              // Niveau courant
+);
 
-  reg [19:0] clk_div = 0;  // Diviseur d'horloge simple
-
-  always @(posedge i_Clk) begin
-    clk_div <= clk_div + 1;
-  end
-
-  reg [9:0] new_x;
-  reg [9:0] new_y;
-
-  always @(posedge clk_div[19]) begin
-    // Variables temporaires pour la nouvelle position
-    new_x = o_Raccoon_X;
-    new_y = o_Raccoon_Y;
-
-    // Logique de mouvement du raton laveur avec vitesse paramétrée
-    if (i_Raccoon_Up) begin
-      new_y = o_Raccoon_Y - c_SPEED; // Déplacer vers le haut
-    end
-    if (i_Raccoon_Dn) begin
-      new_y = o_Raccoon_Y + c_SPEED; // Déplacer vers le bas
-    end
-    if (i_Raccoon_lt) begin
-      new_x = o_Raccoon_X - c_SPEED; // Déplacer vers la gauche
-    end
-    if (i_Raccoon_rt) begin
-      new_x = o_Raccoon_X + c_SPEED; // Déplacer vers la droite
+    // Initialiser la position du raton laveur et le niveau
+    initial begin
+        o_Raccoon_X = (GAME_WIDTH / 2) / GRID_WIDTH * GRID_WIDTH;  // Centré sur un multiple de la taille de la grille
+        o_Raccoon_Y = (GAME_HEIGHT - PLAYER_HEIGHT) / GRID_HEIGHT * GRID_HEIGHT; // Aligné en bas
+        o_Level = 4'd1; // Niveau initial
     end
 
-    // Vérification des limites après calcul du mouvement
-    if (new_x >= 0 && new_x <= (c_GAME_WIDTH - c_PLAYER_WIDTH)) begin
-      o_Raccoon_X <= new_x;  // Appliquer la nouvelle position X seulement si dans les limites
+    reg [24:0] clk_div = 0;  // Diviseur d'horloge
+
+    always @(posedge i_Clk) begin
+        clk_div <= clk_div + 1;
     end
-    if (new_y >= 0 && new_y <= (c_GAME_HEIGHT - c_PLAYER_HEIGHT)) begin
-      o_Raccoon_Y <= new_y;  // Appliquer la nouvelle position Y seulement si dans les limites
+
+    // Assurez-vous que l'index du diviseur d'horloge est dans une plage valide
+    always @(posedge clk_div[RACCOON_SPEED]) begin
+        if (!i_Collision) begin  // Ne bougez pas si une collision a eu lieu
+            // Mouvement vers le haut
+            if (i_Raccoon_Up && o_Raccoon_Y > 0) begin
+                o_Raccoon_Y <= o_Raccoon_Y - GRID_HEIGHT;
+            end 
+            // Mouvement vers le bas
+            if (i_Raccoon_Dn && o_Raccoon_Y < (GAME_HEIGHT - PLAYER_HEIGHT)) begin
+                o_Raccoon_Y <= o_Raccoon_Y + GRID_HEIGHT;
+            end
+            
+            // Mouvement vers la gauche
+            if (i_Raccoon_lt && o_Raccoon_X > 0) begin
+                o_Raccoon_X <= o_Raccoon_X - GRID_WIDTH;
+            end 
+            // Mouvement vers la droite
+            if (i_Raccoon_rt && o_Raccoon_X < (GAME_WIDTH - PLAYER_WIDTH)) begin
+                o_Raccoon_X <= o_Raccoon_X + GRID_WIDTH;
+            end
+        end else begin
+            // Réinitialiser la position du raton laveur en bas
+            o_Raccoon_X <= (GAME_WIDTH / 2) / GRID_WIDTH * GRID_WIDTH;  // Remettre au centre
+            o_Raccoon_Y <= (GAME_HEIGHT - PLAYER_HEIGHT) / GRID_HEIGHT * GRID_HEIGHT; // Aligné en bas
+        end
+
+        // Vérifier si le raton laveur a atteint le haut de l'écran
+        if (o_Raccoon_Y == 0) begin
+            o_Raccoon_X <= (GAME_WIDTH / 2) / GRID_WIDTH * GRID_WIDTH;  // Remettre au centre
+            o_Raccoon_Y <= (GAME_HEIGHT - PLAYER_HEIGHT) / GRID_HEIGHT * GRID_HEIGHT; // Aligné en bas
+
+            // Incrémenter le niveau si le niveau est inférieur à 9
+            if (o_Level < 4'd9) begin
+                o_Level <= o_Level + 1; // Passer au niveau suivant
+            end
+        end
     end
-  end
 endmodule
