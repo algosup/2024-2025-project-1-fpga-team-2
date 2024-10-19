@@ -12,7 +12,7 @@ module lives (
         collision_d = 0;            // Initialiser la détection de front
     end
 
-    always @(posedge i_Clk or posedge i_Reset) begin
+    always @(posedge i_Clk ) begin
         if (i_Reset) begin
             o_Lives <= 3;           // Réinitialiser à 3 vies
             collision_d <= 0;       // Réinitialiser l'état précédent de la collision

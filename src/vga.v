@@ -6,6 +6,8 @@ module vga (
     input wire [9:0] carY_1,          // Position Y de la première voiture
     input wire [9:0] carX_2,          // Position X de la deuxième voiture
     input wire [9:0] carY_2,          // Position Y de la deuxième voiture
+    input wire [9:0] carX_3,          // Position X de la troisième voiture
+    input wire [9:0] carY_3,          // Position Y de la troisième voiture
     input wire [2:0] lives,           // Nombre de vies restantes (3 bits)
     output reg [2:0] vgaR,            // Signal rouge VGA
     output reg [2:0] vgaG,            // Signal vert VGA
@@ -68,6 +70,13 @@ module vga (
             // Affichage de la deuxième voiture (rouge)
             else if (pixelX >= carX_2 && pixelX < carX_2 + CAR_WIDTH &&
                      pixelY >= carY_2 && pixelY < carY_2 + CAR_HEIGHT) begin
+                vgaR <= 3'b111;  // Rouge
+                vgaG <= 3'b000;
+                vgaB <= 3'b000;
+            end
+            // Affichage de la troisième voiture (rouge)
+            else if (pixelX >= carX_3 && pixelX < carX_3 + CAR_WIDTH &&
+                     pixelY >= carY_3 && pixelY < carY_3 + CAR_HEIGHT) begin
                 vgaR <= 3'b111;  // Rouge
                 vgaG <= 3'b000;
                 vgaB <= 3'b000;

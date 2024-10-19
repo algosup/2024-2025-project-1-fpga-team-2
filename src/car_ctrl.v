@@ -19,20 +19,22 @@ module car_ctrl #(
     reg [24:0] speed;                    // Vitesse de la voiture
 
     // Définition des vitesses en fonction du niveau
-    always @(*) begin
-        case (level)
-            4'b0001: speed = 24'd99999; // Niveau 1
-            4'b0010: speed = 24'd99995; // Niveau 2
-            4'b0011: speed = 24'd99993; // Niveau 3
-            4'b0100: speed = 24'd99991; // Niveau 4
-            4'b0101: speed = 24'd99989; // Niveau 5
-            4'b0110: speed = 24'd9998; // Niveau 6
-            4'b0111: speed = 24'd9997; // Niveau 7
-            4'b1000: speed = 24'd9996; // Niveau 8
-            4'b1001: speed = 24'd9995; // Niveau 9
-            default: speed = 24'd99999;  // Niveau par défaut
-        endcase
-    end
+always @(*) begin
+    case (level)
+        4'b0001: speed = 24'd80000;   // Niveau 1 : déjà plus rapide
+        4'b0010: speed = 24'd70000;   // Niveau 2 : augmentation rapide
+        4'b0011: speed = 24'd60000;   // Niveau 3 : encore plus rapide
+        4'b0100: speed = 24'd50000;   // Niveau 4 : progression plus rapide
+        4'b0101: speed = 24'd45000;   // Niveau 5 : encore plus rapide
+        4'b0110: speed = 24'd40000;   // Niveau 6 : accélération notable
+        4'b0111: speed = 24'd32000;   // Niveau 7 : vitesse élevée
+        4'b1000: speed = 24'd30000;   // Niveau 8 : très rapide
+        4'b1001: speed = 24'd15000;   // Niveau 9 : vitesse maximale
+        default: speed = 24'd80000;   // Niveau par défaut
+    endcase
+end
+
+
 
     // Bloc always pour le mouvement
     always @(posedge i_Clk) begin
