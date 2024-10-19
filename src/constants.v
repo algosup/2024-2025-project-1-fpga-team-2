@@ -31,6 +31,6 @@ localparam RACCOON_SPEED     = 21;    // Raccoon movement speed
 // Voitures (Cars) dimensions et propriétés
 localparam CAR_WIDTH         = 64;    // Largeur de la voiture
 localparam CAR_HEIGHT        = 32;    // Hauteur de la voiture
-localparam CAR_SPEED         = 3;     // Vitesse de la voiture (en nombre de cycles de déplacement)
+localparam C_CAR_SPEED = 24'd99;     // Fréquence de la vitesse (utilisée pour le contrôle de la vitesse)
 
 `endif

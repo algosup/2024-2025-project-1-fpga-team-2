@@ -17,13 +17,7 @@ module top (
     output o_VGA_VSync,                 // Sync vertical VGA
 
     // Afficheurs à segments
-    output o_Segment1_A,
-    output o_Segment1_B,
-    output o_Segment1_C,
-    output o_Segment1_D,
-    output o_Segment1_E,
-    output o_Segment1_F,
-    output o_Segment1_G,
+    
     output o_Segment2_A,
     output o_Segment2_B,
     output o_Segment2_C,
@@ -38,6 +32,10 @@ module top (
     wire [9:0] raccoonY;               // Position Y du joueur
     wire [3:0] level;                  // Niveau courant
     wire collision;                    // Signal de collision
+    wire [1:0] game_state;             // Etat du jeu (00: idle, 01: running, 10: win, 11: clean)
+    
+    // Signal pour démarrer le jeu
+    wire i_StartGame = i_Switch_1 && i_Switch_2 && i_Switch_3;
 
     // Registre pour le niveau affiché
     reg [3:0] current_level;           // Niveau courant affiché
@@ -85,9 +83,20 @@ module top (
         .o_Raccoon_X(raccoonX),
         .o_Raccoon_Y(raccoonY),
         .o_Level(level),
+        .game_state(game_state),
         .i_Collision(collision)
     );
 
+    // --- Instanciation du module de gestion d'état du jeu ---
+    game_state gameStateModule (
+        .i_Clk(i_Clk),
+        .i_StartGame(i_StartGame),           // Signal pour démarrer le jeu
+        .i_Collision(collision),             // Indicateur de collision
+        .i_Lives(lives_remaining),           // Vies restantes
+        .i_Win_Condition(level == 4'b1001),  // Condition de victoire (niveau atteint)
+        .i_Reset(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4),  // Reset manuel ou en cas de fin
+        .o_Game_State(game_state)            // Etat du jeu (00: idle, 01: running, 10: win, 11: clean)
+    );
 
     // --- Positions des voitures --- 
     wire [9:0] carX_1;
@@ -96,17 +105,13 @@ module top (
     wire [9:0] carY_2;
     wire [9:0] carX_3;
     wire [9:0] carY_3;
-    wire [9:0] carX_4;
-    wire [9:0] carY_4;
-    wire [9:0] carX_5;
-    wire [9:0] carY_5;
-    wire [9:0] carX_6;
-    wire [9:0] carY_6;
 
     // --- Instanciation des voitures --- 
     car_ctrl #(.C_CAR_X(0), .C_CAR_Y(128), .C_DIRECTION(1)) car1 (
         .i_Clk(i_Clk),
         .level(current_level), // Utiliser le niveau affiché
+        .game_state(game_state),
+        .i_Reset(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4), // Réinitialiser en cas de collision
         .o_carX(carX_1),
         .o_carY(carY_1)
     );
@@ -114,6 +119,8 @@ module top (
     car_ctrl #(.C_CAR_X(100), .C_CAR_Y(160), .C_DIRECTION(0)) car2 (
         .i_Clk(i_Clk),
         .level(current_level), // Utiliser le niveau affiché
+        .game_state(game_state),
+        .i_Reset(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4), // Réinitialiser en cas de collision
         .o_carX(carX_2),
         .o_carY(carY_2)
     );
@@ -121,12 +128,11 @@ module top (
     car_ctrl #(.C_CAR_X(200), .C_CAR_Y(192), .C_DIRECTION(1)) car3 (
         .i_Clk(i_Clk),
         .level(current_level),
+        .game_state(game_state),
+        .i_Reset(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4),
         .o_carX(carX_3),
         .o_carY(carY_3)
     );
-
-
-
 
     // --- Instanciation du module VGA --- 
     vga vga_inst (
@@ -155,40 +161,41 @@ module top (
                        ((raccoonX < carX_3 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_3) &&
                         (raccoonY < carY_3 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_3));
 
-
     // --- Instanciation du module de vies --- 
     wire [2:0] lives_remaining; // Vies restantes
     lives lives_inst (
         .i_Clk(i_Clk),
-        .i_Reset(i_Switch_1 && i_Switch_2),       // Réinitialiser en cas de collision
+        .i_Reset(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4),       // Réinitialiser en cas de collision
         .i_Collision(collision),    // Indicateur de collision
         .o_Lives(lives_remaining)   // Vies restantes
     );
 
-    // --- Logique de mise à jour du niveau affiché --- 
     always @(posedge i_Clk) begin
-        if (level == 4'b1001) begin
-            current_level <= 4'b0001;  // Remettre à niveau 1 si le niveau est 9
-        end else begin
-            current_level <= level; // Autres niveaux restent inchangés
-        end
+    // Si le jeu est réinitialisé (game_state == 00) ou si toutes les vies sont perdues ou si le niveau 9 est atteint
+    if (game_state == 2'b00 || lives_remaining == 0 || level == 4'b1001) begin
+        current_level <= 4'b0000;  // Réinitialiser le niveau à 0
+    end else begin
+        current_level <= level;  // Sinon, suivre le niveau courant
     end
+end
+
+
 
     // --- Affichage du niveau sur les segments --- 
     reg [6:0] seg_display_units; // 7 segments pour l'unité
-    reg [6:0] seg_display_tens;   // 7 segments pour la dizaine
+    
 
     // --- Logique d'affichage pour les segments --- 
     reg [3:0] r_Units;  // Unités
-    reg [3:0] r_Tens;   // Dizaines
+  
 
     always @(*) begin
         // Extraction des unités et dizaines à partir du niveau affiché
         r_Units = current_level % 10;  // Unités
-        r_Tens = current_level / 10;    // Dizaines
+        
         
         // Décodage des unités
-        case (r_Units)
+         case (r_Units)
             4'b0000: seg_display_units = 7'b1000000; // 0
             4'b0001: seg_display_units = 7'b1111001; // 1
             4'b0010: seg_display_units = 7'b0100100; // 2
@@ -202,24 +209,11 @@ module top (
             default: seg_display_units = 7'b1111111; // Erreur
         endcase
         
-        // Décodage des dizaines
-        case (r_Tens)
-            4'b0000: seg_display_tens = 7'b1000000; // 0
-            4'b0001: seg_display_tens = 7'b1111001; // 1
-            4'b0010: seg_display_tens = 7'b0100100; // 2
-            4'b0011: seg_display_tens = 7'b0110000; // 3
-            4'b0100: seg_display_tens = 7'b0011001; // 4
-            4'b0101: seg_display_tens = 7'b0010010; // 5
-            4'b0110: seg_display_tens = 7'b0000010; // 6
-            4'b0111: seg_display_tens = 7'b1111000; // 7
-            4'b1000: seg_display_tens = 7'b0000000; // 8
-            4'b1001: seg_display_tens = 7'b0010000; // 9
-            default: seg_display_tens = 7'b1111111; // Erreur
-        endcase
+       
     end
 
     // Connecte l'affichage des segments
-    assign {o_Segment1_G, o_Segment1_F, o_Segment1_E, o_Segment1_D, o_Segment1_C, o_Segment1_B, o_Segment1_A} = seg_display_tens; // Chiffre des unités à droite
+   
     assign {o_Segment2_G, o_Segment2_F, o_Segment2_E, o_Segment2_D, o_Segment2_C, o_Segment2_B, o_Segment2_A} = seg_display_units; // Chiffre des dizaines à gauche
 
 endmodule
