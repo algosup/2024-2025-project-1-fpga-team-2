@@ -73,19 +73,22 @@ module top (
         .o_Switch_Edge(rt_edge)
     );
 
-    // --- Instanciation du contrôleur de raton laveur ---
-    raccoon_ctrl raccoonController (
-        .i_Clk(i_Clk),
-        .i_Raccoon_Up(debounced_up),  // Utilise l'état maintenu
-        .i_Raccoon_Dn(debounced_dn),
-        .i_Raccoon_lt(debounced_lt),
-        .i_Raccoon_rt(debounced_rt),
-        .o_Raccoon_X(raccoonX),
-        .o_Raccoon_Y(raccoonY),
-        .o_Level(level),
-        .game_state(game_state),
-        .i_Collision(collision)
-    );
+    wire reset_level = i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4;
+
+raccoon_ctrl raccoonController (
+    .i_Clk(i_Clk),
+    .i_Raccoon_Up(debounced_up),
+    .i_Raccoon_Dn(debounced_dn),
+    .i_Raccoon_lt(debounced_lt),
+    .i_Raccoon_rt(debounced_rt),
+    .i_Collision(collision),
+    .game_state(game_state),
+    .i_Reset_Level(reset_level),   // Passer le signal de reset ici
+    .o_Raccoon_X(raccoonX),
+    .o_Raccoon_Y(raccoonY),
+    .o_Level(level)
+);
+
 
     // --- Instanciation du module de gestion d'état du jeu ---
     game_state gameStateModule (
@@ -171,13 +174,17 @@ module top (
     );
 
     always @(posedge i_Clk) begin
-    // Si le jeu est réinitialisé (game_state == 00) ou si toutes les vies sont perdues ou si le niveau 9 est atteint
-    if (game_state == 2'b00 || lives_remaining == 0 || level == 4'b1001) begin
-        current_level <= 4'b0000;  // Réinitialiser le niveau à 0
-    end else begin
-        current_level <= level;  // Sinon, suivre le niveau courant
+        // Si le jeu est réinitialisé manuellement, ou si toutes les vies sont perdues, ou si le niveau 9 est atteint
+        if (i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4) begin
+            current_level <= 4'b0000;  // Réinitialiser le niveau à 0 lors du reset manuel
+        end else if (game_state == 2'b00 || lives_remaining == 0 || level == 4'b1001) begin
+            current_level <= 4'b0000;  // Réinitialiser le niveau à 0 dans d'autres cas de fin
+        end else begin
+            current_level <= level;  // Sinon, suivre le niveau courant
+        end
     end
-end
+
+
 
 
 

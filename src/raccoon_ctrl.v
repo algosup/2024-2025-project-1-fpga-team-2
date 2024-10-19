@@ -1,5 +1,3 @@
-`include "constants.v"
-
 module raccoon_ctrl (
     input            i_Clk,              // Clock signal
     input            i_Raccoon_Up,       // Move up button
@@ -7,7 +5,8 @@ module raccoon_ctrl (
     input            i_Raccoon_lt,       // Move left button
     input            i_Raccoon_rt,       // Move right button
     input            i_Collision,        // Collision signal
-    input [1:0]      game_state,       // State of the game
+    input [1:0]      game_state,         // State of the game
+    input            i_Reset_Level,      // Signal to reset level
     output reg [9:0] o_Raccoon_X,        // Raccoon X position
     output reg [9:0] o_Raccoon_Y,        // Raccoon Y position
     output reg [3:0] o_Level             // Current level
@@ -28,7 +27,10 @@ module raccoon_ctrl (
 
     // Assurez-vous que l'index du diviseur d'horloge est dans une plage valide
     always @(posedge clk_div[RACCOON_SPEED]) begin
-        if (!i_Collision && game_state == 2'b01) begin  // Ne bougez que si le jeu est en cours (RUN) et sans collision
+        if (i_Reset_Level) begin
+            // Si le signal de reset est activé, réinitialisez le niveau à 1
+            o_Level <= 4'd1;
+        end else if (!i_Collision && game_state == 2'b01) begin  // Ne bougez que si le jeu est en cours (RUN) et sans collision
             // Mouvement vers le haut
             if (i_Raccoon_Up && o_Raccoon_Y > 0) begin
                 o_Raccoon_Y <= o_Raccoon_Y - GRID_HEIGHT;
