@@ -58,9 +58,9 @@ module vga (
             // Affichage des bandes de couleurs
             if (pixelY < 2 * GRID_HEIGHT) begin
                 // Bandes grises sur les deux premières lignes de blocs
-                vgaR <= GRAY;
-                vgaG <= GRAY;
-                vgaB <= GRAY;
+                vgaR <= BLACK;
+                vgaG <= GREEN;
+                vgaB <= BLACK;
             end else if (pixelY >= 7 * GRID_HEIGHT && pixelY < 8 * GRID_HEIGHT) begin
                 // Bandes de couleurs spécifiques sur les lignes de blocs 7 et 8
                 vgaR <= GRAY;
@@ -68,9 +68,9 @@ module vga (
                 vgaB <= GRAY;
             end else if (pixelY >= 13 * GRID_HEIGHT && pixelY < 15 * GRID_HEIGHT) begin
                 // Bandes de couleurs spécifiques sur les lignes de blocs 14 et 15
-                vgaR <= GRAY;
-                vgaG <= GRAY;
-                vgaB <= GRAY;
+                vgaR <= BLACK;
+                vgaG <= GREEN;
+                vgaB <= BLACK;
             end else if (is_car(pixelX, pixelY, carX_1, carY_1, carX_2, carY_2, carX_3, carY_3)) begin
                 // Affichage des voitures (rouge)
                 set_color(RED, BLACK, BLACK);

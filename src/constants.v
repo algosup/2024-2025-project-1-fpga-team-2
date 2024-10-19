@@ -1,4 +1,3 @@
-// constants.v
 `ifndef CONSTANTS_V
 `define CONSTANTS_V
 
@@ -15,12 +14,13 @@ localparam V_ACTIVE_VIDEO    = 480;   // Vertical active video
 localparam V_FRONT_PORCH     = 10;    // Vertical front porch
 localparam V_LINE            = 525;   // Total vertical line height
 
-// Constantes pour les couleurs
-localparam [2:0] WHITE = 3'b111;
-localparam [2:0] RED   = 3'b111;
-localparam [2:0] GREEN = 3'b111;
-localparam [2:0] GRAY  = 3'b100;
-localparam [2:0] BLACK = 3'b000;
+// Color constants
+localparam [2:0] WHITE = 3'b111;  // White
+localparam [2:0] RED   = 3'b100;  // Red
+localparam [2:0] GREEN = 3'b010;  // Green
+localparam [2:0] BLUE  = 3'b001;  // Blue
+localparam [2:0] GRAY  = 3'b110;  // Gray
+localparam [2:0] BLACK = 3'b000;  // Black
 
 // Grid dimensions
 localparam GRID_WIDTH        = 32;    // Width of each grid block
@@ -35,9 +35,9 @@ localparam PLAYER_WIDTH      = 32;    // Raccoon width
 localparam PLAYER_HEIGHT     = 32;    // Raccoon height
 localparam RACCOON_SPEED     = 21;    // Raccoon movement speed
 
-// Voitures (Cars) dimensions et propriétés
-localparam CAR_WIDTH         = 64;    // Largeur de la voiture
-localparam CAR_HEIGHT        = 32;    // Hauteur de la voiture
-localparam C_CAR_SPEED = 24'd99;     // Fréquence de la vitesse (utilisée pour le contrôle de la vitesse)
+// Car dimensions and properties
+localparam CAR_WIDTH         = 64;    // Width of the car
+localparam CAR_HEIGHT        = 32;    // Height of the car
+localparam C_CAR_SPEED = 24'd99;     // Car speed control frequency
 
 `endif

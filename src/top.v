@@ -17,7 +17,6 @@ module top (
     output o_VGA_VSync,                 // Sync vertical VGA
 
     // Afficheurs à segments
-    
     output o_Segment2_A,
     output o_Segment2_B,
     output o_Segment2_C,
@@ -27,11 +26,12 @@ module top (
     output o_Segment2_G,
 
     // Ajout led pour les vies
-    output o_LED_1,
-    output o_LED_2,
-    output o_LED_3);
+    output reg o_LED_1,
+    output reg o_LED_2,
+    output reg o_LED_3
+);
 
-    // --- Position du joueur (raton laveur) --- 
+    // --- Position du joueur (raccoon) --- 
     wire [9:0] raccoonX;               // Position X du joueur
     wire [9:0] raccoonY;               // Position Y du joueur
     wire [3:0] level;                  // Niveau courant
@@ -48,16 +48,17 @@ module top (
         .i_Clk(i_Clk),
         .i_Raccoon_Up(i_Switch_1),
         .i_Raccoon_Dn(i_Switch_2),
-        .i_Raccoon_lt(i_Switch_3),
-        .i_Raccoon_rt(i_Switch_4),
+        .i_Raccoon_lt(i_Switch_4), // Corriger pour droite
+        .i_Raccoon_rt(i_Switch_3), // Corriger pour gauche
+        .i_Collision(collision),
+        .game_state(game_state),
+        .i_Reset_Level(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4), // Reset de niveau
         .o_Raccoon_X(raccoonX),
         .o_Raccoon_Y(raccoonY),
-        .o_Level(level),                // Récupérer le niveau
-        .i_Collision(collision)          // Passer le signal de collision
+        .o_Level(level)
     );
 
-
-    // --- Instanciation du module de gestion d'état du jeu ---
+    // --- Instanciation du module de gestion d'état du jeu --- 
     game_state gameStateModule (
         .i_Clk(i_Clk),
         .i_StartGame(i_StartGame),           // Signal pour démarrer le jeu
@@ -104,7 +105,6 @@ module top (
         .o_carY(carY_3)
     );
 
-
     // --- Instanciation du module VGA --- 
     vga vga_inst (
         .clk(i_Clk),
@@ -132,7 +132,6 @@ module top (
                         (raccoonY < carY_3 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_3));
 
     // --- Instanciation du module de vies --- 
-        // Instanciation du module de vies --- 
     wire [3:0] lives_remaining; // Vies restantes
     lives lives_inst (
         .i_Clk(i_Clk),
@@ -152,22 +151,13 @@ module top (
         end
     end
 
-
-
-
-
     // --- Affichage du niveau sur les segments --- 
     reg [6:0] seg_display_units; // 7 segments pour l'unité
-    
-
-    // --- Logique d'affichage pour les segments --- 
     reg [3:0] r_Units;  // Unités
   
-
     always @(*) begin
-        // Extraction des unités et dizaines à partir du niveau affiché
+        // Extraction des unités à partir du niveau affiché
         r_Units = current_level % 10;  // Unités
-        
         
         // Décodage des unités
          case (r_Units)
@@ -183,13 +173,11 @@ module top (
             4'b1001: seg_display_units = 7'b0010000; // 9
             default: seg_display_units = 7'b1111111; // Erreur
         endcase
-        
-       
     end
 
     // Connecte l'affichage des segments
-   
-    assign {o_Segment2_G, o_Segment2_F, o_Segment2_E, o_Segment2_D, o_Segment2_C, o_Segment2_B, o_Segment2_A} = seg_display_units; // Chiffre des dizaines à gauche
+    assign {o_Segment2_G, o_Segment2_F, o_Segment2_E, o_Segment2_D, o_Segment2_C, o_Segment2_B, o_Segment2_A} = seg_display_units; // Chiffre des unités à gauche
+    
     always @(*) begin
         case (lives_remaining)
             4'b0000: begin // 0 vies restantes
@@ -212,14 +200,12 @@ module top (
                 o_LED_2 = 1; // Vie 2
                 o_LED_3 = 1; // Vie 3
             end
-            default: begin // Erreur
+            default: begin // Nombre de vies incorrect
                 o_LED_1 = 0;
                 o_LED_2 = 0;
                 o_LED_3 = 0;
             end
         endcase
     end
-
-
 
 endmodule
