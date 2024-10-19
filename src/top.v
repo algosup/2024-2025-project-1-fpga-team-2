@@ -44,54 +44,17 @@ module top (
     // Registre pour le niveau affiché
     reg [3:0] current_level;           // Niveau courant affiché
 
-     // --- Détection des fronts montants et des maintiens des boutons ---
-    wire debounced_up, debounced_dn, debounced_lt, debounced_rt;
-    wire up_edge, dn_edge, lt_edge, rt_edge;
-
-    // Instanciation des détecteurs pour chaque bouton
-    Debounce_Switch debounce_Switch_1 (
+    raccoon_ctrl raccoonController (
         .i_Clk(i_Clk),
-        .i_Switch(i_Switch_1),
-        .o_Switch(debounced_up),
-        .o_Switch_Edge(up_edge)
+        .i_Raccoon_Up(i_Switch_1),
+        .i_Raccoon_Dn(i_Switch_2),
+        .i_Raccoon_lt(i_Switch_3),
+        .i_Raccoon_rt(i_Switch_4),
+        .o_Raccoon_X(raccoonX),
+        .o_Raccoon_Y(raccoonY),
+        .o_Level(level),                // Récupérer le niveau
+        .i_Collision(collision)          // Passer le signal de collision
     );
-
-    Debounce_Switch debounce_Switch_2 (
-        .i_Clk(i_Clk),
-        .i_Switch(i_Switch_2),
-        .o_Switch(debounced_dn),
-        .o_Switch_Edge(dn_edge)
-    );
-
-    Debounce_Switch debounce_Switch_3 (
-        .i_Clk(i_Clk),
-        .i_Switch(i_Switch_3),
-        .o_Switch(debounced_lt),
-        .o_Switch_Edge(lt_edge)
-    );
-
-    Debounce_Switch debounce_Switch_4 (
-        .i_Clk(i_Clk),
-        .i_Switch(i_Switch_4),
-        .o_Switch(debounced_rt),
-        .o_Switch_Edge(rt_edge)
-    );
-
-    wire reset_level = i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4;
-
-raccoon_ctrl raccoonController (
-    .i_Clk(i_Clk),
-    .i_Raccoon_Up(debounced_up),
-    .i_Raccoon_Dn(debounced_dn),
-    .i_Raccoon_lt(debounced_lt),
-    .i_Raccoon_rt(debounced_rt),
-    .i_Collision(collision),
-    .game_state(game_state),
-    .i_Reset_Level(reset_level),   // Passer le signal de reset ici
-    .o_Raccoon_X(raccoonX),
-    .o_Raccoon_Y(raccoonY),
-    .o_Level(level)
-);
 
 
     // --- Instanciation du module de gestion d'état du jeu ---

@@ -25,10 +25,6 @@ module vga (
     reg [9:0] pixelX;
     reg [9:0] pixelY;
 
-
-    // Constantes pour les dimensions des objets
-    
-
     always @(posedge clk) begin
         // Gestion du compteur horizontal et vertical
         if (hCount == H_LINE - 1) begin
@@ -59,16 +55,33 @@ module vga (
             vgaG <= BLACK;
             vgaB <= BLACK;
 
-            // Détection des objets à afficher
-            if (in_bounds(pixelX, pixelY, raccoonX, raccoonY, PLAYER_WIDTH, PLAYER_HEIGHT)) begin
-                // Affichage du raton laveur (blanc)
-                set_color(WHITE, WHITE, WHITE);
+            // Affichage des bandes de couleurs
+            if (pixelY < 2 * GRID_HEIGHT) begin
+                // Bandes grises sur les deux premières lignes de blocs
+                vgaR <= GRAY;
+                vgaG <= GRAY;
+                vgaB <= GRAY;
+            end else if (pixelY >= 7 * GRID_HEIGHT && pixelY < 9 * GRID_HEIGHT) begin
+                // Bandes de couleurs spécifiques sur les lignes de blocs 7 et 8
+                vgaR <= GRAY;
+                vgaG <= GRAY;
+                vgaB <= GRAY;
+            end else if (pixelY >= 13 * GRID_HEIGHT && pixelY < 16 * GRID_HEIGHT) begin
+                // Bandes de couleurs spécifiques sur les lignes de blocs 14 et 15
+                vgaR <= GRAY;
+                vgaG <= GRAY;
+                vgaB <= GRAY;
             end else if (is_car(pixelX, pixelY, carX_1, carY_1, carX_2, carY_2, carX_3, carY_3)) begin
                 // Affichage des voitures (rouge)
                 set_color(RED, BLACK, BLACK);
             end else if (is_grid(pixelX, pixelY)) begin
                 // Affichage des lignes de la grille (gris)
                 set_color(GRAY, GRAY, GRAY);
+            end
+
+            // Affichage du raton laveur (blanc) par-dessus les bandes de couleurs
+            if (in_bounds(pixelX, pixelY, raccoonX, raccoonY, PLAYER_WIDTH, PLAYER_HEIGHT)) begin
+                set_color(WHITE, WHITE, WHITE);
             end
         end else begin
             vgaR <= BLACK;
