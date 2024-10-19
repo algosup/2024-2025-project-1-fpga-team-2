@@ -24,8 +24,12 @@ module top (
     output o_Segment2_D,
     output o_Segment2_E,
     output o_Segment2_F,
-    output o_Segment2_G
-);
+    output o_Segment2_G,
+
+    // Ajout led pour les vies
+    output o_LED_1,
+    output o_LED_2,
+    output o_LED_3);
 
     // --- Position du joueur (raton laveur) --- 
     wire [9:0] raccoonX;               // Position X du joueur
@@ -153,7 +157,6 @@ raccoon_ctrl raccoonController (
         .vgaB({o_VGA_Blu_2, o_VGA_Blu_1, o_VGA_Blu_0}),
         .vgaHs(o_VGA_HSync),
         .vgaVs(o_VGA_VSync),
-        .lives(lives_remaining) // Passer les vies restantes au module VGA
     );
 
     // --- Détection de collision --- 
@@ -165,11 +168,12 @@ raccoon_ctrl raccoonController (
                         (raccoonY < carY_3 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_3));
 
     // --- Instanciation du module de vies --- 
-    wire [2:0] lives_remaining; // Vies restantes
+        // Instanciation du module de vies --- 
+    wire [3:0] lives_remaining; // Vies restantes
     lives lives_inst (
         .i_Clk(i_Clk),
-        .i_Reset(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4),       // Réinitialiser en cas de collision
-        .i_Collision(collision),    // Indicateur de collision
+        .i_Reset(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4),
+        .i_Collision(collision),
         .o_Lives(lives_remaining)   // Vies restantes
     );
 
@@ -222,5 +226,36 @@ raccoon_ctrl raccoonController (
     // Connecte l'affichage des segments
    
     assign {o_Segment2_G, o_Segment2_F, o_Segment2_E, o_Segment2_D, o_Segment2_C, o_Segment2_B, o_Segment2_A} = seg_display_units; // Chiffre des dizaines à gauche
+    always @(*) begin
+        case (lives_remaining)
+            4'b0000: begin // 0 vies restantes
+                o_LED_1 = 0;
+                o_LED_2 = 0;
+                o_LED_3 = 0;
+            end
+            4'b0001: begin // 1 vie restante
+                o_LED_1 = 1; // Vie 1
+                o_LED_2 = 0;
+                o_LED_3 = 0;
+            end
+            4'b0010: begin // 2 vies restantes
+                o_LED_1 = 1; // Vie 1
+                o_LED_2 = 1; // Vie 2
+                o_LED_3 = 0;
+            end
+            4'b0011: begin // 3 vies restantes
+                o_LED_1 = 1; // Vie 1
+                o_LED_2 = 1; // Vie 2
+                o_LED_3 = 1; // Vie 3
+            end
+            default: begin // Erreur
+                o_LED_1 = 0;
+                o_LED_2 = 0;
+                o_LED_3 = 0;
+            end
+        endcase
+    end
+
+
 
 endmodule

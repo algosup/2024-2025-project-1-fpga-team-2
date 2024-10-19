@@ -15,6 +15,13 @@ localparam V_ACTIVE_VIDEO    = 480;   // Vertical active video
 localparam V_FRONT_PORCH     = 10;    // Vertical front porch
 localparam V_LINE            = 525;   // Total vertical line height
 
+// Constantes pour les couleurs
+localparam [2:0] WHITE = 3'b111;
+localparam [2:0] RED   = 3'b111;
+localparam [2:0] GREEN = 3'b111;
+localparam [2:0] GRAY  = 3'b100;
+localparam [2:0] BLACK = 3'b000;
+
 // Grid dimensions
 localparam GRID_WIDTH        = 32;    // Width of each grid block
 localparam GRID_HEIGHT       = 32;    // Height of each grid block
