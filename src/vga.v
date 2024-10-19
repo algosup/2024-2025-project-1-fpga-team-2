@@ -61,12 +61,12 @@ module vga (
                 vgaR <= GRAY;
                 vgaG <= GRAY;
                 vgaB <= GRAY;
-            end else if (pixelY >= 7 * GRID_HEIGHT && pixelY < 9 * GRID_HEIGHT) begin
+            end else if (pixelY >= 7 * GRID_HEIGHT && pixelY < 8 * GRID_HEIGHT) begin
                 // Bandes de couleurs spécifiques sur les lignes de blocs 7 et 8
                 vgaR <= GRAY;
                 vgaG <= GRAY;
                 vgaB <= GRAY;
-            end else if (pixelY >= 13 * GRID_HEIGHT && pixelY < 16 * GRID_HEIGHT) begin
+            end else if (pixelY >= 13 * GRID_HEIGHT && pixelY < 15 * GRID_HEIGHT) begin
                 // Bandes de couleurs spécifiques sur les lignes de blocs 14 et 15
                 vgaR <= GRAY;
                 vgaG <= GRAY;
@@ -77,6 +77,9 @@ module vga (
             end else if (is_grid(pixelX, pixelY)) begin
                 // Affichage des lignes de la grille (gris)
                 set_color(GRAY, GRAY, GRAY);
+            end else if (is_dotted_line(pixelX, pixelY)) begin
+                // Affichage des pointillés sur la ligne 5
+                set_color(WHITE, WHITE, WHITE);
             end
 
             // Affichage du raton laveur (blanc) par-dessus les bandes de couleurs
@@ -121,5 +124,16 @@ module vga (
             is_grid = (px % GRID_WIDTH == 0) || (py % GRID_HEIGHT == 0);
         end
     endfunction
+
+    // Fonction pour vérifier si un pixel fait partie des pointillés sur la ligne 5
+function is_dotted_line(input [9:0] px, input [9:0] py);
+    begin
+        // Pointillés sur la ligne 5 (de 4 * GRID_HEIGHT + 8 à 4 * GRID_HEIGHT + 24)
+        // Pointillés sur la ligne 11 (de 10 * GRID_HEIGHT + 8 à 10 * GRID_HEIGHT + 24)
+        is_dotted_line = ((py >= 4 * GRID_HEIGHT + 8 && py < 4 * GRID_HEIGHT + 24) ||
+                          (py >= 10 * GRID_HEIGHT + 8 && py < 10 * GRID_HEIGHT + 24)) &&
+                          ((px % (2 * GRID_WIDTH) >= 4 && px % (2 * GRID_WIDTH) < 28));
+    end
+endfunction
 
 endmodule

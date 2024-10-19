@@ -78,7 +78,7 @@ module top (
     wire [9:0] carY_3;
 
     // --- Instanciation des voitures --- 
-    car_ctrl #(.C_CAR_X(0), .C_CAR_Y(128), .C_DIRECTION(1)) car1 (
+    car_ctrl #(.C_CAR_X(0), .C_CAR_Y(96), .C_DIRECTION(1)) car1 (
         .i_Clk(i_Clk),
         .level(current_level), // Utiliser le niveau affiché
         .game_state(game_state),
