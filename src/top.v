@@ -164,35 +164,13 @@ module top (
     // --- Connecter les segments à l'afficheur ---
     assign {o_Segment2_G, o_Segment2_F, o_Segment2_E, o_Segment2_D, o_Segment2_C, o_Segment2_B, o_Segment2_A} = seg_display_units; // Chiffre des unités à gauche
 
-    
-    always @(*) begin
-        case (lives_remaining)
-            4'b0000: begin // 0 vies restantes
-                o_LED_1 = 0;
-                o_LED_2 = 0;
-                o_LED_3 = 0;
-            end
-            4'b0001: begin // 1 vie restante
-                o_LED_1 = 1; // Vie 1
-                o_LED_2 = 0;
-                o_LED_3 = 0;
-            end
-            4'b0010: begin // 2 vies restantes
-                o_LED_1 = 1; // Vie 1
-                o_LED_2 = 1; // Vie 2
-                o_LED_3 = 0;
-            end
-            4'b0011: begin // 3 vies restantes
-                o_LED_1 = 1; // Vie 1
-                o_LED_2 = 1; // Vie 2
-                o_LED_3 = 1; // Vie 3
-            end
-            default: begin // Nombre de vies incorrect
-                o_LED_1 = 0;
-                o_LED_2 = 0;
-                o_LED_3 = 0;
-            end
-        endcase
-    end
+    // Instanciation du module de contrôle des LEDs
+    LED_control ledControl (
+        .i_Lives(lives_remaining),  // Vies restantes
+        .o_LED_1(o_LED_1),
+        .o_LED_2(o_LED_2),
+        .o_LED_3(o_LED_3)
+    );
+
 
 endmodule
