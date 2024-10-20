@@ -5,11 +5,17 @@ module vga (
     input wire [9:0] raccoonX,         // Position X du raton laveur (10 bits)
     input wire [9:0] raccoonY,         // Position Y du raton laveur (10 bits)
     input wire [9:0] carX_1,           // Position X de la première voiture
-    input wire [9:0] carY_1,           // Position Y de la première voiture
+    input wire [8:0] carY_1,           // Position Y de la première voiture
     input wire [9:0] carX_2,           // Position X de la deuxième voiture
-    input wire [9:0] carY_2,           // Position Y de la deuxième voiture
+    input wire [8:0] carY_2,           // Position Y de la deuxième voiture
     input wire [9:0] carX_3,           // Position X de la troisième voiture
-    input wire [9:0] carY_3,           // Position Y de la troisième voiture
+    input wire [8:0] carY_3,           // Position Y de la troisième voiture
+    input wire [9:0] carX_4,
+    input wire [8:0] carY_4,
+    input wire [9:0] carX_5,
+    input wire [8:0] carY_5,
+    input wire [9:0] carX_6,
+    input wire [8:0] carY_6,
     output reg [2:0] vgaR,             // Signal rouge VGA
     output reg [2:0] vgaG,             // Signal vert VGA
     output reg [2:0] vgaB,             // Signal bleu VGA
@@ -89,7 +95,8 @@ module vga (
                 // Calculer l'adresse dans la mémoire du sprite de l'herbe
                 grass_sprite_addr <= (pixelY - 13 * GRID_HEIGHT) * GRID_WIDTH + (pixelX % GRID_WIDTH);
                 set_color(grass_sprite_data[8:6], grass_sprite_data[5:3], grass_sprite_data[2:0]);
-            end else if (is_car(pixelX, pixelY, carX_1, carY_1, carX_2, carY_2, carX_3, carY_3)) begin
+            end else if (is_car(pixelX, pixelY, carX_1, carY_1, carX_2, carY_2, carX_3, carY_3, carX_4, carY_4, carX_5, carY_5, carX_6, carY_6)) begin
+
                 // Affichage des voitures (rouge)
                 set_color(RED, BLACK, BLACK);
             end else if (is_grid(pixelX, pixelY)) begin
@@ -130,11 +137,14 @@ module vga (
     endfunction
 
     // Fonction pour vérifier si un pixel fait partie des voitures
-    function is_car(input [9:0] px, input [9:0] py, input [9:0] car1X, input [9:0] car1Y, input [9:0] car2X, input [9:0] car2Y, input [9:0] car3X, input [9:0] car3Y);
+    function is_car(input [9:0] px, input [9:0] py, input [9:0] car1X, input [9:0] car1Y, input [9:0] car2X, input [9:0] car2Y, input [9:0] car3X, input [9:0] car3Y, input [9:0] car4X, input [9:0] car4Y, input [9:0] car5X, input [9:0] car5Y, input [9:0] car6X, input [9:0] car6Y);
         begin
             is_car = in_bounds(px, py, car1X, car1Y, CAR_WIDTH, CAR_HEIGHT) ||
                      in_bounds(px, py, car2X, car2Y, CAR_WIDTH, CAR_HEIGHT) ||
-                     in_bounds(px, py, car3X, car3Y, CAR_WIDTH, CAR_HEIGHT);
+                     in_bounds(px, py, car3X, car3Y, CAR_WIDTH, CAR_HEIGHT) ||
+                     in_bounds(px, py, car4X, car4Y, CAR_WIDTH, CAR_HEIGHT) ||
+                     in_bounds(px, py, car5X, car5Y, CAR_WIDTH, CAR_HEIGHT) ||
+                     in_bounds(px, py, car6X, car6Y, CAR_WIDTH, CAR_HEIGHT);
         end
     endfunction
 

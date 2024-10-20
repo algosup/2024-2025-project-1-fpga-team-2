@@ -45,6 +45,8 @@ module top (
     // Registre pour le niveau affiché
     reg [3:0] current_level;           // Niveau courant affiché
 
+
+
     raccoon_ctrl raccoonController (
         .i_Clk(i_Clk),
         .i_Raccoon_Up(i_Switch_1),
@@ -72,11 +74,17 @@ module top (
 
     // --- Positions des voitures --- 
     wire [9:0] carX_1;
-    wire [9:0] carY_1;
+    wire [8:0] carY_1;
     wire [9:0] carX_2;
-    wire [9:0] carY_2;
+    wire [8:0] carY_2;
     wire [9:0] carX_3;
-    wire [9:0] carY_3;
+    wire [8:0] carY_3;
+    wire [9:0] carX_4;
+    wire [8:0] carY_4;
+    wire [9:0] carX_5;
+    wire [8:0] carY_5;
+    wire [9:0] carX_6;
+    wire [8:0] carY_6;
 
     // --- Instanciation des voitures --- 
     car_ctrl #(.C_CAR_X(0), .C_CAR_Y(96), .C_DIRECTION(1)) car1 (
@@ -88,7 +96,7 @@ module top (
         .o_carY(carY_1)
     );
 
-    car_ctrl #(.C_CAR_X(100), .C_CAR_Y(160), .C_DIRECTION(0)) car2 (
+    car_ctrl #(.C_CAR_X(550), .C_CAR_Y(160), .C_DIRECTION(0)) car2 (
         .i_Clk(i_Clk),
         .level(current_level), // Utiliser le niveau affiché
         .game_state(game_state),
@@ -106,6 +114,33 @@ module top (
         .o_carY(carY_3)
     );
 
+    car_ctrl #(.C_CAR_X(300), .C_CAR_Y(256), .C_DIRECTION(0)) car4 (
+    .i_Clk(i_Clk),
+    .level(current_level),
+    .game_state(game_state),
+    .i_Reset(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4),
+    .o_carX(carX_4),
+    .o_carY(carY_4)
+);
+
+    car_ctrl #(.C_CAR_X(400), .C_CAR_Y(288), .C_DIRECTION(1)) car5 (
+    .i_Clk(i_Clk),
+    .level(current_level),
+    .game_state(game_state),
+    .i_Reset(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4),
+    .o_carX(carX_5),
+    .o_carY(carY_5)
+);
+
+    car_ctrl #(.C_CAR_X(500), .C_CAR_Y(352), .C_DIRECTION(0)) car6 (
+    .i_Clk(i_Clk),
+    .level(current_level),
+    .game_state(game_state),
+    .i_Reset(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4),
+    .o_carX(carX_6),
+    .o_carY(carY_6)
+    );
+
     // --- Instanciation du module VGA --- 
     vga vga_inst (
         .clk(i_Clk),
@@ -117,6 +152,12 @@ module top (
         .carY_2(carY_2),
         .carX_3(carX_3),
         .carY_3(carY_3),
+        .carX_4(carX_4),
+        .carY_4(carY_4),
+        .carX_5(carX_5),
+        .carY_5(carY_5),
+        .carX_6(carX_6),
+        .carY_6(carY_6),
         .vgaR({o_VGA_Red_2, o_VGA_Red_1, o_VGA_Red_0}),
         .vgaG({o_VGA_Grn_2, o_VGA_Grn_1, o_VGA_Grn_0}),
         .vgaB({o_VGA_Blu_2, o_VGA_Blu_1, o_VGA_Blu_0}),
@@ -125,12 +166,19 @@ module top (
     );
 
     // --- Détection de collision --- 
-    assign collision = ((raccoonX < carX_1 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_1) &&
-                        (raccoonY < carY_1 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_1)) ||
-                       ((raccoonX < carX_2 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_2) &&
-                        (raccoonY < carY_2 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_2)) ||
-                       ((raccoonX < carX_3 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_3) &&
-                        (raccoonY < carY_3 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_3));
+// --- Détection de collision --- 
+assign collision = ((raccoonX < carX_1 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_1) &&
+                    (raccoonY < carY_1 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_1)) ||
+                   ((raccoonX < carX_2 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_2) &&
+                    (raccoonY < carY_2 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_2)) ||
+                   ((raccoonX < carX_3 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_3) &&
+                    (raccoonY < carY_3 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_3)) ||
+                   ((raccoonX < carX_4 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_4) &&
+                    (raccoonY < carY_4 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_4)) ||
+                   ((raccoonX < carX_5 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_5) &&
+                    (raccoonY < carY_5 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_5)) ||
+                   ((raccoonX < carX_6 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_6) &&
+                    (raccoonY < carY_6 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_6));
 
     // --- Instanciation du module de vies --- 
     wire [3:0] lives_remaining; // Vies restantes

@@ -3,7 +3,7 @@
 
 // VGA timing constants for 640x480 resolution
 localparam H_SYNC_CYC        = 96;    // Horizontal sync cycle
-localparam H_BACK_PORCH      = 48;    // Horizontal back porch
+localparam H_BACK_PORCH      = 46;    // Horizontal back porch
 localparam H_ACTIVE_VIDEO    = 640;   // Horizontal active video
 localparam H_FRONT_PORCH     = 15;    // Horizontal front porch
 localparam H_LINE            = 800;   // Total horizontal line width
