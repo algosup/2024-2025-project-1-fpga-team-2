@@ -28,7 +28,8 @@ module top (
     // Ajout led pour les vies
     output reg o_LED_1,
     output reg o_LED_2,
-    output reg o_LED_3
+    output reg o_LED_3,
+    output reg o_LED_4 // Just turn off 
 );
 
     // --- Position du joueur (raccoon) --- 
@@ -151,32 +152,18 @@ module top (
         end
     end
 
-    // --- Affichage du niveau sur les segments --- 
-    reg [6:0] seg_display_units; // 7 segments pour l'unité
-    reg [3:0] r_Units;  // Unités
-  
-    always @(*) begin
-        // Extraction des unités à partir du niveau affiché
-        r_Units = current_level % 10;  // Unités
-        
-        // Décodage des unités
-         case (r_Units)
-            4'b0000: seg_display_units = 7'b1000000; // 0
-            4'b0001: seg_display_units = 7'b1111001; // 1
-            4'b0010: seg_display_units = 7'b0100100; // 2
-            4'b0011: seg_display_units = 7'b0110000; // 3
-            4'b0100: seg_display_units = 7'b0011001; // 4
-            4'b0101: seg_display_units = 7'b0010010; // 5
-            4'b0110: seg_display_units = 7'b0000010; // 6
-            4'b0111: seg_display_units = 7'b1111000; // 7
-            4'b1000: seg_display_units = 7'b0000000; // 8
-            4'b1001: seg_display_units = 7'b0010000; // 9
-            default: seg_display_units = 7'b1111111; // Erreur
-        endcase
-    end
+    // --- Instanciation du module de décodage des segments ---
+    wire [6:0] seg_display_units;
 
-    // Connecte l'affichage des segments
+    segment_decoder segment_display (
+        .i_Clk(i_Clk),                  // Horloge
+        .i_Level(current_level),       // Passer le niveau courant
+        .o_Segment(seg_display_units)  // Récupérer la valeur décodée
+    );
+
+    // --- Connecter les segments à l'afficheur ---
     assign {o_Segment2_G, o_Segment2_F, o_Segment2_E, o_Segment2_D, o_Segment2_C, o_Segment2_B, o_Segment2_A} = seg_display_units; // Chiffre des unités à gauche
+
     
     always @(*) begin
         case (lives_remaining)
