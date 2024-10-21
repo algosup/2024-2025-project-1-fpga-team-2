@@ -1,19 +1,19 @@
 module ram #(
     parameter FILE_NAME = "sprite.mem" 
 )(
-    input wire i_Clk,                                   // Horloge
-    input wire [$clog2(1024)-1:0] addr,             // Adresse pour accéder aux pixels dans le sprite
-    output reg [8:0] data_out                         // 9 bits par pixel (RGB 3 bits chaque)
+    input wire i_Clk,                                   // Clock signal
+    input wire [$clog2(1024)-1:0] addr,                 // Address to access pixels in the sprite
+    output reg [8:0] data_out                           // 9 bits per pixel (RGB 3 bits each)
 );
 
-    reg [8:0] sprite [0:1023];                   // Déclaration de la mémoire pour les sprites
+    reg [8:0] sprite [0:1023];                          // Declaration of memory for sprites
 
     initial begin
-        // Initialisation de la mémoire des sprites à partir du fichier spécifié par le paramètre
+        // Initialization of sprite memory from the file specified by the parameter
         $readmemh(FILE_NAME, sprite);
     end
 
     always @(posedge i_Clk) begin
-        data_out <= sprite[addr];                // Lecture des données de la mémoire
+        data_out <= sprite[addr];                       // Reading data from memory
     end
 endmodule

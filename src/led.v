@@ -1,5 +1,5 @@
 module LED_control (
-    input [3:0] i_Lives,    // Vies restantes
+    input [3:0] i_Lives,    // Remaining lives
     output reg o_LED_1,
     output reg o_LED_2,
     output reg o_LED_3
@@ -34,3 +34,4 @@ module LED_control (
         endcase
     end
 endmodule
+
