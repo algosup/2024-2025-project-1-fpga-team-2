@@ -149,4 +149,4 @@ This part has been made to list all the weekly reports throughout the project:
 - [Weekly Report 4](./weekly_reports/weekly_report_4.md)
 
 ## Global Management Review
-This part contains a global view from the team members to grade how they perceived the management of this project:
+This part contains the global results from the team members to grade how they perceived the management of this project by clicking [here](https://docs.google.com/spreadsheets/d/1X-kkG5JFK_j_OlVThfcNF5CRCTrUDaOV3hJcxrTduTk/edit?gid=328080926#gid=328080926).
