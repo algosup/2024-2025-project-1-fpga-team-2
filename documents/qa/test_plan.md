@@ -28,6 +28,7 @@
       - [A. Software tests (without visuals)](#a-software-tests-without-visuals)
       - [B. Technical/Hardware tests](#b-technicalhardware-tests)
       - [C. Visuals tests](#c-visuals-tests)
+    - [4.3. Tests' functioning](#43-tests-functioning)
   - [5. Hardware used for tests](#5-hardware-used-for-tests)
     - [5.1. Computer](#51-computer)
     - [5.2. Go-Board](#52-go-board)
@@ -68,7 +69,7 @@ To know which bugs need to be fixed as soon as possible and which bugs aren't ve
 
 **Out-scope:**
 - Sprites' colors
-- Any futures updates or improvements (indicated in the [Functional Specification](documents/functional/functional_specifications.md/#10-updates-and-expansions))
+- Any futures updates or improvements (indicated in the [Functional Specification](../functional/functional_specifications.md))
 
 ### 3.2 Pass/Fail Criteria
 
@@ -138,7 +139,7 @@ You will find all the tests which will be carried out below.
 
 ### 4.2 Tests list
 
-All of the tests are written below but, the complete check list is findable [here](documents/qa/test_cases.md) (redirection to the Test Cases)
+All of the tests are written below but, the complete check list is findable [here](../qa/test_cases.md) (redirection to the Test Cases)
 
 #### A. Software tests (without visuals)
 |Name|Expected Results|
@@ -223,6 +224,16 @@ All of the tests are written below but, the complete check list is findable [her
 |Bin 3 & Raccoon|When the raccoon reached this bin, it's displayed on the screen|
 |Bin 4 & Raccoon|When the raccoon reached this bin, it's displayed on the screen|
 |Bin 5 & Raccoon|When the raccoon reached this bin, it's displayed on the screen|
+
+### 4.3. Tests' functioning
+
+Here is the flowchart of how the bugs were reported (and document) to the software engineer.
+![Tests'Flowchart](../images/qa/flowchart.png)
+
+There are 2 cases:
+- Either there are no bugs and "Yes" is written in the test case success column
+- Or there is a bug, and in this case, the tests results are documented, the developers are warned and they fix the bug so that the qa can retest
+
 
 ## 5. Hardware used for tests
 
