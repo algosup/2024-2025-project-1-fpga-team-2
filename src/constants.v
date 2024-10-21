@@ -1,11 +1,12 @@
 `ifndef CONSTANTS_V
 `define CONSTANTS_V
 
-parameter H_SYNC_CYC = 96;
-parameter H_BACK_PORCH = 46;
-parameter H_ACTIVE_VIDEO = 640;
-parameter H_FRONT_PORCH = 16;
-parameter H_LINE = H_SYNC_CYC + H_BACK_PORCH + H_ACTIVE_VIDEO + H_FRONT_PORCH;
+// VGA timing constants for 640x480 resolution
+localparam H_SYNC_CYC        = 96;    // Horizontal sync cycle
+localparam H_BACK_PORCH      = 46;    // Horizontal back porch
+localparam H_ACTIVE_VIDEO    = 640;   // Horizontal active video
+localparam H_FRONT_PORCH     = 15;    // Horizontal front porch
+localparam H_LINE            = 800;   // Total horizontal line width
 
 parameter V_SYNC_CYC = 1;
 parameter V_BACK_PORCH = 33;

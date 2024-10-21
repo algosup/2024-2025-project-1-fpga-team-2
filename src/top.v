@@ -47,6 +47,8 @@ module top (
     // Registre pour le niveau affiché
     reg [3:0] current_level;           // Niveau courant affiché
 
+
+
     raccoon_ctrl raccoonController (
         .i_Clk(i_Clk),
         .i_Raccoon_Up(i_Switch_1),     // Bouton pour monter
@@ -74,11 +76,12 @@ module top (
 
     // --- Positions des voitures --- 
     wire [9:0] carX_1;
-    wire [9:0] carY_1;
+    wire [8:0] carY_1;
     wire [9:0] carX_2;
-    wire [9:0] carY_2;
+    wire [8:0] carY_2;
     wire [9:0] carX_3;
     wire [9:0] carY_3;
+
     // --- Instanciation des voitures --- 
     car_ctrl #(.C_CAR_X(0), .C_CAR_Y(96), .C_DIRECTION(1)) car1 (
         .i_Clk(i_Clk),
@@ -89,7 +92,7 @@ module top (
         .o_carY(carY_1)
     );
 
-    car_ctrl #(.C_CAR_X(100), .C_CAR_Y(160), .C_DIRECTION(0)) car2 (
+    car_ctrl #(.C_CAR_X(550), .C_CAR_Y(160), .C_DIRECTION(0)) car2 (
         .i_Clk(i_Clk),
         .level(current_level), // Utiliser le niveau affiché
         .game_state(game_state),
@@ -125,13 +128,14 @@ module top (
         .vgaVs(o_VGA_VSync)
     );
 
-    // --- Détection de collision --- 
+
     assign collision = ((raccoonX < carX_1 + 32) && (raccoonX + 32 > carX_1) &&
                         (raccoonY < carY_1 + 32) && (raccoonY + 32 > carY_1)) ||
                        ((raccoonX < carX_2 + 32) && (raccoonX + 32 > carX_2) &&
                         (raccoonY < carY_2 + 32) && (raccoonY + 32 > carY_2)) ||
                        ((raccoonX < carX_3 + 32) && (raccoonX + 32 > carX_3) &&
                         (raccoonY < carY_3 + 32) && (raccoonY + 32 > carY_3));
+
 
     // --- Instanciation du module de vies --- 
     wire [3:0] lives_remaining; // Vies restantes

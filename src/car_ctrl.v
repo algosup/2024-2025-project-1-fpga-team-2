@@ -10,30 +10,30 @@ module car_ctrl #(
     input wire [1:0] game_state,         // Nouveau port d'entrée pour l'état du jeu
     input wire i_Reset,                  // Nouveau bouton de réinitialisation
     output reg [9:0] o_carX,             // Position X de la voiture
-    output reg [9:0] o_carY              // Position Y de la voiture
+    output reg [8:0] o_carY              // Position Y de la voiture
 );
 
     // Position initiale de la voiture
     reg [9:0] carX = C_CAR_X;            // Position X initialisée avec le paramètre
-    reg [9:0] carY = C_CAR_Y;            // Position Y fixe
+    reg [8:0] carY = C_CAR_Y;            // Position Y fixe
 
     // Compteur pour contrôler la vitesse de la voiture
-    reg [16:0] speed_counter = 0;
-    reg [24:0] speed;                    // Vitesse de la voiture
+    reg [15:0] speed_counter = 0;        // 16 bits devraient suffire
+    reg [16:0] speed;                    // Vitesse de la voiture réduite à 17 bits
 
     // Définition des vitesses en fonction du niveau
     always @(*) begin
         case (level)
-            4'b0001: speed = 24'd80000;   // Niveau 1 : vitesse initiale
-            4'b0010: speed = 24'd70000;   // Niveau 2 : augmentation de la vitesse
-            4'b0011: speed = 24'd60000;   // Niveau 3 : plus rapide
-            4'b0100: speed = 24'd50000;   // Niveau 4 : encore plus rapide
-            4'b0101: speed = 24'd45000;   // Niveau 5 : accélération
-            4'b0110: speed = 24'd40000;   // Niveau 6 : vitesse notable
-            4'b0111: speed = 24'd32000;   // Niveau 7 : vitesse élevée
-            4'b1000: speed = 24'd30000;   // Niveau 8 : très rapide
-            4'b1001: speed = 24'd15000;   // Niveau 9 : vitesse maximale
-            default: speed = 24'd80000;   // Niveau par défaut
+            4'b0001: speed = 17'd50000;   // Niveau 1 : vitesse initiale
+            4'b0010: speed = 17'd45000;   // Niveau 2 : augmentation de la vitesse
+            4'b0011: speed = 17'd40000;   // Niveau 3 : plus rapide
+            4'b0100: speed = 17'd35000;   // Niveau 4 : encore plus rapide
+            4'b0101: speed = 17'd30000;   // Niveau 5 : accélération
+            4'b0110: speed = 17'd25000;   // Niveau 6 : vitesse notable
+            4'b0111: speed = 17'd20000;   // Niveau 7 : vitesse élevée
+            4'b1000: speed = 17'd15000;   // Niveau 8 : très rapide
+            4'b1001: speed = 17'd10000;   // Niveau 9 : vitesse maximale
+            default: speed = 17'd50000;   // Niveau par défaut
         endcase
     end
 
@@ -43,6 +43,7 @@ module car_ctrl #(
             // Réinitialisation des positions des voitures à leurs positions de départ
             carX <= C_CAR_X;
             carY <= C_CAR_Y;
+            speed_counter <= 0;
         end else if (game_state == 2'b01) begin  // État "running"
             if (speed_counter < speed) begin
                 speed_counter <= speed_counter + 1;

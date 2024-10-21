@@ -1,7 +1,7 @@
-module clk_divider #(
-    parameter DIV_RATIO = 24'd99  // Ratio de division pour la fréquence de sortie
-)(
-    input wire i_Clk,              // Signal d'horloge d'entrée
+// Module clk_divider ajustable
+module clk_divider(
+    input wire i_clk,              // Signal d'horloge d'entrée
+    input wire [23:0] DIV_RATIO,   // Ratio de division pour la fréquence de sortie
     output reg o_slow_clk          // Signal d'horloge divisé en sortie
 );
 
