@@ -10,7 +10,7 @@
 
 3. **Challenges:**  
 - Start "over" all the project (more optimization part).
-- Organized each task for everybody to ensure a proper development.
+- Organized each task for everyone to ensure a proper development.
 
 4. **Plans for Next Week:**  
 - Send the final code.

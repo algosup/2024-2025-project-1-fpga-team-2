@@ -4,7 +4,7 @@ This document explains the concept of a file management artifact in simple terms
 A file management artifact is basically any piece of information, item, or tool that helps organize, keep track of, and manage files in a system. These artifacts make it easier to handle, store, and find files.
 
 ## Task & Schedule
-This part will regroup the parts bellow, you can access to main document by clicking [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=1108239108#gid=1108239108).
+This part will regroup the sections below, you can access the main document by clicking [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=1108239108#gid=1108239108).
 ### Work Breakdown Structure
 Here is the WBS. You can follow the mainlines of the project by clicking [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=2090769529#gid=2090769529).
 
@@ -149,4 +149,4 @@ This part has been made to list all the weekly reports throughout the project:
 - [Weekly Report 4](./weekly_reports/weekly_report_4.md)
 
 ## Global Management Review
-This part contain a global view from the team members to grade how the perceive the management for this project:
+This part contains a global view from the team members to grade how they perceived the management of this project:
