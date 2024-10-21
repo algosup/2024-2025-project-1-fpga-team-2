@@ -1,11 +1,18 @@
-## Work Breakdown Structure
+# FPGA Project - Management Artifacts - Team 2
+This document explains the concept of a file management artifact in simple terms.
+
+A file management artifact is basically any piece of information, item, or tool that helps organize, keep track of, and manage files in a system. These artifacts make it easier to handle, store, and find files.
+
+## Task & Schedule
+This part will regroup the parts bellow, you can access to main document by clicking [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=1108239108#gid=1108239108).
+### Work Breakdown Structure
 Here is the WBS. You can follow the mainlines of the project by clicking [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=2090769529#gid=2090769529).
 
-## Gantt Chart
+### Gantt Chart
 You can view the Gantt Chart Expectation for the project timeline [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=159628323#gid=159628323).
 
 ## KPI's
-In this section, we present the completion of the KPIs and how the calculations have been performed:
+In this section, we present the completion of the KPIs and how the calculations have been performed, you can also access to this document by clicking [here](https://docs.google.com/spreadsheets/d/1X-kkG5JFK_j_OlVThfcNF5CRCTrUDaOV3hJcxrTduTk/edit?gid=148590596#gid=148590596):
 
 ### Completion Calculation
 #### Files & Review
@@ -112,7 +119,6 @@ You can access to the KPI's graphics [here](https://docs.google.com/spreadsheets
 
 
 ## RACI
-
 The RACI of this project is as follows considering the Project Charter:
 
 | Name                     | Project Manager | Program Manager | Technical Leader | Software Engineer | Quality Assurance | Technical Writer | Client | Stakeholders |
@@ -135,10 +141,12 @@ The RACI of this project is as follows considering the Project Charter:
 | I      | Informed    | Kept updated on progress and decisions           |
 
 ## Weekly Reports
-
 This part has been made to list all the weekly reports throughout the project:
 
 - [Weekly Report 1](./weekly_reports/weekly_report_1.md)
 - [Weekly Report 2](./weekly_reports/weekly_report_2.md)
 - [Weekly Report 3](./weekly_reports/weekly_report_3.md)
 - [Weekly Report 4](./weekly_reports/weekly_report_4.md)
+
+## Global Management Review
+This part contain a global view from the team members to grade how the perceive the management for this project:
