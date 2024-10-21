@@ -32,7 +32,6 @@ module car_ctrl #(
             4'b0110: speed = 17'd25000;   // Niveau 6 : vitesse notable
             4'b0111: speed = 17'd20000;   // Niveau 7 : vitesse élevée
             4'b1000: speed = 17'd15000;   // Niveau 8 : très rapide
-            4'b1001: speed = 17'd10000;   // Niveau 9 : vitesse maximale
             default: speed = 17'd50000;   // Niveau par défaut
         endcase
     end

@@ -9,9 +9,6 @@ module vga (
     input wire [9:0] carX_2,           // Position X de la deuxième voiture
     input wire [8:0] carY_2,           // Position Y de la deuxième voiture
     input wire [9:0] carX_3,           // Position X de la troisième voiture
-<<<<<<< HEAD
-    input wire [9:0] carY_3,           // Position Y de la troisième voiture         
-=======
     input wire [8:0] carY_3,           // Position Y de la troisième voiture
     input wire [9:0] carX_4,
     input wire [8:0] carY_4,
@@ -19,7 +16,8 @@ module vga (
     input wire [8:0] carY_5,
     input wire [9:0] carX_6,
     input wire [8:0] carY_6,
->>>>>>> ec2ccca2935c7d64b02bb1ec032543210372aab5
+    input wire [9:0] carX_6,
+    input wire [8:0] carY_6,
     output reg [2:0] vgaR,             // Signal rouge VGA
     output reg [2:0] vgaG,             // Signal vert VGA
     output reg [2:0] vgaB,             // Signal bleu VGA
@@ -108,16 +106,15 @@ module vga (
                 set_color(grass_sprite_data[8:6], grass_sprite_data[5:3], grass_sprite_data[2:0]);
             end else if (pixelY >= 7 * GRID_HEIGHT && pixelY < 8 * GRID_HEIGHT) begin
                 // Bandes de couleurs spécifiques sur les lignes de blocs 7 et 8
-                vgaR <= GRAY;
-                vgaG <= GRAY;
-                vgaB <= GRAY;
+                grass_sprite_addr <= (pixelY - 13 * GRID_HEIGHT) * GRID_WIDTH + (pixelX % GRID_WIDTH);
+                set_color(grass_sprite_data[8:6], grass_sprite_data[5:3], grass_sprite_data[2:0]);
             end else if (pixelY >= 13 * GRID_HEIGHT && pixelY < 15 * GRID_HEIGHT) begin
                 // Bandes de couleurs spécifiques sur les lignes de blocs 14 et 15
                 // Calculer l'adresse dans la mémoire du sprite de l'herbe
                 grass_sprite_addr <= (pixelY - 13 * GRID_HEIGHT) * GRID_WIDTH + (pixelX % GRID_WIDTH);
                 set_color(grass_sprite_data[8:6], grass_sprite_data[5:3], grass_sprite_data[2:0]);
 
-            end else if (is_car(pixelX, pixelY, carX_1, carY_1, carX_2, carY_2, carX_3, carY_3)) begin
+            end else if (is_car(pixelX, pixelY, carX_1, carY_1, carX_2, carY_2, carX_3, carY_3, carX_4, carY_4, carX_5, carY_5, carX_6, carY_6)) begin
                 // Calculer l'adresse dans la mémoire du sprite de la voiture
                 if (in_bounds(pixelX, pixelY, carX_1, carY_1, CAR_WIDTH, CAR_HEIGHT)) begin
                     car_sprite_addr <= (pixelY - carY_1) * CAR_WIDTH + (pixelX - carX_1);
@@ -125,7 +122,14 @@ module vga (
                     car_sprite_addr <= (pixelY - carY_2) * CAR_WIDTH + (pixelX - carX_2);
                 end else if (in_bounds(pixelX, pixelY, carX_3, carY_3, CAR_WIDTH, CAR_HEIGHT)) begin
                     car_sprite_addr <= (pixelY - carY_3) * CAR_WIDTH + (pixelX - carX_3);
+                end else if (in_bounds(pixelX, pixelY, carX_4, carY_4, CAR_WIDTH, CAR_HEIGHT)) begin
+                    car_sprite_addr <= (pixelY - carY_4) * CAR_WIDTH + (pixelX - carX_4);
+                end else if (in_bounds(pixelX, pixelY, carX_5, carY_5, CAR_WIDTH, CAR_HEIGHT)) begin
+                    car_sprite_addr <= (pixelY - carY_5) * CAR_WIDTH + (pixelX - carX_5);
+                end else if (in_bounds(pixelX, pixelY, carX_6, carY_6, CAR_WIDTH, CAR_HEIGHT)) begin
+                    car_sprite_addr <= (pixelY - carY_6) * CAR_WIDTH + (pixelX - carX_6);
                 end
+                
                 if (raccoon_sprite_data != 000000) begin
                     set_color(car_sprite_data[8:6], car_sprite_data[5:3], car_sprite_data[2:0]);
                 end
@@ -135,12 +139,10 @@ module vga (
             // et l'affichage à la position désirée
             if (pixelY >= 4 * GRID_HEIGHT && pixelY < 5 * GRID_HEIGHT) begin
                 // Affichage des pointillés sur la ligne 5
-                dotted_sprite_addr <= (pixelY - 4 * GRID_HEIGHT) * GRID_WIDTH + (pixelX % GRID_WIDTH);
-                set_color(dotted_sprite_data[8:6], dotted_sprite_data[5:3], dotted_sprite_data[2:0]);
+
             end else if (pixelY >= 10 * GRID_HEIGHT && pixelY < 11 * GRID_HEIGHT) begin
                 // Affichage des pointillés sur la ligne 11
-                dotted_sprite_addr <= (pixelY - 10 * GRID_HEIGHT) * GRID_WIDTH + (pixelX % GRID_WIDTH);
-                set_color(dotted_sprite_data[8:6], dotted_sprite_data[5:3], dotted_sprite_data[2:0]);
+
             end
 
             // Affichage du raton laveur (avec gestion de la transparence pour la couleur 0x808080)
@@ -176,11 +178,14 @@ module vga (
     endfunction
 
     // Fonction pour vérifier si un pixel fait partie des voitures
-    function is_car(input [9:0] px, input [9:0] py, input [9:0] car1X, input [9:0] car1Y, input [9:0] car2X, input [9:0] car2Y, input [9:0] car3X, input [9:0] car3Y, input [9:0] car4X, input [9:0] car4Y, input [9:0] car5X, input [9:0] car5Y, input [9:0] car6X, input [9:0] car6Y);
+    function is_car(input [9:0] px, input [9:0] py, input [9:0] car1X, input [8:0] car1Y, input [9:0] car2X, input [8:0] car2Y, input [9:0] car3X, input [8:0] car3Y, input [9:0] car4X, input [8:0] car4Y, input [9:0] car5X, input [8:0] car5Y, input [9:0] car6X, input [8:0] car6Y);
         begin
             is_car = in_bounds(px, py, car1X, car1Y, CAR_WIDTH, CAR_HEIGHT) ||
-                        in_bounds(px, py, car2X, car2Y, CAR_WIDTH, CAR_HEIGHT) ||
-                        in_bounds(px, py, car3X, car3Y, CAR_WIDTH, CAR_HEIGHT);
+                     in_bounds(px, py, car2X, car2Y, CAR_WIDTH, CAR_HEIGHT) ||
+                     in_bounds(px, py, car3X, car3Y, CAR_WIDTH, CAR_HEIGHT) ||
+                     in_bounds(px, py, car4X, car4Y, CAR_WIDTH, CAR_HEIGHT) ||
+                     in_bounds(px, py, car5X, car5Y, CAR_WIDTH, CAR_HEIGHT) ||
+                     in_bounds(px, py, car6X, car6Y, CAR_WIDTH, CAR_HEIGHT);
         end
     endfunction
 
