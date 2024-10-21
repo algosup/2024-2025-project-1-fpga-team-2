@@ -9,7 +9,7 @@ module vga (
     input wire [9:0] carX_2,           // Position X de la deuxième voiture
     input wire [9:0] carY_2,           // Position Y de la deuxième voiture
     input wire [9:0] carX_3,           // Position X de la troisième voiture
-    input wire [9:0] carY_3,           // Position Y de la troisième voiture
+    input wire [9:0] carY_3,           // Position Y de la troisième voiture         
     output reg [2:0] vgaR,             // Signal rouge VGA
     output reg [2:0] vgaG,             // Signal vert VGA
     output reg [2:0] vgaB,             // Signal bleu VGA
@@ -20,7 +20,7 @@ module vga (
     // Instanciation du module RAM pour le raton laveur
     wire [8:0] raccoon_sprite_data; // Données du sprite pour le raton laveur
     wire [$clog2(1024)-1:0] raccoon_sprite_addr; // Adresse pour le sprite
-    ram #(.FILE_NAME("raccoon.mem")) raccoon_ram (
+    ram #(.FILE_NAME("raccoon.txt")) raccoon_ram (
         .i_Clk(clk),
         .addr(raccoon_sprite_addr),
         .data_out(raccoon_sprite_data)
@@ -29,10 +29,28 @@ module vga (
     // Instanciation du module RAM pour le raton laveur
     wire [8:0] grass_sprite_data; // Données du sprite pour le raton laveur
     wire [$clog2(1024)-1:0] grass_sprite_addr; // Adresse pour le sprite
-    ram #(.FILE_NAME("grass.mem")) grass_ram (
+    ram #(.FILE_NAME("grasstest.txt")) grass_ram (
         .i_Clk(clk),
         .addr(grass_sprite_addr),
         .data_out(grass_sprite_data)
+    );
+
+    // Instanciation du module RAM pour le raton laveur
+    wire [8:0] car_sprite_data; // Données du sprite pour le raton laveur
+    wire [$clog2(1024)-1:0] car_sprite_addr; // Adresse pour le sprite
+    ram #(.FILE_NAME("cars.txt")) car_ram (
+        .i_Clk(clk),
+        .addr(car_sprite_addr),
+        .data_out(car_sprite_data)
+    );
+
+    // Instanciation du module RAM pour le raton laveur
+    wire [8:0] dotted_sprite_data; // Données du sprite pour le raton laveur
+    wire [$clog2(1024)-1:0] dotted_sprite_addr; // Adresse pour le sprite
+    ram #(.FILE_NAME("dottedt.txt")) dotted_ram (
+        .i_Clk(clk),
+        .addr(dotted_sprite_addr),
+        .data_out(dotted_sprite_data)
     );
 
     // Compteurs horizontal et vertical pour la synchronisation VGA
@@ -76,9 +94,8 @@ module vga (
             // Affichage des bandes de couleurs
             if (pixelY < 2 * GRID_HEIGHT) begin
                 // Bandes grises sur les deux premières lignes de blocs
-                vgaR <= BLACK;
-                vgaG <= GREEN;
-                vgaB <= BLACK;
+                grass_sprite_addr <= (pixelY - 13 * GRID_HEIGHT) * GRID_WIDTH + (pixelX % GRID_WIDTH);
+                set_color(grass_sprite_data[8:6], grass_sprite_data[5:3], grass_sprite_data[2:0]);
             end else if (pixelY >= 7 * GRID_HEIGHT && pixelY < 8 * GRID_HEIGHT) begin
                 // Bandes de couleurs spécifiques sur les lignes de blocs 7 et 8
                 vgaR <= GRAY;
@@ -90,21 +107,39 @@ module vga (
                 grass_sprite_addr <= (pixelY - 13 * GRID_HEIGHT) * GRID_WIDTH + (pixelX % GRID_WIDTH);
                 set_color(grass_sprite_data[8:6], grass_sprite_data[5:3], grass_sprite_data[2:0]);
             end else if (is_car(pixelX, pixelY, carX_1, carY_1, carX_2, carY_2, carX_3, carY_3)) begin
-                // Affichage des voitures (rouge)
-                set_color(RED, BLACK, BLACK);
-            end else if (is_grid(pixelX, pixelY)) begin
-                // Affichage des lignes de la grille (gris)
-                set_color(GRAY, GRAY, GRAY);
-            end else if (is_dotted_line(pixelX, pixelY)) begin
+                // Calculer l'adresse dans la mémoire du sprite de la voiture
+                if (in_bounds(pixelX, pixelY, carX_1, carY_1, CAR_WIDTH, CAR_HEIGHT)) begin
+                    car_sprite_addr <= (pixelY - carY_1) * CAR_WIDTH + (pixelX - carX_1);
+                end else if (in_bounds(pixelX, pixelY, carX_2, carY_2, CAR_WIDTH, CAR_HEIGHT)) begin
+                    car_sprite_addr <= (pixelY - carY_2) * CAR_WIDTH + (pixelX - carX_2);
+                end else if (in_bounds(pixelX, pixelY, carX_3, carY_3, CAR_WIDTH, CAR_HEIGHT)) begin
+                    car_sprite_addr <= (pixelY - carY_3) * CAR_WIDTH + (pixelX - carX_3);
+                end
+                if (raccoon_sprite_data != 000000) begin
+                    set_color(car_sprite_data[8:6], car_sprite_data[5:3], car_sprite_data[2:0]);
+                end
+            end 
+
+                // Remplace la fonction is_dotted_line par l'accès au sprite de pointillés
+            // et l'affichage à la position désirée
+            if (pixelY >= 4 * GRID_HEIGHT && pixelY < 5 * GRID_HEIGHT) begin
                 // Affichage des pointillés sur la ligne 5
-                set_color(WHITE, WHITE, WHITE);
+                dotted_sprite_addr <= (pixelY - 4 * GRID_HEIGHT) * GRID_WIDTH + (pixelX % GRID_WIDTH);
+                set_color(dotted_sprite_data[8:6], dotted_sprite_data[5:3], dotted_sprite_data[2:0]);
+            end else if (pixelY >= 10 * GRID_HEIGHT && pixelY < 11 * GRID_HEIGHT) begin
+                // Affichage des pointillés sur la ligne 11
+                dotted_sprite_addr <= (pixelY - 10 * GRID_HEIGHT) * GRID_WIDTH + (pixelX % GRID_WIDTH);
+                set_color(dotted_sprite_data[8:6], dotted_sprite_data[5:3], dotted_sprite_data[2:0]);
             end
 
-            // Affichage du raton laveur (blanc) par-dessus les bandes de couleurs
+            // Affichage du raton laveur (avec gestion de la transparence pour la couleur 0x808080)
             if (in_bounds(pixelX, pixelY, raccoonX, raccoonY, PLAYER_WIDTH, PLAYER_HEIGHT)) begin
                 // Calculer l'adresse dans la mémoire du sprite du raton laveur
                 raccoon_sprite_addr <= (pixelY - raccoonY) * PLAYER_WIDTH + (pixelX - raccoonX);
-                set_color(raccoon_sprite_data[8:6], raccoon_sprite_data[5:3], raccoon_sprite_data[2:0]);
+                // Si le pixel du sprite n'est pas 0x808080 (gris moyen)
+                if (raccoon_sprite_data != 000001) begin  // Couleur 0x808080 (gris moyen)
+                    set_color(raccoon_sprite_data[8:6], raccoon_sprite_data[5:3], raccoon_sprite_data[2:0]);
+                end
             end
         end else begin
             vgaR <= BLACK;
@@ -133,27 +168,12 @@ module vga (
     function is_car(input [9:0] px, input [9:0] py, input [9:0] car1X, input [9:0] car1Y, input [9:0] car2X, input [9:0] car2Y, input [9:0] car3X, input [9:0] car3Y);
         begin
             is_car = in_bounds(px, py, car1X, car1Y, CAR_WIDTH, CAR_HEIGHT) ||
-                     in_bounds(px, py, car2X, car2Y, CAR_WIDTH, CAR_HEIGHT) ||
-                     in_bounds(px, py, car3X, car3Y, CAR_WIDTH, CAR_HEIGHT);
+                        in_bounds(px, py, car2X, car2Y, CAR_WIDTH, CAR_HEIGHT) ||
+                        in_bounds(px, py, car3X, car3Y, CAR_WIDTH, CAR_HEIGHT);
         end
     endfunction
 
-    // Fonction pour vérifier si un pixel fait partie de la grille
-    function is_grid(input [9:0] px, input [9:0] py);
-        begin
-            is_grid = (px % GRID_WIDTH == 0) || (py % GRID_HEIGHT == 0);
-        end
-    endfunction
 
-    // Fonction pour vérifier si un pixel fait partie des pointillés sur la ligne 5
-    function is_dotted_line(input [9:0] px, input [9:0] py);
-        begin
-            // Pointillés sur la ligne 5 (de 4 * GRID_HEIGHT + 8 à 4 * GRID_HEIGHT + 24)
-            // Pointillés sur la ligne 11 (de 10 * GRID_HEIGHT + 8 à 10 * GRID_HEIGHT + 24)
-            is_dotted_line = ((py >= 4 * GRID_HEIGHT + 8 && py < 4 * GRID_HEIGHT + 24) ||
-                              (py >= 10 * GRID_HEIGHT + 8 && py < 10 * GRID_HEIGHT + 24)) &&
-                              ((px % (2 * GRID_WIDTH) >= 4 && px % (2 * GRID_WIDTH) < 28));
-        end
-    endfunction
+    
 
 endmodule

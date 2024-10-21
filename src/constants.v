@@ -1,18 +1,17 @@
 `ifndef CONSTANTS_V
 `define CONSTANTS_V
 
-// VGA timing constants for 640x480 resolution
-localparam H_SYNC_CYC        = 96;    // Horizontal sync cycle
-localparam H_BACK_PORCH      = 48;    // Horizontal back porch
-localparam H_ACTIVE_VIDEO    = 640;   // Horizontal active video
-localparam H_FRONT_PORCH     = 15;    // Horizontal front porch
-localparam H_LINE            = 800;   // Total horizontal line width
+parameter H_SYNC_CYC = 96;
+parameter H_BACK_PORCH = 46;
+parameter H_ACTIVE_VIDEO = 640;
+parameter H_FRONT_PORCH = 16;
+parameter H_LINE = H_SYNC_CYC + H_BACK_PORCH + H_ACTIVE_VIDEO + H_FRONT_PORCH;
 
-localparam V_SYNC_CYC        = 1;     // Vertical sync cycle
-localparam V_BACK_PORCH      = 33;    // Vertical back porch
-localparam V_ACTIVE_VIDEO    = 480;   // Vertical active video
-localparam V_FRONT_PORCH     = 10;    // Vertical front porch
-localparam V_LINE            = 525;   // Total vertical line height
+parameter V_SYNC_CYC = 1;
+parameter V_BACK_PORCH = 33;
+parameter V_ACTIVE_VIDEO = 480;
+parameter V_FRONT_PORCH = 10;
+parameter V_LINE = V_SYNC_CYC + V_BACK_PORCH + V_ACTIVE_VIDEO + V_FRONT_PORCH;
 
 // Color constants
 localparam [2:0] WHITE = 3'b111;  // White
@@ -36,7 +35,7 @@ localparam PLAYER_HEIGHT     = 32;    // Raccoon height
 localparam RACCOON_SPEED     = 21;    // Raccoon movement speed
 
 // Car dimensions and properties
-localparam CAR_WIDTH         = 64;    // Width of the car
+localparam CAR_WIDTH         = 32;    // Width of the car
 localparam CAR_HEIGHT        = 32;    // Height of the car
 localparam C_CAR_SPEED = 24'd99;     // Car speed control frequency
 

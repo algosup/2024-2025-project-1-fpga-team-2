@@ -1,3 +1,5 @@
+`include "constants.v"
+
 module top (
     input i_Clk,                       // Signal d'horloge
     input i_Switch_1,                  // Bouton pour monter
@@ -47,10 +49,10 @@ module top (
 
     raccoon_ctrl raccoonController (
         .i_Clk(i_Clk),
-        .i_Raccoon_Up(i_Switch_1),
-        .i_Raccoon_Dn(i_Switch_2),
-        .i_Raccoon_lt(i_Switch_4), // Corriger pour droite
-        .i_Raccoon_rt(i_Switch_3), // Corriger pour gauche
+        .i_Raccoon_Up(i_Switch_1),     // Bouton pour monter
+        .i_Raccoon_Dn(i_Switch_2),     // Bouton pour descendre
+        .i_Raccoon_lt(i_Switch_4),     // Bouton pour gauche
+        .i_Raccoon_rt(i_Switch_3),     // Bouton pour droite
         .i_Collision(collision),
         .game_state(game_state),
         .i_Reset_Level(i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4), // Reset de niveau
@@ -77,7 +79,6 @@ module top (
     wire [9:0] carY_2;
     wire [9:0] carX_3;
     wire [9:0] carY_3;
-
     // --- Instanciation des voitures --- 
     car_ctrl #(.C_CAR_X(0), .C_CAR_Y(96), .C_DIRECTION(1)) car1 (
         .i_Clk(i_Clk),
@@ -121,16 +122,16 @@ module top (
         .vgaG({o_VGA_Grn_2, o_VGA_Grn_1, o_VGA_Grn_0}),
         .vgaB({o_VGA_Blu_2, o_VGA_Blu_1, o_VGA_Blu_0}),
         .vgaHs(o_VGA_HSync),
-        .vgaVs(o_VGA_VSync),
+        .vgaVs(o_VGA_VSync)
     );
 
     // --- Détection de collision --- 
-    assign collision = ((raccoonX < carX_1 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_1) &&
-                        (raccoonY < carY_1 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_1)) ||
-                       ((raccoonX < carX_2 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_2) &&
-                        (raccoonY < carY_2 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_2)) ||
-                       ((raccoonX < carX_3 + CAR_WIDTH) && (raccoonX + PLAYER_WIDTH > carX_3) &&
-                        (raccoonY < carY_3 + CAR_HEIGHT) && (raccoonY + PLAYER_HEIGHT > carY_3));
+    assign collision = ((raccoonX < carX_1 + 32) && (raccoonX + 32 > carX_1) &&
+                        (raccoonY < carY_1 + 32) && (raccoonY + 32 > carY_1)) ||
+                       ((raccoonX < carX_2 + 32) && (raccoonX + 32 > carX_2) &&
+                        (raccoonY < carY_2 + 32) && (raccoonY + 32 > carY_2)) ||
+                       ((raccoonX < carX_3 + 32) && (raccoonX + 32 > carX_3) &&
+                        (raccoonY < carY_3 + 32) && (raccoonY + 32 > carY_3));
 
     // --- Instanciation du module de vies --- 
     wire [3:0] lives_remaining; // Vies restantes
@@ -157,20 +158,19 @@ module top (
 
     segment_decoder segment_display (
         .i_Clk(i_Clk),                  // Horloge
-        .i_Level(current_level),       // Passer le niveau courant
-        .o_Segment(seg_display_units)  // Récupérer la valeur décodée
+        .i_Level(current_level),        // Passer le niveau courant
+        .o_Segment(seg_display_units)   // Récupérer la valeur décodée
     );
 
     // --- Connecter les segments à l'afficheur ---
-    assign {o_Segment2_G, o_Segment2_F, o_Segment2_E, o_Segment2_D, o_Segment2_C, o_Segment2_B, o_Segment2_A} = seg_display_units; // Chiffre des unités à gauche
+    assign {o_Segment2_G, o_Segment2_F, o_Segment2_E, o_Segment2_D, o_Segment2_C, o_Segment2_B, o_Segment2_A} = seg_display_units;
 
-    // Instanciation du module de contrôle des LEDs
+    // --- Instanciation du module de contrôle des LEDs --- 
     LED_control ledControl (
-        .i_Lives(lives_remaining),  // Vies restantes
+        .i_Lives(lives_remaining),      // Vies restantes
         .o_LED_1(o_LED_1),
         .o_LED_2(o_LED_2),
         .o_LED_3(o_LED_3)
     );
-
 
 endmodule
