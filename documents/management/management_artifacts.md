@@ -4,8 +4,6 @@ Here is the WBS. You can follow the mainlines of the project by clicking [here](
 ## Gantt Chart
 You can view the Gantt Chart Expectation for the project timeline [here](https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=159628323#gid=159628323).
 
-You can view the Actual Gantt Chart for the project timeline ~~[here](#https://docs.google.com/spreadsheets/d/16v3bma5pIHKOiImc8hbItDxhyRA7LEEg1ulyBQdK0RM/edit?gid=1929132487#gid=1929132487).~~
-
 ## KPI's
 In this section, we present the completion of the KPIs and how the calculations have been performed:
 
@@ -144,4 +142,3 @@ This part has been made to list all the weekly reports throughout the project:
 - [Weekly Report 2](./weekly_reports/weekly_report_2.md)
 - [Weekly Report 3](./weekly_reports/weekly_report_3.md)
 - [Weekly Report 4](./weekly_reports/weekly_report_4.md)
-- [Weekly Report 5](./weekly_reports/weekly_report_5.md)
