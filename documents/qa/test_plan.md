@@ -5,11 +5,11 @@
 ---
 
 
-**Project** : Frogger <br>
+**Project** : FPGA Frogger <br>
 **Team** : 2 <br>
 **Created by** : Enoal ADAM <br>
 **Creation Date** : 09/26/2024 <br>
-**Updated** : 20/11/2024 <br>
+**Updated** : 10/21/2024 <br>
 
 ---
 
@@ -50,7 +50,7 @@ More precisely, this document and the test cases will gather some information li
 - Ensure that the product meets the software[^3] requirements.
 - Identify the presence of bugs or other problems.
 - Check the code's and game's security to avoid issues on the customer's hardware[^2].
-- Verify the responsiveness of the product
+- Verify the responsiveness of the product.
 
 ## 3. Tests metrics
 
@@ -128,9 +128,9 @@ You will find all the tests which will be carried out below.
 
   - A performance test measures the system’s performance under different conditions, such as load testing.
 
-  <br><u>How does it works?</u>
+  <br><u>How does it work?</u>
   1. Write tests for the game
-  2. Observe if the game doesn't make too time to respond to our command
+  2. Observe if the game doesn't make too much time to respond to our command
   3. Point any issues or problems
   4. Resolve any latency between our action and the game
   5. Document test results
@@ -263,24 +263,32 @@ There are 2 cases:
 
 [^1]: Verilog
 A language principally used for the programming of FPGA
+
 [^2]: Hardware
 The computer science materials used to do something (e.g. computer, smartphone, etc.)
+
 [^3]: Software
 A set of programs, procedures, and rules that enable a computer to work. It can be an OS like Windows, an application, etc.
+
 [^4]: VGA
 A connector commonly used to transmit video signals from a device (such as an FPGA) to a monitor or display.
+
 [^5]: Debounce
 Here, something is said debounced when the action taken has no residue, that's to say, when we click on a switch very quickly, all the press will be counted
+
 [^6]: Go-Board:
 Designed specifically to have an excellent balance of external
 peripherals, without bogging down someone who has never used
 an FPGA with complicated interfaces that are more advanced.
+
 [^7]: Operating System:
 *(aka OS)*
 Manages computer hardware, software resources and provides various services for computer programs. It’s the link between the user and the computer.
+
 [^8]: FPGA:
 *(aka Field-Programmable Gate Array)*
 A type of integrated circuit that can be configured by the user or designer after manufacturing, often used in specialized gaming platforms.
+
 [^9]: PMOD:
 *(aka Peripheral Module Interface)*
 A PMOD connector is an open standard defined by Digilent for connecting peripheral modules to FPGA development card and micro-controllers.

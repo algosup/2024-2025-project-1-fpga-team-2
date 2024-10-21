@@ -5,11 +5,11 @@
 ---
 
 
-**Project** : Frogger <br>
+**Project** : FPGA Frogger <br>
 **Team** : 2 <br>
 **Created by** : Enoal ADAM <br>
 **Creation Date** : 10/09/2024 <br>
-**Updated** : 18/11/2024 <br>
+**Updated** : 10/21/2024 <br>
 
 ---
 
@@ -46,7 +46,7 @@
 
 ### ID
 
-Each test has a ID which is attributed to it. This ID follow a specific model like :
+Each test has an ID which is attributed to it. This ID follow a specific model like :
 
 - The first number <mark>1</mark>/01:
   - 1 is linked with the software (without visuals)
