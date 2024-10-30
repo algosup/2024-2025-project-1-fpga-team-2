@@ -147,6 +147,7 @@ This part has been made to list all the weekly reports throughout the project:
 - [Weekly Report 2](./weekly_reports/weekly_report_2.md)
 - [Weekly Report 3](./weekly_reports/weekly_report_3.md)
 - [Weekly Report 4](./weekly_reports/weekly_report_4.md)
+- [Weekly Report 5](./weekly_reports/weekly_report_5.md)
 
 ## Global Management Review
 This part contains the global results from the team members to grade how they perceived the management of this project by clicking [here](https://docs.google.com/spreadsheets/d/1X-kkG5JFK_j_OlVThfcNF5CRCTrUDaOV3hJcxrTduTk/edit?gid=328080926#gid=328080926).
